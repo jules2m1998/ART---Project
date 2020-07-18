@@ -1,38 +1,56 @@
 <template>
-  <v-app>
+  <v-app class="w-100">
     <v-main>
       <nuxt />
     </v-main>
-    <top-footer />
+    <top-footer :datas="datas" class="responsive" />
+    <footer>
+      <the-footer />
+    </footer>
   </v-app>
 </template>
 
 <script>
 import TopFooter from '~/components/topFooter/TopFooter'
+import TheFooter from '~/components/footer/TheFooter'
 export default {
-  components: { TopFooter },
+  components: { TopFooter, TheFooter },
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
+      datas: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          ico: 'business',
+          name: 'Companies',
+          number: 10
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          ico: 'person',
+          name: 'Individuals',
+          number: 653
+        },
+        {
+          ico: 'category',
+          name: 'Categories',
+          number: 75
+        },
+        {
+          ico: 'gps_fixed',
+          name: 'Rentals',
+          number: 41
         }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      ]
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  @media screen and (max-width: 768px) {
+    .responsive{
+      display: none!important;
+    }
+  }
+  .w-100{
+    width: 100%;
+  }
+</style>
