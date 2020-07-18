@@ -3,9 +3,9 @@
     <div class="ico">
       <v-icon>{{ ico }}</v-icon>
     </div>
-    <div class="stats d-flex flex-column justify-center">
+    <div class="stats d-flex flex-column justify-center font-sans">
       <div class="number">
-        {{ number }}
+        +{{ number }}
       </div>
       <div class="title--custom">
         {{ name }}
@@ -36,6 +36,7 @@ export default {
 
 <style lang="scss" scoped>
   .ico{
+    margin-right: 3px;
     i{
       font-size: 82px;
       color: #F5C511;
@@ -45,11 +46,12 @@ export default {
   .stats{
     box-sizing: border-box;
     .number{
-      margin: 0;
-      font-size: 30px;
+      margin: 0 0 5px;
+      font-size: 35px;
       letter-spacing: 2px;
       font-weight: 700;
       color: rgba(255,255,255,.8);
+      height: 36px;
     }
     .title--custom{
       color: rgba(255,255,255,.6);

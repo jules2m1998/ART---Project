@@ -21,17 +21,26 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      // { href: 'https://cdn.jsdelivr.net/npm/font-awesome@4.x/css/font-awesome.min.css', rel: 'stylesheet' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css'
+      }
     ]
   },
   /*
   ** Global CSS
   */
   css: [
+    '~assets/scss/default.scss'
   ],
+  styleResources: {
+    scss: ['./assets/scss/*.scss']
+  },
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
@@ -65,7 +74,6 @@ export default {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: false,
       themes: {
@@ -76,7 +84,11 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          success: colors.green.accent3,
+          facebook: '#4267B2',
+          twitter: '#1DA1F2',
+          linkedin: '#1DA1F2',
+          youtube: '#FF0000',
         }
       }
     },

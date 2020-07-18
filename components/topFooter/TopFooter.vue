@@ -1,7 +1,7 @@
 <template>
-  <v-container id="top--footer" fluid class="bg-img">
+  <v-container id="top--footer" fluid class="bg-img  d-flex align-center">
     <div class="blue-bg" />
-    <top-footer-list />
+    <top-footer-list :stats="datas" />
   </v-container>
 </template>
 
@@ -11,6 +11,12 @@ export default {
   name: 'TopFooter',
   components: {
     TopFooterList
+  },
+  props: {
+    datas: {
+      type: Array,
+      required: true
+    }
   }
 }
 </script>
@@ -21,9 +27,11 @@ export default {
   }
   .bg-img{
     background: url("~assets/topFooter/stat-bg.png");
+    background-size: cover;
   }
   #top--footer{
     position: relative;
+    height: 190px;
     .blue-bg{
       width: 100%;
       height: 100%;
