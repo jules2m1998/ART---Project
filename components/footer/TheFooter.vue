@@ -33,7 +33,16 @@
               <social />
             </div>
             <div id="lang" class="">
-              <span>plan du site</span>
+              <span id="plan-site">plan du site</span>
+              <div class="formfield-select">
+                <div class="formfield-select--container">
+                  <select id="mon_select">
+                    <option>Français</option>
+                    <option>English</option>
+                  </select>
+                </div>
+
+              </div>
             </div>
           </div>
           <div id="links-form" class="">
@@ -274,6 +283,47 @@ export default {
               display: flex;
               flex-direction: row;
               justify-content: flex-end;
+              align-self: center;
+              #plan-site{
+                align-self: center;
+              }
+              .formfield-select {
+                position: relative;
+                margin-left: 10px;
+              }
+              .formfield-select--container{
+                position: relative;
+                overflow: hidden;
+                width: 100px;
+                select {
+                  appearance: none;
+                  height: auto;
+                  border: 0;
+                  border-radius: 0;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  color: $yellow;
+                  background: $primary;
+                  padding: 10px;
+                  option{
+                    margin: 20px;
+                  }
+                }
+                &::after {
+                  content: '';
+                  position: absolute;
+                  top: 23px;
+                  margin-top: -3px;
+                  right: .5em;
+                  display: block;
+                  width: 0; height: 0;
+                  border-color: transparent;
+                  border-top-color: $yellow;
+                  border-width: 6px;
+                  border-style: solid;
+                  pointer-events: none;
+                }
+              }
             }
           }
           #links-form{
@@ -295,8 +345,9 @@ export default {
             @media screen and (max-width: 1024px) {
               grid-template-columns: 1fr 1fr;
             }
-            @media screen and (max-width: 425px) {
+            @media screen and (max-width: 518px) {
               grid-template-columns: 1fr;
+              grid-gap: 0;
               #links{
                 display: none!important;
               }
@@ -319,7 +370,6 @@ export default {
               justify-content: space-between;
             }
             #form{
-              max-width: 400px;
               padding-left: 24px;
             }
           }
@@ -337,7 +387,7 @@ export default {
         grid-template-columns: 7fr 5fr;
         grid-gap: 20px;
         margin-top: 20px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 512px) {
           grid-template-columns: 1fr;
         }
         #politique{

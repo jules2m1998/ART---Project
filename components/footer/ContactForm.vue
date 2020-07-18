@@ -55,12 +55,12 @@ export default {
       flex-wrap: nowrap;
       span{
         height: $inputh;
-        width: 50%;
         border: $border solid rgba(255,255,255,.5);
         input{
           height: 100%;
           color: $yellow;
           width: 100%;
+          display: flex;
         }
         &:first-child{
           border-right: none;
@@ -69,13 +69,15 @@ export default {
         &:last-child{
           border-left: none;
           border-radius: 0 $radius $radius 0;
+          position: relative;
           &:before{
             content: '';
-            height: 80%;
+            height: 70%;
             border: $border solid rgba(255,255,255,.5);
             width: 1px;
-            position: relative;
-            top: -1px;
+            position: absolute;
+            top: 5px;
+            right: 100%;
           }
         }
 
