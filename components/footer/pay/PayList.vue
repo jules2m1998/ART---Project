@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div id="my-title">{{ title }}</div>
+    <div id="my-title">
+      {{ title }}
+    </div>
     <div id="support">
-      <pay-item v-for="(item, key) in list" :item="item" :key="key" />
+      <pay-item v-for="(item, key) in list" :key="key" :item="item" />
     </div>
   </div>
 </template>
@@ -11,6 +13,7 @@
 import PayItem from '~/components/footer/pay/PayItem'
 export default {
   name: 'PayList',
+  components: { PayItem },
   props: {
     list: {
       type: Array,
@@ -20,8 +23,7 @@ export default {
       type: String,
       required: true
     }
-  },
-  components: { PayItem }
+  }
 }
 </script>
 

@@ -8,13 +8,13 @@
 import PayList from '~/components/footer/pay/PayList'
 export default {
   name: 'Pay',
+  components: { PayList },
   props: {
     pay: {
       type: Object,
       required: true
     }
-  },
-  components: { PayList }
+  }
 }
 </script>
 

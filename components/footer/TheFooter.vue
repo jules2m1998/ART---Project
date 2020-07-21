@@ -1,7 +1,7 @@
 <template>
   <v-container id="the-footer" fluid>
     <v-container id="content" class="font-sans">
-      <v-btn fab large id="float-button">
+      <v-btn id="float-button" fab large>
         <v-icon>arrow_upward</v-icon>
       </v-btn>
       <div id="box-top" class="">
@@ -41,7 +41,6 @@
                     <option>English</option>
                   </select>
                 </div>
-
               </div>
             </div>
           </div>
@@ -58,7 +57,9 @@
       </div>
       <div id="box-bottom" class="">
         <div id="politique" class="">
-          <a :href="item.link" v-for="(item, key) in politiques" :key="key">{{ item.title }}</a>
+          <a v-for="(item, key) in politiques" :key="key" :href="item.link">
+            {{ item.title }}
+          </a>
         </div>
         <div id="pay" class="">
           <pay :pay="payMods" />
@@ -286,6 +287,13 @@ export default {
               align-self: center;
               #plan-site{
                 align-self: center;
+                &:after{
+                  content: '';
+                  width: 1px;
+                  height: 1px;
+                  border-right: 1px solid rgba(255,255,255,.5);
+                  margin-left: 10px;
+                }
               }
               .formfield-select {
                 position: relative;

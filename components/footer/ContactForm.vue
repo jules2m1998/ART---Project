@@ -1,24 +1,26 @@
 <template>
-    <div>
-        <h1>
-          {{ title.toUpperCase() }}
-        </h1>
-      <div id="form">
-        <div id="names" class="mt-5">
-          <span id="last">
-            <input type="text" placeholder="Prénom">
-          </span>
-          <span id="firts">
-            <input type="text" id="second" placeholder="Nom">
-          </span>
-        </div>
-        <div id="email" class="mt-4">
-          <input type="email" placeholder="Email">
-          <button>S'abonner</button>
-        </div>
-        <div id="msg-desa">Vous pouvez vous désabonner en tout temps</div>
+  <div>
+    <h1>
+      {{ title.toUpperCase() }}
+    </h1>
+    <div id="form">
+      <div id="names" class="mt-5">
+        <span id="last">
+          <input type="text" placeholder="Prénom">
+        </span>
+        <span id="firts">
+          <input id="second" type="text" placeholder="Nom">
+        </span>
+      </div>
+      <div id="email" class="mt-4">
+        <input type="email" placeholder="Email">
+        <button>S'abonner</button>
+      </div>
+      <div id="msg-desa">
+        Vous pouvez vous désabonner en tout temps
       </div>
     </div>
+  </div>
 </template>
 
 <script>
