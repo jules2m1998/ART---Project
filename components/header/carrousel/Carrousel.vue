@@ -4,11 +4,11 @@
       <carrousel-slide v-for="(item, key) in slides" :key="key" :item="item" :index="key" />
     </div>
     <div class="other">
-      <button class="buttons carrousel-next" @click.prevent="next" />
+      <button class="buttons carrousel-next" @click.prevent="next">go</button>
       <div class="carrousel-pagination">
         <button v-for="n in slidesCount" :key="n" class="steppers" :class="{ active : n-1 === index}" @click="goto(n-1)" />
       </div>
-      <button class="buttons carrousel-prev" @click.prevent="prev" />
+      <button class="buttons carrousel-prev" @click.prevent="prev"> rebff </button>
     </div>
   </div>
 </template>
@@ -27,13 +27,10 @@ export default {
   data: () => ({
     index: 0,
     direction: null,
-    interval: null
+    interval: null,
+    animations: ['animePLeft', 'animePRight', 'animePBottom', 'animePTop'],
+    tmp: []
   }),
-  computed: {
-    slidesCount () {
-      return this.slides.length
-    }
-  },
   mounted () {
     this.startAutoSlide()
   },
@@ -62,6 +59,31 @@ export default {
       this.interval = setInterval(() => {
         this.next()
       }, 5000)
+    },
+    getAnimation () {
+      if (this.animCount === 0) {
+        this.animations = [...this.tmp]
+      }
+      const random = Math.floor(Math.random() * this.animCount)
+      const value = this.animations[random].slice()
+      this.animations.splice(random, 1)
+      console.log('value', value, 'anim', this.animations)
+      return value
+    }
+  },
+  created () {
+    this.tmp = [...this.animations]
+    this.slides.forEach((item) => {
+      item.animation = this.getAnimation()
+    })
+    console.log(this.slides)
+  },
+  computed: {
+    slidesCount () {
+      return this.slides.length
+    },
+    animCount () {
+      return this.animations.length
     }
   }
 }
@@ -84,14 +106,6 @@ export default {
       bottom: 0;
       width: 100%;
       z-index: -1;
-      &:before{
-        content: '';
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 10;
-      }
     }
     .other{
       width: 100%;
