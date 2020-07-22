@@ -2,7 +2,7 @@
   <transition :name="transition">
     <div v-show="visible" class="carrousel-slide" :style="{ background: 'url(' + item.img + ') center no-repeat' }">
       <img :src="item.img" :alt="item.alt" height="20">
-      <p class="my-title" :class="item.animation">
+      <p class="my-title delai" :class="item.animation">
         {{ item.title }}
       </p>
     </div>
@@ -24,12 +24,13 @@ export default {
   },
   data: () => ({
     title: null,
-    animClass: null
+    animClass: null,
+    transitionType: 'fade'
   }),
   computed: {
     transition () {
       if (this.$parent.direction) {
-        return 'slide-' + this.$parent.direction
+        return this.transitionType + '-' + this.$parent.direction
       }
       return null
     },
@@ -41,8 +42,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $timer: .5s;
-  $pduration: 1.5s;
+  $timer: .9s;
+  $pduration: 1.6s;
+  $opacityS: 0;
+  $sup: 3s;
+  $inf: 1.5s;
   .carrousel-slide{
     width: 100%;
     height: 100%;
@@ -74,19 +78,38 @@ export default {
     }
   }
   .slide-right-enter-active {
-    animation: slideRightIn $timer;
+    animation: slideRightIn $timer ease-out;
     position: absolute;
     top: 0;
     left: 0;
   }
   .slide-right-leave-active {
-    animation: slideRightOut $timer;
+    animation: slideRightOut $timer ease-in;
+  }
+
+  .fade-right-enter-active{
+    animation: fadeIn $sup;
+    position: absolute;
+  }
+  .fade-right-leave-active{
+    animation: fadeOut $inf;
+    position: absolute;
+    p{
+      visibility: hidden;
+    }
+  }
+  .fade-left-enter-active{
+    animation: fadeIn $sup;
+    position: absolute;
+  }
+  .fade-left-leave-active{
+    animation: fadeOut $inf;
   }
   @keyframes slideRightIn {
-    from {
+    0% {
       transform: translateX(100%);
     }
-    to {
+    100% {
       transform: translateX(0);
     }
   }
@@ -100,10 +123,10 @@ export default {
   }
 
   .slide-left-enter-active {
-    animation: slideLeftIn $timer;
+    animation: slideLeftIn $timer ease-out;
   }
   .slide-left-leave-active {
-    animation: slideLeftOut $timer;
+    animation: slideLeftOut $timer ease-in;
     position: absolute;
     top: 0;
     left: 0;
@@ -192,6 +215,23 @@ export default {
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  @keyframes fadeIn {
+    from{
+      opacity: $opacityS;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    from{
+      opacity: 1;
+    }
+    to{
+      opacity: $opacityS;
     }
   }
 </style>

@@ -29,7 +29,8 @@ export default {
     direction: null,
     interval: null,
     animations: ['animePLeft', 'animePRight', 'animePBottom', 'animePTop'],
-    tmp: []
+    tmp: [],
+    loopTimer: 5000
   }),
   mounted () {
     this.startAutoSlide()
@@ -39,6 +40,15 @@ export default {
       this.index++
       this.direction = 'right'
       if (this.index >= this.slidesCount) {
+        this.index = 0
+      }
+    },
+    slide () {
+      if (this.index < this.slidesCount - 1) {
+        this.direction = 'right'
+        this.index++
+      } else {
+        this.direction = 'left'
         this.index = 0
       }
     },
@@ -57,8 +67,8 @@ export default {
     },
     startAutoSlide () {
       this.interval = setInterval(() => {
-        this.next()
-      }, 5000)
+        this.slide()
+      }, this.loopTimer)
     },
     getAnimation () {
       if (this.animCount === 0) {
@@ -67,7 +77,6 @@ export default {
       const random = Math.floor(Math.random() * this.animCount)
       const value = this.animations[random].slice()
       this.animations.splice(random, 1)
-      console.log('value', value, 'anim', this.animations)
       return value
     }
   },
@@ -76,7 +85,6 @@ export default {
     this.slides.forEach((item) => {
       item.animation = this.getAnimation()
     })
-    console.log(this.slides)
   },
   computed: {
     slidesCount () {
@@ -90,14 +98,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $hStepper: 15px;
+  $hStepper: 6px;
   *{
-    z-index: 10;
+    /*z-index: 0;*/
   }
   .carrousel{
     width: 100%;
     height: 100%;
     position: relative;
+    background: black;
     .slides{
       position: absolute;
       top: 0;
@@ -105,7 +114,6 @@ export default {
       right: 0;
       bottom: 0;
       width: 100%;
-      z-index: -1;
     }
     .other{
       width: 100%;
@@ -124,16 +132,18 @@ export default {
       .carrousel-pagination{
         align-self: flex-end;
         margin-bottom: 20px;
+        z-index: 101;
         .steppers{
           width: $hStepper;
           height:  $hStepper;
           border-radius:  $hStepper;
-          background: $yellow;
+          background: white;
           margin-right: 10px;
           box-shadow: 0 0 9px 3px #0000008f;
           transition: 1s;
           &.active{
-            width: 40px;
+            width: 36px;
+            background: $yellow;
           }
         }
       }

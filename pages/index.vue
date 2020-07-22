@@ -28,44 +28,16 @@ export default {
           img: 'https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
         },
         {
-          title: 'Slide 3',
+          title: 'Expected 1 line break before closing tag but no line breaks found',
           img: 'https://images.unsplash.com/photo-1560285509-3ebfa70a171d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=80'
         },
         {
-          title: 'Slide 4',
+          title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dignissimos ipsam ipsum laboriosam nostrum nulla odio rerum!',
           img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
         },
         {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Slide 4',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+          title: 'Les parenthèses attendues autour de l\'argument de la fonction de flèche ayant un corps avec des accolades',
+          img: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
         }
       ]
     }

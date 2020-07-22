@@ -11,8 +11,11 @@
         <div id="logo">
           <img src="/logo-white.png">
         </div>
-        <div id="menu" class="d-flex flex-row">
-          dgedgh
+        <div id="btn-lang" class="d-flex flex-row">
+          <v-btn id="btnMembre" small>
+            <v-icon>person</v-icon>
+            Espace membre
+          </v-btn>
         </div>
       </div>
     </v-container>
@@ -31,7 +34,21 @@ export default {
     }
   },
   data: () => ({
-    current: 0
+    current: 0,
+    menu: [
+      {
+        title: 'Entrprises',
+        link: '#'
+      },
+      {
+        title: 'Particuliers',
+        link: '#'
+      },
+      {
+        title: 'A propos de nous',
+        link: '#'
+      }
+    ]
   })
 }
 </script>
@@ -54,30 +71,21 @@ export default {
       height: 100%;
     }
     #logo__menu{
-      #header--text{
-        margin: 54px auto 52px;
-        font-size: 2.2rem;
-        max-width: 720px;
-        font-weight: 100 !important;
-        width: 100%;
-        text-align: center;
-        color: white;
-        position: relative;
-        .before--blue{
-          &::after{
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -10;
-            background: rgba(2, 11, 137, .48);
-          }
-          .item{
-            color: white;
-            z-index: 12;
-            font-size: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      #btn-lang{
+        #btnMembre{
+          text-transform: none;
+          background: $primary;
+          color: $yellow;
+          border: 1px solid $yellow;
+          border-radius: 12px;
+          font-size: 10px;
+          box-shadow: 0 0 8px 0 #f5c51142;
+          i{
+            font-size: 1.1rem;
+            margin-right: 5px;
           }
         }
       }

@@ -8,6 +8,9 @@ a{
   color: white;
   font-size: 13px;
 }
+li{
+  list-style: none;
+}
 input, button, select{
   &:focus{
     outline: none;

@@ -188,7 +188,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $primary: #0A138D;
+  $primary: rgba(10, 19, 141, 0.54);
   $mt: 24px;
   $h: 72px;
   $cm: 5px;
