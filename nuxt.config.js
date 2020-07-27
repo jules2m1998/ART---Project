@@ -78,20 +78,16 @@ export default {
   */
   vuetify: {
     theme: {
-      dark: false,
       themes: {
-        dark: {
+        dark: false,
+        light: {
           primary: "#0A138D",
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+          secondary: "#e4b727",
           facebook: '#4267B2',
           twitter: '#1DA1F2',
           linkedin: '#1DA1F2',
           youtube: '#FF0000',
+          google: '#DD4B39'
         }
       }
     },
@@ -100,7 +96,7 @@ export default {
       icons: 'md'
     },
     icons: {
-      iconfont: 'md'
+      iconfont: 'md || mdi'
     }
   },
   /*

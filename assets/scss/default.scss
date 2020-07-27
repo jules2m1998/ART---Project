@@ -16,6 +16,9 @@ input, button, select{
     outline: none;
   }
 }
+button{
+  text-transform: none!important;
+}
 .font-sans{
   font-family: 'Open sans', sans-serif;
 }

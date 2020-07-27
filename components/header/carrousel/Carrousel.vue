@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $hStepper: 6px;
+  $hStepper: 8px;
   *{
     /*z-index: 0;*/
   }

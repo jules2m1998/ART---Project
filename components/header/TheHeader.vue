@@ -9,13 +9,28 @@
     <v-container id="logo__menu" class="d-flex flex-column">
       <div class="d-flex flex-row justify-space-between">
         <div id="logo">
-          <img src="/logo-white.png">
+          <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
         </div>
         <div id="btn-lang" class="d-flex flex-row">
-          <v-btn id="btnMembre" small>
-            <v-icon>person</v-icon>
-            Espace membre
-          </v-btn>
+          <div class="btn-sign">
+            <template>
+              <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    id="btnMembre"
+                    small
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="removeOverflow"
+                  >
+                    <v-icon>person</v-icon>
+                    Espace membre
+                  </v-btn>
+                </template>
+                <signin v-model="dialog" />
+              </v-dialog>
+            </template>
+          </div>
         </div>
       </div>
     </v-container>
@@ -24,9 +39,11 @@
 
 <script>
 import Carrousel from '~/components/header/carrousel/Carrousel'
+import Signin from '~/components/user/signin/Signin'
+
 export default {
   name: 'TheHeader',
-  components: { Carrousel },
+  components: { Signin, Carrousel },
   props: {
     slides: {
       type: Array,
@@ -34,22 +51,13 @@ export default {
     }
   },
   data: () => ({
-    current: 0,
-    menu: [
-      {
-        title: 'Entrprises',
-        link: '#'
-      },
-      {
-        title: 'Particuliers',
-        link: '#'
-      },
-      {
-        title: 'A propos de nous',
-        link: '#'
-      }
-    ]
-  })
+    dialog: false
+  }),
+  methods: {
+    removeOverflow () {
+      document.documentElement.style.overflowY = 'hidden'
+    }
+  }
 }
 </script>
 

@@ -38,6 +38,10 @@ export default {
         {
           title: 'Les parenthèses attendues autour de l\'argument de la fonction de flèche ayant un corps avec des accolades',
           img: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+        },
+        {
+          title: 'Les parenthèses attendues autour de avec des accolades',
+          img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
         }
       ]
     }

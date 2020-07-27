@@ -188,7 +188,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $primary: rgba(10, 19, 141, 0.54);
+  $primary: rgba(10, 19, 141);
   $mt: 24px;
   $h: 72px;
   $cm: 5px;
@@ -356,6 +356,7 @@ export default {
             @media screen and (max-width: 518px) {
               grid-template-columns: 1fr;
               grid-gap: 0;
+              padding-left: 0;
               #links{
                 display: none!important;
               }
@@ -363,7 +364,7 @@ export default {
                 padding-left: 0!important;
               }
             }
-            @media screen and (max-width: 960px) {
+            @media screen and (max-width: 960px) and (min-width: 518px) {
               grid-template-columns: 1fr 2fr;
               #links2{
                 display: none!important;
