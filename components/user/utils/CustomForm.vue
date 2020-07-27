@@ -28,7 +28,6 @@
           <v-icon>{{ item.show ? 'visibility' : 'visibility_off' }}</v-icon>
         </v-btn>
       </div>
-
     </template>
   </div>
 </template>
@@ -45,6 +44,9 @@ export default {
   computed: {
     items () {
       const result = []
+      if (this.inputs.label !== undefined) {
+        return [this.inputs]
+      }
       Object.keys(this.inputs).forEach((key) => {
         result.push(this.inputs[key])
       })

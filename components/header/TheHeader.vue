@@ -27,7 +27,7 @@
                     Espace membre
                   </v-btn>
                 </template>
-                <signin v-model="dialog" />
+                <default-form v-model="dialog" type="signin" />
               </v-dialog>
             </template>
           </div>
@@ -39,11 +39,11 @@
 
 <script>
 import Carrousel from '~/components/header/carrousel/Carrousel'
-import Signin from '~/components/user/signin/Signin'
+import DefaultForm from '~/components/user/utils/DefaultForm'
 
 export default {
   name: 'TheHeader',
-  components: { Signin, Carrousel },
+  components: { DefaultForm, Carrousel },
   props: {
     slides: {
       type: Array,

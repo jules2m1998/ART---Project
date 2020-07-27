@@ -1,6 +1,10 @@
 <template>
   <div class="dialog-box-form">
-    <custom-form :inputs="forms" />
+    <div class="d-flex flex-row">
+      <custom-form :inputs="names.first" class="mr-1" />
+      <custom-form :inputs="names.last" class="ml-1" />
+    </div>
+    <custom-form :inputs="other" />
     <div class="bottom-form">
       <v-checkbox
         v-model="checkbox"
@@ -10,17 +14,31 @@
       ></v-checkbox>
       <a href="#">Mot de passe oublié</a>
     </div>
-    <v-btn block color="secondary" class="mt-6 black--text">Se connecter</v-btn>
+    <v-btn block color="secondary" class="mt-6 black--text">S'inscrire</v-btn>
   </div>
 </template>
 
 <script>
 import CustomForm from '~/components/user/utils/CustomForm'
 export default {
-  name: 'Signin',
+  name: 'signup',
   components: { CustomForm },
   data: () => ({
-    forms: {
+    names: {
+      first: {
+        label: 'Nom',
+        icon: 'account_circle',
+        value: '',
+        type: 'text'
+      },
+      last: {
+        label: 'Prénom',
+        icon: '',
+        value: '',
+        type: 'email'
+      }
+    },
+    other: {
       email: {
         label: 'Email',
         icon: 'alternate_email',
@@ -33,40 +51,16 @@ export default {
         value: '',
         type: 'password',
         show: false
+      },
+      passwordConfirm: {
+        label: 'Confirmez votre mot de passe',
+        icon: 'https',
+        value: '',
+        type: 'password',
+        show: false
       }
-    },
-    checkbox: false,
-    icons: [
-      {
-        ico: 'fab fa-google-plus-g',
-        link: '#',
-        color: 'google'
-      },
-      {
-        ico: 'fab fa-facebook-f',
-        link: '#',
-        color: 'facebook'
-      },
-      {
-        ico: 'fab fa-twitter',
-        link: '#',
-        color: 'twitter'
-      },
-      {
-        ico: 'fab fa-linkedin-in',
-        link: '#',
-        color: 'linkedin'
-      }
-    ],
-    elt: null
-  }),
-  methods: {
-    closeDialog (e) {
-      this.$emit('input', false)
-      document.documentElement.style.overflowY = 'auto'
-      console.log(document.documentElement)
     }
-  }
+  })
 }
 </script>
 
