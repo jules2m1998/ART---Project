@@ -208,7 +208,7 @@ export default {
         border: 3px solid white;
         position: absolute;
         top: -44px;
-        z-index: 2000;
+        z-index: 20;
         right: 0;
       }
       #box-top{

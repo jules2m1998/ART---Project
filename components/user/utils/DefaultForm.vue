@@ -1,10 +1,10 @@
 <template>
   <v-card
     class="font-sans"
-    id="form"
+    id="my-dialog"
   >
     <div class="dialog-header">
-      <span>S'inscrire</span>
+      <span id="dialog-title">{{ title }}</span>
       <v-btn icon @click="closeDialog" color="black">
         <v-icon>close</v-icon>
       </v-btn>
@@ -16,7 +16,7 @@
           Par mail
         </div>
       </div>
-      <component :is="type" />
+      <component :is="isSignin ? 'Signin' : 'signup'" />
     </div>
     <div class="dialog-box-social">
       <div class="dialog-box-title">
@@ -35,8 +35,8 @@
         </ul>
         <p>Soyez sans crainte, nous ne publierons rien sur vos médias sociaux sans votre accord</p>
       </div>
-      <p class="insc" v-if="type === 'Signin'">
-        Pas encore de compte? <a href="#" @click="type='signup'">Cliquez ici pour vous inscrire</a>
+      <p class="insc" v-if="isSignin">
+        Pas encore de compte? <a href="#" @click="isSignin=false">Cliquez ici pour vous inscrire</a>
       </p>
     </div>
   </v-card>
@@ -46,6 +46,7 @@
 import CustomForm from '~/components/user/utils/CustomForm'
 import Signin from '~/components/user/signin/Signin'
 import signup from '~/components/user/signup/signup'
+
 export default {
   name: 'DefaultForm',
   components: { CustomForm, Signin, signup },
@@ -80,20 +81,18 @@ export default {
       }
     ],
     elt: null,
-    type: 'Signin'
+    type: 'Signin',
+    isSignin: true
   }),
   methods: {
     closeDialog (e) {
       this.$emit('input', false)
       document.documentElement.style.overflowY = 'auto'
-      console.log(document.documentElement)
+      this.isSignin = true
     }
   },
   mounted () {
-    this.elt = document.getElementById('form')
-    this.elt.style.maxWidth = '500px'
-    this.elt.style.margin = 'auto'
-    this.elt.style.overflow = 'hidden'
+    this.elt = document.getElementById('my-dialog')
     const firstParent = this.elt?.parentElement
     firstParent.style.overflowY = 'scroll'
     firstParent.style.maxWidth = 'none'
@@ -103,6 +102,11 @@ export default {
     firstParent.style.minHeight = '100%'
     document.body.style.overflow = 'none'
     document.documentElement.style.overflowY = 'hidden'
+  },
+  computed: {
+    title () {
+      return this.isSignin ? 'Se connecter' : 'S\'inscrire'
+    }
   }
 }
 </script>
@@ -110,6 +114,18 @@ export default {
 <style lang="scss" scoped>
   $padding: 28px;
   $mt: 40px;
+  @font-face {
+    font-family: kaushanscript;
+    src: url('/fonts/KaushanScript-Regular.ttf');
+  }
+  #my-dialog{
+    max-width: 500px;
+    margin: auto;
+    overflow: hidden;
+    @media screen and (max-width: 615px) {
+      max-width: 90%;
+    }
+  }
   .dialog-header{
     height: 80px;
     display: flex;
@@ -121,7 +137,8 @@ export default {
     border-bottom: 2px solid $primary;
     span{
       color: $primary;
-      font-size: 20px;
+      font-size: 26px;
+      font-family: kaushanscript,sans-serif;
     }
   }
   .dialog-box-mail{
@@ -160,8 +177,9 @@ export default {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
+        padding-left: 0!important;
         li{
-          margin: 10px;
+          margin-bottom: 10px;
           button{
             width: 33px;
             min-width: 0;

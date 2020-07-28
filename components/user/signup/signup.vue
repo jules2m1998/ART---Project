@@ -1,19 +1,23 @@
 <template>
   <div class="dialog-box-form">
     <div class="d-flex flex-row">
-      <custom-form :inputs="names.first" class="mr-1" />
-      <custom-form :inputs="names.last" class="ml-1" />
+      <custom-form :inputs="form.first" class="mr-1" />
+      <custom-form :inputs="form.last" class="ml-1" />
     </div>
-    <custom-form :inputs="other" />
-    <div class="bottom-form">
-      <v-checkbox
-        v-model="checkbox"
-        label="Se souvenir de moi"
-        dense
-        style="height: 20px"
-      ></v-checkbox>
-      <a href="#">Mot de passe oublié</a>
-    </div>
+    <custom-form :inputs="form.email" />
+    <custom-form :inputs="form.phone" />
+    <custom-form :inputs="form.password" class="mr-1" />
+    <v-checkbox
+      v-model="checkbox"
+      label="Je suis un professionnel"
+      color="primary"
+      hide-details
+      dense
+      style="position: relative; bottom: 12px"
+    ></v-checkbox>
+    <transition name="wither">
+      <custom-form :inputs="form.proffessions" v-if="checkbox" />
+    </transition>
     <v-btn block color="secondary" class="mt-6 black--text">S'inscrire</v-btn>
   </div>
 </template>
@@ -24,7 +28,7 @@ export default {
   name: 'signup',
   components: { CustomForm },
   data: () => ({
-    names: {
+    form: {
       first: {
         label: 'Nom',
         icon: 'account_circle',
@@ -36,14 +40,18 @@ export default {
         icon: '',
         value: '',
         type: 'email'
-      }
-    },
-    other: {
+      },
       email: {
         label: 'Email',
         icon: 'alternate_email',
         value: '',
         type: 'email'
+      },
+      phone: {
+        label: 'Téléphone',
+        value: '',
+        type: 'phone',
+        code: '+237'
       },
       password: {
         label: 'Mot de passe',
@@ -58,8 +66,15 @@ export default {
         value: '',
         type: 'password',
         show: false
+      },
+      proffessions: {
+        label: 'Choississez votre proffession',
+        icon: 'work',
+        value: '',
+        type: 'auto-complate'
       }
-    }
+    },
+    checkbox: false
   })
 }
 </script>
@@ -77,6 +92,38 @@ export default {
     a{
       color: #312f2f;
       text-decoration: underline;
+    }
+  }
+
+  .wither-enter-active {
+    animation: animWithIn 1s;
+  }
+  .wither-leave-active {
+    animation: animWithOut 1s;
+  }
+  @keyframes animWithOut {
+    from {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+    }
+    to {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+  }
+
+  @keyframes animWithIn {
+    from {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
     }
   }
 </style>
