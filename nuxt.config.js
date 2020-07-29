@@ -83,6 +83,7 @@ export default {
         light: {
           primary: "#0A138D",
           secondary: "#e4b727",
+          primaryDark: "#020762",
           facebook: '#4267B2',
           twitter: '#1DA1F2',
           linkedin: '#1DA1F2',

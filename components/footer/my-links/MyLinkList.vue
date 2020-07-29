@@ -32,6 +32,7 @@ export default {
       }
       a{
         font-size: 13px;
+        color: white!important;
       }
     }
   }

@@ -35,9 +35,14 @@
         </ul>
         <p>Soyez sans crainte, nous ne publierons rien sur vos médias sociaux sans votre accord</p>
       </div>
-      <p class="insc" v-if="isSignin">
-        Pas encore de compte? <a href="#" @click="isSignin=false">Cliquez ici pour vous inscrire</a>
-      </p>
+      <template>
+        <p class="insc" v-if="isSignin">
+          Pas encore de compte? <a href="#" @click="isSignin=false">Cliquez ici pour vous inscrire !</a>
+        </p>
+        <p class="insc" v-else>
+          Déja un compte ? <a href="#" @click="isSignin=true">Cliquez ici pour vous connecter !</a>
+        </p>
+      </template>
     </div>
   </v-card>
 </template>
@@ -196,12 +201,15 @@ export default {
     }
     p.insc{
       text-align: center;
-      font-size: 14px;
+      font-size: 0.9rem;
       padding-bottom: 20px;
       a{
-        font-weight: bold;
-        color: black;
-        text-decoration: underline;
+        font-weight: 600;
+        color: $primary;
+        transition: color 0.1s;
+        &:hover{
+          color: #0653c6;
+        }
       }
     }
   }

@@ -1,72 +1,75 @@
 <template>
-  <v-container id="the-footer" fluid>
-    <v-container id="content" class="font-sans">
-      <v-btn id="float-button" fab large>
-        <v-icon>arrow_upward</v-icon>
-      </v-btn>
-      <div id="box-top" class="">
-        <div id="box-logo-desc-contact" class="">
-          <div id="logo">
-            <img src="/logo.png" alt="Logo de l'annuaire universel du cameroun">
-          </div>
-          <p class="">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque culpa distinctio error ex expedita iure maiores perferendis quam sint? A assumenda autem beatae delectus ipsa ipsum iusto molestiae nulla.
-          </p>
-          <div id="num-title" class="">
-            <v-icon class="mr-2">
-              settings_phone
-            </v-icon>
-            <span>
+  <div>
+    <v-container id="the-footer" fluid>
+      <v-container id="content" class="font-sans">
+        <v-btn id="float-button" fab large>
+          <v-icon>arrow_upward</v-icon>
+        </v-btn>
+        <div id="box-top" class="">
+          <div id="box-logo-desc-contact" class="">
+            <div id="logo">
+              <img src="/logo.png" alt="Logo de l'annuaire universel du cameroun">
+            </div>
+            <p class="">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque culpa distinctio error ex expedita iure maiores perferendis quam sint? A assumenda autem beatae delectus ipsa ipsum iusto molestiae nulla.
+            </p>
+            <div id="num-title" class="">
+              <v-icon class="mr-2">
+                settings_phone
+              </v-icon>
+              <span>
               Service clientèle
             </span>
-          </div>
-          <div id="number" class="">
-            +237 622 006 540
-          </div>
-          <div id="bottom-title" class="">
-            Du lundi au vendredi entre 08h00 à 18h00
-          </div>
-        </div>
-        <div id="box-social-link-form" class="">
-          <div id="socials-lang" class="">
-            <div id="social" class="">
-              <social />
             </div>
-            <div id="lang" class="">
-              <span id="plan-site">plan du site</span>
-              <div class="formfield-select">
-                <div class="formfield-select--container">
-                  <select id="mon_select">
-                    <option>Français</option>
-                    <option>English</option>
-                  </select>
+            <div id="number" class="">
+              +237 622 006 540
+            </div>
+            <div id="bottom-title" class="">
+              Du lundi au vendredi entre 08h00 à 18h00
+            </div>
+          </div>
+          <div id="box-social-link-form" class="">
+            <div id="socials-lang" class="">
+              <div id="social" class="">
+                <social />
+              </div>
+              <div id="lang" class="">
+                <span id="plan-site">plan du site</span>
+                <div class="formfield-select">
+                  <div class="formfield-select--container">
+                    <select id="mon_select">
+                      <option>Français</option>
+                      <option>English</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div id="links-form" class="">
-            <div id="links" class="">
-              <my-link id="links1" :links="list1" />
-              <my-link id="links2" :links="list2" />
+            <div id="links-form" class="">
+              <div id="links" class="">
+                <my-link id="links1" :links="list1" />
+                <my-link id="links2" :links="list2" />
+              </div>
+              <div id="form" class="">
+                <contact-form />
+              </div>
             </div>
-            <div id="form" class="">
-              <contact-form />
-            </div>
           </div>
         </div>
-      </div>
-      <div id="box-bottom" class="">
-        <div id="politique" class="">
-          <a v-for="(item, key) in politiques" :key="key" :href="item.link">
-            {{ item.title }}
-          </a>
+        <div id="box-bottom" class="">
+          <div id="politique" class="">
+            <a v-for="(item, key) in politiques" :key="key" :href="item.link">
+              {{ item.title }}
+            </a>
+          </div>
+          <div id="pay" class="">
+            <pay :pay="payMods" />
+          </div>
         </div>
-        <div id="pay" class="">
-          <pay :pay="payMods" />
-        </div>
-      </div>
+      </v-container>
     </v-container>
-  </v-container>
+    <bottom-footer />
+  </div>
 </template>
 
 <script>
@@ -74,9 +77,10 @@ import MyLink from './my-links/MyLink'
 import Social from '~/components/footer/social/Social'
 import ContactForm from '~/components/footer/ContactForm'
 import Pay from '~/components/footer/pay/Pay'
+import BottomFooter from '~/components/footer/BottomFooter'
 export default {
   name: 'TheFooter',
-  components: { Pay, ContactForm, MyLink, Social },
+  components: { BottomFooter, Pay, ContactForm, MyLink, Social },
   data: () => ({
     list1: {
       title: 'A propos de nous',
@@ -158,28 +162,24 @@ export default {
       title: 'Paiements supportés',
       list: [
         {
-          src: '/om.svg',
-          alt: 'Mode de payement par orange money'
+          src: '/pay/orange.png',
+          alt: 'Mode de payement par orange'
         },
         {
-          src: '/logo.png',
-          alt: ''
+          src: '/pay/mtn.png',
+          alt: 'Mode de payement par mtn'
         },
         {
-          src: '/logo.png',
-          alt: ''
+          src: '/pay/visa.png',
+          alt: 'Mode de payement par visa'
         },
         {
-          src: '/logo.png',
-          alt: ''
+          src: '/pay/master.png',
+          alt: 'Mode de payement par master card'
         },
         {
-          src: '/logo.png',
-          alt: ''
-        },
-        {
-          src: '/logo.png',
-          alt: ''
+          src: '/pay/paypal.png',
+          alt: 'Mode de payement via paypal'
         }
       ]
     }
@@ -393,7 +393,7 @@ export default {
       }
       #box-bottom{
         display: grid;
-        grid-template-columns: 7fr 5fr;
+        grid-template-columns: 10fr 5fr;
         grid-gap: 20px;
         margin-top: 20px;
         @media screen and (max-width: 512px) {
@@ -406,6 +406,7 @@ export default {
           a{
             padding-right: 24px;
             padding-bottom: 12px;
+            color: white!important;
           }
         }
         #pay{}
