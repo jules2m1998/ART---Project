@@ -109,18 +109,6 @@ export default {
 </script>
 
 <style lang="scss">
-  .v-text-field.v-text-field--enclosed .v-text-field__details{
-    margin-bottom: 0!important;
-  }
-  .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details{
-    margin-bottom: 0!important;
-  }
-  .my-textflied{
-    margin-bottom: 10px!important;
-    &:last-child{
-      margin-bottom: 0!important;
-    }
-  }
   .div-pass{
     position: relative;
     .btn-pass{

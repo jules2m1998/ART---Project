@@ -6,7 +6,8 @@
           <the-menu :elements="menus" :is-responsive="isResponsive" />
         </div>
         <div id="routes">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias amet corporis ea eaque earum eveniet exercitationem facere facilis fugit, ipsa nihil non odit, optio quibusdam sapiente sequi ut veniam.
+          <the-profil />
+          <set-information />
         </div>
       </div>
     </v-container>
@@ -15,9 +16,11 @@
 
 <script>
 import TheMenu from '~/components/menu/TheMenu'
+import TheProfil from '~/components/user/profil/TheProfil'
+import SetInformation from '~/components/user/profil/information/SetInformation'
 export default {
   name: 'profile',
-  components: { TheMenu },
+  components: { SetInformation, TheProfil, TheMenu },
   data: () => ({
     menus: [
       {
@@ -55,12 +58,12 @@ export default {
     }
   },
   mounted () {
-    const media = window.matchMedia('(max-width: 600px)')
+    const media = window.matchMedia('(max-width: 900px)')
     const screenTest = (e) => {
       this.isResponsive = e.matches
     }
     media.addEventListener('change', screenTest)
-    this.isResponsive = document.body.offsetWidth < 600
+    this.isResponsive = document.body.offsetWidth < 900
   }
 }
 </script>
@@ -70,7 +73,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-gap: 24px;
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 900px){
       grid-template-columns: 1fr;
       grid-gap: 24px;
     }
