@@ -15,6 +15,7 @@
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "animate.css": "^4.1.0",
+    "cities.json": "^1.1.5",
     "nuxt": "^2.13.0",
     "vue": "^2.6.11",
     "vue-notifications": "^1.0.2",

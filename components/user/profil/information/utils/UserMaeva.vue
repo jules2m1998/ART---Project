@@ -5,68 +5,72 @@
         <div class="row-box row-1">
           <div class="d-flex justify-end align-center">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Nom complet</span>
-            <v-icon class="label-icon">person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
-          <div
-          >
+          <div>
             <v-text-field
               v-model="firstname"
               :rules="nameRules"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               required
-            ></v-text-field>
+            />
           </div>
-
           <div>
             <v-text-field
-              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               v-model="lastname"
+              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :rules="nameRules"
               required
-            ></v-text-field>
+            />
           </div>
         </div>
         <div class="row-box row-2">
           <div class="d-flex justify-end align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Nom à l'affichage</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div>
             <v-text-field
-              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               v-model="displayedname"
+              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :rules="nameRules"
               required
-            ></v-text-field>
+            />
           </div>
-
         </div>
         <div class="row-box row-1">
           <div class="d-flex justify-end align-center">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Genre & Titre</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div>
             <v-select
-              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               v-model="gender"
+              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :items="genders"
-            ></v-select>
+            />
           </div>
-
           <div>
             <v-text-field
-              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               v-model="title"
+              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :rules="nameRules"
               required
-            ></v-text-field>
+            />
           </div>
         </div>
         <div class="row-box row-2">
           <div class="d-flex justify-end align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Date de naissance</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div>
             <v-dialog
@@ -78,30 +82,35 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
                   v-model="getDate"
+                  :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
                   append-icon="event"
                   readonly
                   class="datepickerInput"
                   v-bind="attrs"
                   @click:append="modal=true"
-                ></v-text-field>
+                />
               </template>
               <v-date-picker v-model="date" :show-current="date">
-                <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                <v-spacer />
+                <v-btn text color="primary" @click="modal = false">
+                  Cancel
+                </v-btn>
+                <v-btn text color="primary" @click="$refs.dialog.save(date)">
+                  OK
+                </v-btn>
               </v-date-picker>
             </v-dialog>
           </div>
-
         </div>
         <br>
         <br>
         <div class="row-box row-1">
           <div class="d-flex justify-end align-center">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">References</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div
             cols="4"
@@ -114,7 +123,7 @@
               item-text="name"
               append-icon="expand_more"
               @change="getCapital()"
-            ></v-autocomplete>
+            />
           </div>
 
           <div>
@@ -125,44 +134,48 @@
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               item-text="name"
               append-icon="expand_more"
-            ></v-autocomplete>
+            />
           </div>
         </div>
         <div class="row-box row-2">
           <div class="d-flex justify-end align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Fuseau horaire préféré</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div>
             <v-autocomplete
+              v-model="fuseau"
               :items="timezone"
               item-text="name"
-              v-model="fuseau"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               append-icon="expand_more"
-            ></v-autocomplete>
+            />
           </div>
-
         </div>
         <div class="row-box row-2">
           <div class="d-flex justify-end align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Langue principale</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div cols="8">
             <v-autocomplete
-              :items="langcodeList"
               v-model="lang"
+              :items="langcodeList"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               append-icon="expand_more"
-            ></v-autocomplete>
+            />
           </div>
-
         </div>
         <div class="row-box row-2">
           <div class="d-flex justify-end align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Autres langues</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div cols="8">
             <v-autocomplete
@@ -175,18 +188,28 @@
               multiple
             >
               <template #selection="{ item }">
-                <v-chip color="#D6DAEF" text-color="#595B65" small close close-icon="cancel" @click:close="remove(item, otherLang)">{{item}}</v-chip>
+                <v-chip
+                  color="#D6DAEF"
+                  text-color="#595B65"
+                  small
+                  close
+                  close-icon="cancel"
+                  @click:close="remove(item, otherLang)"
+                >
+                  {{ item }}
+                </v-chip>
               </template>
             </v-autocomplete>
           </div>
-
         </div>
         <br>
         <br>
         <div class="row-box row-2">
           <div class="d-flex justify-end align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Adresses mails</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div>
             <v-autocomplete
@@ -197,28 +220,44 @@
               item-value="name"
               append-icon="edit"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
-              v-on:append="$router.push('/parameter/userprofile/identifiant')"
               chips
-              multiple>
-              <template v-slot:item="data">
-              </template>
+              multiple
+              @append="$router.push('/parameter/userprofile/identifiant')"
+            >
               <template v-slot:selection="data">
-                <v-chip small color="#D6DAEF" text-color="#595B65" v-bind="data.attrs"
-                        @click:close="$router.push('/parameter/userprofile/identifiant')">
-                  <v-icon small true v-if="data.item.valid" left color="green">check_circle</v-icon>
-                  <v-icon small v-if="!data.item.valid" left color="red">error</v-icon>
-                  {{data.item.name}}
+                <v-chip
+                  small
+                  color="#D6DAEF"
+                  text-color="#595B65"
+                  v-bind="data.attrs"
+                  @click:close="$router.push('/parameter/userprofile/identifiant')"
+                >
+                  <v-icon v-if="data.item.valid" small left color="green">
+                    check_circle
+                  </v-icon>
+                  <v-icon v-if="!data.item.valid" small left color="red">
+                    error
+                  </v-icon>
+                  {{ data.item.name }}
                   <v-dialog v-model="dialog" persistent max-width="290">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-icon small v-bind="attrs" v-on="on" right color="#595B65">cancel</v-icon>
+                      <v-icon small v-bind="attrs" right color="#595B65" v-on="on">
+                        cancel
+                      </v-icon>
                     </template>
                     <v-card>
-                      <v-card-title class="headline">Redirection</v-card-title>
+                      <v-card-title class="headline">
+                        Redirection
+                      </v-card-title>
                       <v-card-text>Vous allez être rediriger vers la page identiant pour pouvoir effectuer cette opération</v-card-text>
                       <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="green darken-1" text @click="dialog = false">Annuler</v-btn>
-                        <v-btn color="green darken-1" text @click="$router.push('/parameter/userprofile/identifiant')">Accepter</v-btn>
+                        <v-spacer />
+                        <v-btn color="green darken-1" text @click="dialog = false">
+                          Annuler
+                        </v-btn>
+                        <v-btn color="green darken-1" text @click="$router.push('/parameter/userprofile/identifiant')">
+                          Accepter
+                        </v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
@@ -230,7 +269,9 @@
         <div class="row-box row-2">
           <div class="d-flex justify-end align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Numéros de téléphone</span>
-            <v-icon class="label-icon" >person</v-icon>
+            <v-icon class="label-icon">
+              person
+            </v-icon>
           </div>
           <div>
             <v-autocomplete
@@ -240,31 +281,46 @@
               item-text="name"
               item-value="name"
               append-icon="edit"
-              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
-              @click:append="$router.push('/parameter/userprofile/identifiant')"
               small
               chips
               multiple
+              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
+              @click:append="$router.push('/parameter/userprofile/identifiant')"
             >
-              <template v-slot:item="data">
-              </template>
               <template v-slot:selection="data">
-                <v-chip small color="#D6DAEF" text-color="#595B65"  v-bind="data.attrs"
-                        @click:close="$router.push('/parameter/userprofile/identifiant')">
-                  <v-icon small v-if="data.item.valid" left color="green">check_circle</v-icon>
-                  <v-icon small v-if="!data.item.valid" left color="orange">error</v-icon>
-                  {{data.item.name}}
+                <v-chip
+                  small
+                  color="#D6DAEF"
+                  text-color="#595B65"
+                  v-bind="data.attrs"
+                  @click:close="$router.push('/parameter/userprofile/identifiant')"
+                >
+                  <v-icon v-if="data.item.valid" small left color="green">
+                    check_circle
+                  </v-icon>
+                  <v-icon v-if="!data.item.valid" small left color="orange">
+                    error
+                  </v-icon>
+                  {{ data.item.name }}
                   <v-dialog v-model="dialog1" persistent max-width="290">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-icon small v-bind="attrs" v-on="on" right color="#595B65">cancel</v-icon>
+                      <v-icon small v-bind="attrs" right color="#595B65" v-on="on">
+                        cancel
+                      </v-icon>
                     </template>
                     <v-card>
-                      <v-card-title class="headline">Redirection</v-card-title>
+                      <v-card-title class="headline">
+                        Redirection
+                      </v-card-title>
                       <v-card-text>Vous allez être rediriger vers la page identiant pour pouvoir effectuer cette opération</v-card-text>
                       <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="green darken-1" text @click="dialog1 = false">Annuler</v-btn>
-                        <v-btn color="green darken-1" text @click="$router.push('/parameter/userprofile/identifiant')">Accepter</v-btn>
+                        <v-spacer />
+                        <v-btn color="green darken-1" text @click="dialog1 = false">
+                          Annuler
+                        </v-btn>
+                        <v-btn color="green darken-1" text @click="$router.push('/parameter/userprofile/identifiant')">
+                          Accepter
+                        </v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
@@ -272,15 +328,18 @@
               </template>
             </v-autocomplete>
           </div>
-
         </div>
         <br>
         <br>
         <br>
         <br>
         <div class="d-flex justify-end">
-          <v-btn :disabled="updateVerification">Annuler</v-btn>
-          <v-btn :disabled="updateVerification" class="mx-2">Enregistrer</v-btn>
+          <v-btn :disabled="updateVerification">
+            Annuler
+          </v-btn>
+          <v-btn :disabled="updateVerification" class="mx-2">
+            Enregistrer
+          </v-btn>
         </div>
         <br>
         <br>
@@ -293,13 +352,13 @@
   </div>
 </template>
 <script>
-import timezoneFile from './../../../../../assets/json/timezone.json'
-import countriesFile from './../../../../../assets/json/countries.json'
-import citiesFile from './../../../../../assets/json/countries.json'
-import langcodeFile from './../../../../../assets/json/langcode.json'
 import { format } from 'date-fns'
 import french from 'date-fns/locale/fr'
 import _ from 'lodash'
+import citiesFile from 'cities.json'
+import timezoneFile from './../../../../../assets/json/timezone.json'
+import countriesFile from './../../../../../assets/json/countries.json'
+import langcodeFile from './../../../../../assets/json/langcode.json'
 export default {
   name: 'UserMaeva',
   data: () => ({
@@ -350,30 +409,89 @@ export default {
       v => !!v || 'Name is required'
     ]
   }),
+  computed: {
+    getDate () {
+      const date = new Date(this.date)
+      return date ? format(date, 'dd MMMM yyyy', { locale: french }) : ''
+    },
+    getCities (country) {
+      const cities = []
+      for (const y in countriesFile) {
+        if (this.country === countriesFile[y].translations.fr) {
+          const code = countriesFile[y].alpha2Code
+          for (const i in citiesFile) {
+            if (citiesFile[i].country === code) {
+              cities.push({ name: citiesFile[i].name, code: citiesFile[i].country })
+            }
+          }
+        }
+      }
+      return cities.sort(this.getSortOrder('name'))
+    },
+    updateVerification () {
+      const update = {
+        name: this.firstname,
+        lastname: this.lastname,
+        gender: this.gender,
+        title: this.title,
+        date: this.date,
+        country: this.country,
+        city: this.city,
+        timezone: this.fuseau,
+        language: this.lang,
+        otherLang: this.otherLang,
+        emails: this.emails,
+        phones: this.phones
+      }
+      return _.isEqual(update, this.initialForm)
+    }
+  },
+  created () {
+    const initial = {
+      name: this.firstname,
+      lastname: this.lastname,
+      gender: this.gender,
+      title: this.title,
+      date: this.date,
+      country: this.country,
+      city: this.city,
+      timezone: this.fuseau,
+      language: this.lang,
+      otherLang: this.otherLang,
+      emails: this.emails,
+      phones: this.phones
+    }
+    const initialString = JSON.stringify(initial)
+    this.timezone = this.getTimezone()
+    this.countries = this.getCountries()
+    this.langcodeList = this.getLangcode()
+
+    this.initialForm = JSON.parse(initialString)
+  },
   methods: {
     getTimezone () {
-      let timezone = []
-      for (let item in timezoneFile) {
+      const timezone = []
+      for (const item in timezoneFile) {
         timezone.push('(' + timezoneFile[item].display + ') Hour of ' + timezoneFile[item].name + '(' + timezoneFile[item].timezone + ')')
       }
       return timezone
     },
     getLangcode () {
-      let langcode = []
-      for (let item in langcodeFile) {
+      const langcode = []
+      for (const item in langcodeFile) {
         langcode.push(langcodeFile[item].name + ' - ' + langcodeFile[item].code.toUpperCase())
       }
       return langcode
     },
     getCountries () {
-      let countries = []
-      for (let i in countriesFile) {
-        countries.push({name: countriesFile[i].translations.fr, code: countriesFile[i].alpha3Code})
+      const countries = []
+      for (const i in countriesFile) {
+        countries.push({ name: countriesFile[i].translations.fr, code: countriesFile[i].alpha3Code })
       }
       return countries.sort(this.getSortOrder('name'))
     },
     getCapital () {
-      for (let i in countriesFile) {
+      for (const i in countriesFile) {
         if (countriesFile[i].translations.fr === this.country) {
           this.city = countriesFile[i].capital
         }
@@ -398,69 +516,10 @@ export default {
         const textOne = item.name.toLowerCase()
         const textTwo = item.code.toLowerCase()
         const searchText = queryText.toLowerCase()
-        return textOne.indexOf(searchText) > -1 ||
-          textTwo.indexOf(searchText) > -1
+        return textOne.includes(searchText) ||
+          textTwo.includes(searchText)
       }
     }
-  },
-  computed: {
-    getDate () {
-      let date = new Date(this.date)
-      return date ? format(date, 'dd MMMM yyyy', { locale: french }) : ''
-    },
-    getCities (country) {
-      let cities = []
-      for (let y in countriesFile) {
-        if (this.country === countriesFile[y].translations.fr) {
-          let code = countriesFile[y].alpha2Code
-          for (let i in citiesFile) {
-            if (citiesFile[i].country === code) {
-              cities.push({name: citiesFile[i].name, code: citiesFile[i].country})
-            }
-          }
-        }
-      }
-      return cities.sort(this.getSortOrder('name'))
-    },
-    updateVerification () {
-      let update = {
-        name: this.firstname,
-        lastname: this.lastname,
-        gender: this.gender,
-        title: this.title,
-        date: this.date,
-        country: this.country,
-        city: this.city,
-        timezone: this.fuseau,
-        language: this.lang,
-        otherLang: this.otherLang,
-        emails: this.emails,
-        phones: this.phones
-      }
-      return _.isEqual(update, this.initialForm)
-    }
-  },
-  created () {
-    let initial = {
-      name: this.firstname,
-      lastname: this.lastname,
-      gender: this.gender,
-      title: this.title,
-      date: this.date,
-      country: this.country,
-      city: this.city,
-      timezone: this.fuseau,
-      language: this.lang,
-      otherLang: this.otherLang,
-      emails: this.emails,
-      phones: this.phones
-    }
-    let initialString = JSON.stringify(initial)
-    this.timezone = this.getTimezone()
-    this.countries = this.getCountries()
-    this.langcodeList = this.getLangcode()
-
-    this.initialForm = JSON.parse(initialString)
   }
 }
 </script>
