@@ -2,33 +2,33 @@
   <div class="d-flex flex-column">
     <template v-for="(item, key) in items">
       <v-text-field
-        class="my-textflied"
         v-if="item.type === 'email' || item.type === 'text'"
         :key="key"
+        v-model="item.value"
+        class="my-textflied"
         :label="item.label"
         single-line
         outlined
         :prepend-inner-icon="item.icon"
-        v-model="item.value"
         :type="item.type"
         dense
-      ></v-text-field>
-      <div class="div-pass" :key="key" v-else-if="item.type === 'password'">
+      />
+      <div v-else-if="item.type === 'password'" :key="key" class="div-pass">
         <v-text-field
+          v-model="item.value"
           class="my-textflied"
           :type="item.show ? 'text' : 'password'"
           :label="item.label"
           single-line
           outlined
           :prepend-inner-icon="item.icon"
-          v-model="item.value"
           dense
-        ></v-text-field>
-        <v-btn class="btn-pass" @mousedown="item.show = true" @mouseup="item.show = false" icon>
+        />
+        <v-btn class="btn-pass" icon @mousedown="item.show = true" @mouseup="item.show = false">
           <v-icon>{{ item.show ? 'visibility' : 'visibility_off' }}</v-icon>
         </v-btn>
       </div>
-      <div class="div-phone" :key="key" v-else-if="item.type === 'phone'">
+      <div v-else-if="item.type === 'phone'" :key="key" class="div-phone">
         <v-text-field
           class="my-textflied"
           single-line
@@ -36,23 +36,23 @@
           :value="item.code"
           disabled
           dense
-        ></v-text-field>
+        />
         <v-text-field
+          v-model="item.value"
           class="my-textflied"
           :type="item.type"
           :label="item.label"
           single-line
           outlined
           :prepend-inner-icon="item.icon"
-          v-model="item.value"
           dense
-        ></v-text-field>
+        />
       </div>
       <v-autocomplete
-        :items="proffessions"
         v-if="item.type === 'auto-complate'"
-        :filter="customFilter"
         :key="key"
+        :items="proffessions"
+        :filter="customFilter"
         item-text="name"
         :label="item.label"
         :value="item.value"
@@ -60,7 +60,7 @@
         single-line
         outlined
         dense
-      ></v-autocomplete>
+      />
     </template>
   </div>
 </template>
@@ -83,16 +83,6 @@ export default {
       { name: 'New York', abbr: 'NY', id: 5 }
     ]
   }),
-  methods: {
-    customFilter (item, queryText, itemText) {
-      const textOne = item.name.toLowerCase()
-      const textTwo = item.abbr.toLowerCase()
-      const searchText = queryText.toLowerCase()
-
-      return textOne.includes(searchText) ||
-        textTwo.includes(searchText)
-    }
-  },
   computed: {
     items () {
       const result = []
@@ -103,6 +93,16 @@ export default {
         result.push(this.inputs[key])
       })
       return result
+    }
+  },
+  methods: {
+    customFilter (item, queryText, itemText) {
+      const textOne = item.name.toLowerCase()
+      const textTwo = item.abbr.toLowerCase()
+      const searchText = queryText.toLowerCase()
+
+      return textOne.includes(searchText) ||
+        textTwo.includes(searchText)
     }
   }
 }

@@ -18,8 +18,8 @@
                 settings_phone
               </v-icon>
               <span>
-              Service clientèle
-            </span>
+                Service clientèle
+              </span>
             </div>
             <div id="number" class="">
               +237 622 006 540

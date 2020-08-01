@@ -1,17 +1,17 @@
 <template>
   <v-card
-    class="font-sans"
     id="my-dialog"
+    class="font-sans"
   >
     <div class="dialog-header">
       <span id="dialog-title">{{ title }}</span>
-      <v-btn icon @click="closeDialog" color="black">
+      <v-btn color="black" icon @click="closeDialog">
         <v-icon>close</v-icon>
       </v-btn>
     </div>
     <div class="dialog-box-mail">
       <div class="dialog-box-title">
-        <div class="blue-block"></div>
+        <div class="blue-block" />
         <div class="text">
           Par mail
         </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="dialog-box-social">
       <div class="dialog-box-title">
-        <div class="blue-block"></div>
+        <div class="blue-block" />
         <div class="text">
           Ou via réseaux sociaux
         </div>
@@ -29,17 +29,19 @@
         <ul>
           <li v-for="(item, key) in icons" :key="key">
             <v-btn class="mx-2" dark small :color="item.color">
-              <v-icon class="white--text">{{ item.ico }}</v-icon>
+              <v-icon class="white--text">
+                {{ item.ico }}
+              </v-icon>
             </v-btn>
           </li>
         </ul>
         <p>Soyez sans crainte, nous ne publierons rien sur vos médias sociaux sans votre accord</p>
       </div>
       <template>
-        <p class="insc" v-if="isSignin">
+        <p v-if="isSignin" class="insc">
           Pas encore de compte? <a href="#" @click="isSignin=false">Cliquez ici pour vous inscrire !</a>
         </p>
-        <p class="insc" v-else>
+        <p v-else class="insc">
           Déja un compte ? <a href="#" @click="isSignin=true">Cliquez ici pour vous connecter !</a>
         </p>
       </template>
@@ -89,11 +91,9 @@ export default {
     type: 'Signin',
     isSignin: true
   }),
-  methods: {
-    closeDialog (e) {
-      this.$emit('input', false)
-      document.documentElement.style.overflowY = 'auto'
-      this.isSignin = true
+  computed: {
+    title () {
+      return this.isSignin ? 'Se connecter' : 'S\'inscrire'
     }
   },
   mounted () {
@@ -108,9 +108,11 @@ export default {
     document.body.style.overflow = 'none'
     document.documentElement.style.overflowY = 'hidden'
   },
-  computed: {
-    title () {
-      return this.isSignin ? 'Se connecter' : 'S\'inscrire'
+  methods: {
+    closeDialog (e) {
+      this.$emit('input', false)
+      document.documentElement.style.overflowY = 'auto'
+      this.isSignin = true
     }
   }
 }

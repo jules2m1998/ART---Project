@@ -14,18 +14,20 @@
       hide-details
       dense
       style="position: relative; bottom: 12px"
-    ></v-checkbox>
+    />
     <transition name="wither">
-      <custom-form :inputs="form.proffessions" v-if="checkbox" />
+      <custom-form v-if="checkbox" :inputs="form.proffessions" />
     </transition>
-    <v-btn block color="secondary" class="mt-6 black--text">S'inscrire</v-btn>
+    <v-btn block color="secondary" class="mt-6 black--text">
+      S'inscrire
+    </v-btn>
   </div>
 </template>
 
 <script>
 import CustomForm from '~/components/user/utils/CustomForm'
 export default {
-  name: 'signup',
+  name: 'Signup',
   components: { CustomForm },
   data: () => ({
     form: {

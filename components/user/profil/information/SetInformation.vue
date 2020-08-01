@@ -9,7 +9,9 @@
         <v-expansion-panel-header>Informations personnelles</v-expansion-panel-header>
         <v-expansion-panel-content>
           <div style="display: flex; justify-content: flex-end" class="mt-10">
-            <v-btn color="secondary">Modifier</v-btn>
+            <v-btn color="secondary">
+              Modifier
+            </v-btn>
           </div>
           <div id="form">
             <UserFormItem :input="form.langue" the-key="lang" />

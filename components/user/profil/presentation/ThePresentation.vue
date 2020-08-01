@@ -2,17 +2,21 @@
   <v-card id="pre">
     <div id="avatar">
       <v-avatar size="150">
-        <v-icon style="font-size: 146px" color="grey darken-3">fas fa-user-circle</v-icon>
+        <v-icon style="font-size: 146px" color="grey darken-3">
+          fas fa-user-circle
+        </v-icon>
       </v-avatar>
     </div>
     <div id="update">
       <v-btn color="secondary" fab x-small dark>
-        <v-icon color="primary" style="font-size: 15px">fas fa-pencil-alt</v-icon>
+        <v-icon color="primary" style="font-size: 15px">
+          fas fa-pencil-alt
+        </v-icon>
       </v-btn>
     </div>
     <div id="text">
       <div id="name">
-        Hello <span>{{ user.username}}</span>
+        Hello <span>{{ user.username }}</span>
       </div>
       <div id="welcome">
         Bienvenue dans votre espace membre
@@ -43,7 +47,7 @@ export default {
   #pre{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 20px;
     #update{
     }
