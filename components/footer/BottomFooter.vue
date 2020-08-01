@@ -5,7 +5,13 @@
         <p>Copyright 2019 ART - tous droits réservés</p>
       </div>
       <div id="dedicace">
-        <p>Site développé avec <v-icon color="white" style="position: relative; bottom: 3px">fas fa-heartbeat</v-icon> par <img src="/mdem.png" alt="logo de la société mdem"></p>
+        <p>
+          Site développé avec
+          <v-icon color="white" style="position: relative; bottom: 3px">
+            fas fa-heartbeat
+          </v-icon>
+          par <img src="/mdem.png" alt="logo de la société mdem">
+        </p>
       </div>
     </v-container>
   </div>

@@ -1,15 +1,15 @@
 <template>
   <div class="form--item">
     <label :for="'form-item' + theKey">{{ input.label }}</label>
-    <div class="value" :id="'form-item-' + theKey">
+    <div :id="'form-item-' + theKey" class="value">
       <template v-if="verify('checkbox')">
         <span
           v-for="(item, key) in input.items"
           :key="key"
         >
           <v-checkbox
-            class="my-checkbox"
             v-model="input.value"
+            class="my-checkbox"
             :label="item.label"
             :value="item.label"
             dense
@@ -20,20 +20,20 @@
         <v-radio-group v-model="input.value" :mandatory="false" style="margin: 0;padding: 0;width: 100%">
           <div class="radio--group">
             <span v-for="(item, key) in input.items" :key="key">
-              <v-radio dense :label="item.label" :value="item.label"></v-radio>
+              <v-radio dense :label="item.label" :value="item.label" />
             </span>
           </div>
         </v-radio-group>
       </template>
       <template v-else-if="verify('text')">
         <v-text-field
+          v-model="input.value"
           class="my-textflied"
           single-line
           outlined
-          v-model="input.value"
           :type="input.type"
           dense
-        ></v-text-field>
+        />
       </template>
       <template v-else-if="verify('date')">
         <v-menu
@@ -49,21 +49,25 @@
               v-model="computedDateFormatted"
               prepend-inner-icon="event"
               v-bind="attrs"
-              v-on="on"
               single-line
               outlined
               dense
-            ></v-text-field>
+              v-on="on"
+            />
           </template>
-          <v-date-picker v-model="date" no-title @input="menu2 = false"></v-date-picker>
+          <v-date-picker v-model="date" no-title @input="menu2 = false" />
         </v-menu>
       </template>
       <template v-else-if="verify('phone')">
         <div class="number">
           <input type="text">
-          <button class="verif">vérifier</button>
+          <button class="verif">
+            vérifier
+          </button>
           <button class="add">
-            <v-icon>add</v-icon>
+            <v-icon>
+              add
+            </v-icon>
           </button>
         </div>
       </template>

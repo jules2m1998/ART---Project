@@ -19,7 +19,7 @@ import TheMenu from '~/components/menu/TheMenu'
 import TheProfil from '~/components/user/profil/TheProfil'
 import SetInformation from '~/components/user/profil/information/SetInformation'
 export default {
-  name: 'profile',
+  name: 'Profile',
   components: { SetInformation, TheProfil, TheMenu },
   data: () => ({
     menus: [
@@ -52,11 +52,6 @@ export default {
     isResponsive: false,
     t: null
   }),
-  methods: {
-    responsive (e) {
-      this.isResponsive = e.matches
-    }
-  },
   mounted () {
     const media = window.matchMedia('(max-width: 900px)')
     const screenTest = (e) => {
@@ -64,6 +59,11 @@ export default {
     }
     media.addEventListener('change', screenTest)
     this.isResponsive = document.body.offsetWidth < 900
+  },
+  methods: {
+    responsive (e) {
+      this.isResponsive = e.matches
+    }
   }
 }
 </script>

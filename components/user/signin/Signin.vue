@@ -7,10 +7,12 @@
         label="Se souvenir de moi"
         dense
         style="height: 20px"
-      ></v-checkbox>
+      />
       <a href="#">Mot de passe oublié</a>
     </div>
-    <v-btn block color="secondary" class="mt-6 black--text">Se connecter</v-btn>
+    <v-btn block color="secondary" class="mt-6 black--text">
+      Se connecter
+    </v-btn>
   </div>
 </template>
 
@@ -64,7 +66,6 @@ export default {
     closeDialog (e) {
       this.$emit('input', false)
       document.documentElement.style.overflowY = 'auto'
-      console.log(document.documentElement)
     }
   }
 }

@@ -4,11 +4,15 @@
       <carrousel-slide v-for="(item, key) in slides" :key="key" :item="item" :index="key" />
     </div>
     <div class="other">
-      <button class="buttons carrousel-next" @click.prevent="next">go</button>
+      <button class="buttons carrousel-next" @click.prevent="next">
+        go
+      </button>
       <div class="carrousel-pagination">
         <button v-for="n in slidesCount" :key="n" class="steppers" :class="{ active : n-1 === index}" @click="goto(n-1)" />
       </div>
-      <button class="buttons carrousel-prev" @click.prevent="prev"> rebff </button>
+      <button class="buttons carrousel-prev" @click.prevent="prev">
+        rebff
+      </button>
     </div>
   </div>
 </template>
@@ -32,8 +36,22 @@ export default {
     tmp: [],
     loopTimer: 5000
   }),
+  computed: {
+    slidesCount () {
+      return this.slides.length
+    },
+    animCount () {
+      return this.animations.length
+    }
+  },
   mounted () {
     this.startAutoSlide()
+  },
+  created () {
+    this.tmp = [...this.animations]
+    this.slides.forEach((item) => {
+      item.animation = this.getAnimation()
+    })
   },
   methods: {
     next () {
@@ -78,20 +96,6 @@ export default {
       const value = this.animations[random].slice()
       this.animations.splice(random, 1)
       return value
-    }
-  },
-  created () {
-    this.tmp = [...this.animations]
-    this.slides.forEach((item) => {
-      item.animation = this.getAnimation()
-    })
-  },
-  computed: {
-    slidesCount () {
-      return this.slides.length
-    },
-    animCount () {
-      return this.animations.length
     }
   }
 }

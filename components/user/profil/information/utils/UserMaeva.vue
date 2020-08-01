@@ -293,15 +293,15 @@
   </div>
 </template>
 <script>
-import timezoneFile from './data/timezone.json'
-import countriesFile from './data/countries.json'
-import citiesFile from 'cities.json'
-import langcodeFile from './data/langcode.json'
+import timezoneFile from './../../../../../assets/json/timezone.json'
+import countriesFile from './../../../../../assets/json/countries.json'
+import citiesFile from './../../../../../assets/json/countries.json'
+import langcodeFile from './../../../../../assets/json/langcode.json'
 import { format } from 'date-fns'
 import french from 'date-fns/locale/fr'
 import _ from 'lodash'
 export default {
-  name: 'Info',
+  name: 'UserMaeva',
   data: () => ({
     valid: false,
     updated: false,

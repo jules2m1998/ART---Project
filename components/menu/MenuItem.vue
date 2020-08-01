@@ -2,6 +2,8 @@
   <div :class="{ actived: myKey === 0}" class="mb-4">
     <template>
       <v-btn
+        v-if="!isResponsive"
+        :id="'js-menu-item-' + myKey"
         :to="element.to"
         color="white"
         :class="{ active: myKey === 0}"
@@ -9,23 +11,25 @@
         x-large
         min-width="100%"
         style="color: black; text-transform: capitalize"
-        :id="'js-menu-item-' + myKey"
-        v-if="!isResponsive"
       >
-        <v-icon left>{{ element.ico }}</v-icon>
+        <v-icon left>
+          {{ element.ico }}
+        </v-icon>
         {{ element.name }}
       </v-btn>
       <v-btn
+        v-else
+        :id="'js-menu-item-' + myKey"
         :to="element.to"
         color="white"
         :class="{ actived: myKey === 0}"
         dark
         x-large
         style="color: #F5C511; text-transform: capitalize; box-shadow: unset; font-size: 20px"
-        :id="'js-menu-item-' + myKey"
-        v-else
       >
-        <v-icon medium>{{ element.ico }}</v-icon>
+        <v-icon medium>
+          {{ element.ico }}
+        </v-icon>
       </v-btn>
     </template>
   </div>
@@ -48,16 +52,6 @@ export default {
       required: true
     }
   },
-  mounted () {
-    const current = document.getElementById('js-menu-item-' + this.myKey)
-    if (!this.isResponsive) {
-      const child = current.querySelector('span')
-      child.style.justifyContent = 'unset'
-    } else {
-      const child = current.querySelector('span')
-      child.style.justifyContent = 'inherit'
-    }
-  },
   watch: {
     isResponsive (n, o) {
       const current = document.getElementById('js-menu-item-' + this.myKey)
@@ -67,6 +61,16 @@ export default {
       } else {
         child.style.justifyContent = 'inherit'
       }
+    }
+  },
+  mounted () {
+    const current = document.getElementById('js-menu-item-' + this.myKey)
+    if (!this.isResponsive) {
+      const child = current.querySelector('span')
+      child.style.justifyContent = 'unset'
+    } else {
+      const child = current.querySelector('span')
+      child.style.justifyContent = 'inherit'
     }
   }
 }
