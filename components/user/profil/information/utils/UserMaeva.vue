@@ -2,32 +2,34 @@
   <div>
     <v-form v-model="valid" class="mt-2">
       <v-container class="pt-0">
-        <div class="row-box row-1">
-          <div class="d-flex justify-end align-center">
+        <div class="row-box row-2">
+          <div class="d-flex align-center">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Nom complet</span>
             <v-icon class="label-icon">
               person
             </v-icon>
           </div>
-          <div>
+          <div class="my-double">
             <v-text-field
               v-model="firstname"
               :rules="nameRules"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               required
+              outlined
+              dense
             />
-          </div>
-          <div>
             <v-text-field
               v-model="lastname"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :rules="nameRules"
               required
+              outlined
+              dense
             />
           </div>
         </div>
         <div class="row-box row-2">
-          <div class="d-flex justify-end align-center input-block">
+          <div class="d-flex  align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Nom à l'affichage</span>
             <v-icon class="label-icon">
               person
@@ -39,34 +41,38 @@
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :rules="nameRules"
               required
+              outlined
+              dense
             />
           </div>
         </div>
-        <div class="row-box row-1">
-          <div class="d-flex justify-end align-center">
+        <div class="row-box row-2">
+          <div class="d-flex  align-center">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Genre & Titre</span>
             <v-icon class="label-icon">
               person
             </v-icon>
           </div>
-          <div>
+          <div class="my-double">
             <v-select
               v-model="gender"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :items="genders"
+              outlined
+              dense
             />
-          </div>
-          <div>
             <v-text-field
               v-model="title"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               :rules="nameRules"
               required
+              outlined
+              dense
             />
           </div>
         </div>
         <div class="row-box row-2">
-          <div class="d-flex justify-end align-center input-block">
+          <div class="d-flex  align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Date de naissance</span>
             <v-icon class="label-icon">
               person
@@ -87,6 +93,8 @@
                   append-icon="event"
                   readonly
                   class="datepickerInput"
+                  outlined
+                  dense
                   v-bind="attrs"
                   @click:append="modal=true"
                 />
@@ -105,15 +113,15 @@
         </div>
         <br>
         <br>
-        <div class="row-box row-1">
-          <div class="d-flex justify-end align-center">
+        <div class="row-box row-2">
+          <div class="d-flex  align-center">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">References</span>
             <v-icon class="label-icon">
               person
             </v-icon>
           </div>
           <div
-            cols="4"
+            class="my-double"
           >
             <v-autocomplete
               v-model="country"
@@ -122,11 +130,10 @@
               :filter="customFilter"
               item-text="name"
               append-icon="expand_more"
+              outlined
+              dense
               @change="getCapital()"
             />
-          </div>
-
-          <div>
             <v-autocomplete
               v-model="city"
               :items="getCities"
@@ -134,11 +141,13 @@
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               item-text="name"
               append-icon="expand_more"
+              outlined
+              dense
             />
           </div>
         </div>
         <div class="row-box row-2">
-          <div class="d-flex justify-end align-center input-block">
+          <div class="d-flex  align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Fuseau horaire préféré</span>
             <v-icon class="label-icon">
               person
@@ -151,11 +160,13 @@
               item-text="name"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               append-icon="expand_more"
+              outlined
+              dense
             />
           </div>
         </div>
         <div class="row-box row-2">
-          <div class="d-flex justify-end align-center input-block">
+          <div class="d-flex  align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Langue principale</span>
             <v-icon class="label-icon">
               person
@@ -167,11 +178,13 @@
               :items="langcodeList"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               append-icon="expand_more"
+              outlined
+              dense
             />
           </div>
         </div>
         <div class="row-box row-2">
-          <div class="d-flex justify-end align-center input-block">
+          <div class="d-flex  align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Autres langues</span>
             <v-icon class="label-icon">
               person
@@ -181,11 +194,14 @@
             <v-autocomplete
               v-model="otherLang"
               :items="langcodeList"
-              append-icon="expand_more"
+              append-icon=""
               on-icon="check_box"
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               small-chips
               multiple
+              outlined
+              dense
+              disabled
             >
               <template #selection="{ item }">
                 <v-chip
@@ -205,7 +221,7 @@
         <br>
         <br>
         <div class="row-box row-2">
-          <div class="d-flex justify-end align-center input-block">
+          <div class="d-flex  align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Adresses mails</span>
             <v-icon class="label-icon">
               person
@@ -218,11 +234,13 @@
               readonly
               item-text="name"
               item-value="name"
-              append-icon="edit"
+              append-icon=""
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
               chips
               multiple
-              @append="$router.push('/parameter/userprofile/identifiant')"
+              outlined
+              dense
+              disabled
             >
               <template v-slot:selection="data">
                 <v-chip
@@ -230,7 +248,6 @@
                   color="#D6DAEF"
                   text-color="#595B65"
                   v-bind="data.attrs"
-                  @click:close="$router.push('/parameter/userprofile/identifiant')"
                 >
                   <v-icon v-if="data.item.valid" small left color="green">
                     check_circle
@@ -239,53 +256,33 @@
                     error
                   </v-icon>
                   {{ data.item.name }}
-                  <v-dialog v-model="dialog" persistent max-width="290">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon small v-bind="attrs" right color="#595B65" v-on="on">
-                        cancel
-                      </v-icon>
-                    </template>
-                    <v-card>
-                      <v-card-title class="headline">
-                        Redirection
-                      </v-card-title>
-                      <v-card-text>Vous allez être rediriger vers la page identiant pour pouvoir effectuer cette opération</v-card-text>
-                      <v-card-actions>
-                        <v-spacer />
-                        <v-btn color="green darken-1" text @click="dialog = false">
-                          Annuler
-                        </v-btn>
-                        <v-btn color="green darken-1" text @click="$router.push('/parameter/userprofile/identifiant')">
-                          Accepter
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
                 </v-chip>
               </template>
             </v-autocomplete>
           </div>
         </div>
         <div class="row-box row-2">
-          <div class="d-flex justify-end align-center input-block">
+          <div class="d-flex  align-center input-block">
             <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Numéros de téléphone</span>
             <v-icon class="label-icon">
               person
             </v-icon>
           </div>
-          <div>
+          <div class="input--dialog--box">
             <v-autocomplete
               v-model="phones"
               :items="phonenumberList"
               readonly
               item-text="name"
               item-value="name"
-              append-icon="edit"
+              append-icon=""
               small
               chips
               multiple
               :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
-              @click:append="$router.push('/parameter/userprofile/identifiant')"
+              outlined
+              dense
+              disabled
             >
               <template v-slot:selection="data">
                 <v-chip
@@ -293,7 +290,6 @@
                   color="#D6DAEF"
                   text-color="#595B65"
                   v-bind="data.attrs"
-                  @click:close="$router.push('/parameter/userprofile/identifiant')"
                 >
                   <v-icon v-if="data.item.valid" small left color="green">
                     check_circle
@@ -302,31 +298,30 @@
                     error
                   </v-icon>
                   {{ data.item.name }}
-                  <v-dialog v-model="dialog1" persistent max-width="290">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon small v-bind="attrs" right color="#595B65" v-on="on">
-                        cancel
-                      </v-icon>
-                    </template>
-                    <v-card>
-                      <v-card-title class="headline">
-                        Redirection
-                      </v-card-title>
-                      <v-card-text>Vous allez être rediriger vers la page identiant pour pouvoir effectuer cette opération</v-card-text>
-                      <v-card-actions>
-                        <v-spacer />
-                        <v-btn color="green darken-1" text @click="dialog1 = false">
-                          Annuler
-                        </v-btn>
-                        <v-btn color="green darken-1" text @click="$router.push('/parameter/userprofile/identifiant')">
-                          Accepter
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
                 </v-chip>
               </template>
             </v-autocomplete>
+            <div class="input--dialog--box--button">
+              <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    icon
+                    color="green"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon>fas fa-plus-circle</v-icon>
+                  </v-btn>
+                </template>
+                <dialog-form
+                  v-model="dialog"
+                  type="phone-add"
+                  title="Modifier vos numéros de téléphone"
+                  :element="{}"
+                  @number="setPhone"
+                />
+              </v-dialog>
+            </div>
           </div>
         </div>
         <br>
@@ -341,12 +336,6 @@
             Enregistrer
           </v-btn>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
       </v-container>
     </v-form>
   </div>
@@ -359,8 +348,10 @@ import citiesFile from 'cities.json'
 import timezoneFile from './../../../../../assets/json/timezone.json'
 import countriesFile from './../../../../../assets/json/countries.json'
 import langcodeFile from './../../../../../assets/json/langcode.json'
+import DialogForm from '~/components/user/utils/DialogForm'
 export default {
   name: 'UserMaeva',
+  components: { DialogForm },
   data: () => ({
     valid: false,
     updated: false,
@@ -519,6 +510,10 @@ export default {
         return textOne.includes(searchText) ||
           textTwo.includes(searchText)
       }
+    },
+    setPhone (e) {
+      this.phones = e
+      this.phonenumberList = e
     }
   }
 }
@@ -596,6 +591,30 @@ export default {
     }
     .label-icon{
       display: block;
+    }
+  }
+  .my-double{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 12px;
+  }
+  .label-text{
+    position: relative;
+    bottom: 10px;
+    color: black!important;
+    font-size: 12px!important;
+  }
+  .input--dialog--box{
+    position: relative;
+    .input--dialog--box--button{
+      position: absolute;
+      top: 2px;
+      right: 0;
+      button{
+        i{
+          font-size: 18px!important;
+        }
+      }
     }
   }
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div class="dialog-box-form">
     <div class="d-flex flex-row">
-      <custom-form :inputs="form.first" class="mr-1" />
-      <custom-form :inputs="form.last" class="ml-1" />
+      <custom-form v-model="form.first.value" :input="form.first" class="mr-1" />
+      <custom-form v-model="form.last.value" :input="form.last" class="ml-1" />
     </div>
-    <custom-form :inputs="form.email" />
-    <custom-form :inputs="form.phone" />
-    <custom-form :inputs="form.password" class="mr-1" />
+    <custom-form v-model="form.email.value" :input="form.email" />
+    <custom-form v-model="form.phone.value" :input="form.phone" />
+    <custom-form v-model="form.password.value" :input="form.password" class="mr-1" />
     <v-checkbox
       v-model="checkbox"
       label="Je suis un professionnel"
@@ -16,7 +16,7 @@
       style="position: relative; bottom: 12px"
     />
     <transition name="wither">
-      <custom-form v-if="checkbox" :inputs="form.proffessions" />
+      <custom-form v-model="form.proffessions.value" v-if="checkbox" :input="form.proffessions" />
     </transition>
     <v-btn block color="secondary" class="mt-6 black--text">
       S'inscrire

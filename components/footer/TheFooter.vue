@@ -380,6 +380,8 @@ export default {
             }
             #form{
               padding-left: 24px;
+              display: flex!important;
+              justify-content: flex-end!important;
             }
           }
         }

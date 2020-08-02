@@ -1,6 +1,7 @@
 <template>
   <div class="dialog-box-form">
-    <custom-form :inputs="forms" />
+    <custom-form :input="forms.email" v-model="forms.email.value" />
+    <custom-form :input="forms.password" v-model="forms.email.value" />
     <div class="bottom-form">
       <v-checkbox
         v-model="checkbox"
@@ -66,6 +67,12 @@ export default {
     closeDialog (e) {
       this.$emit('input', false)
       document.documentElement.style.overflowY = 'auto'
+    },
+    setPassword (e) {
+      this.forms.password.value = e
+    },
+    setEmail (e) {
+      this.forms.email.value = e
     }
   }
 }

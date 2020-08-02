@@ -5,7 +5,7 @@
       :disabled="disabled"
       multiple
     >
-      <v-expansion-panel class="mt-2 expendable--title">
+      <v-expansion-panel id="epx--pan" class="mt-8 expendable--title">
         <v-expansion-panel-header>Informations personnelles</v-expansion-panel-header>
         <v-expansion-panel-content>
           <div id="form">
@@ -13,7 +13,7 @@
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <set-password />
+      <set-password class="mt-8" />
     </v-expansion-panels>
   </div>
 </template>
@@ -86,6 +86,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .v-expansion-panels:not(.v-expansion-panels--accordion):not(.v-expansion-panels--tile) > .v-expansion-panel--active {
+    border-radius: $radius!important;
+  }
 </style>

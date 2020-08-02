@@ -53,16 +53,12 @@
 import CustomForm from '~/components/user/utils/CustomForm'
 import Signin from '~/components/user/signin/Signin'
 import signup from '~/components/user/signup/signup'
+import dialog from '~/mixins/dialog'
 
 export default {
   name: 'DefaultForm',
   components: { CustomForm, Signin, signup },
-  props: {
-    value: {
-      type: Boolean,
-      required: true
-    }
-  },
+  mixins: [dialog],
   data: () => ({
     checkbox: false,
     icons: [
@@ -95,59 +91,11 @@ export default {
     title () {
       return this.isSignin ? 'Se connecter' : 'S\'inscrire'
     }
-  },
-  mounted () {
-    this.elt = document.getElementById('my-dialog')
-    const firstParent = this.elt?.parentElement
-    firstParent.style.overflowY = 'scroll'
-    firstParent.style.maxWidth = 'none'
-    firstParent.style.margin = '0'
-    firstParent.style.paddingTop = '20px'
-    firstParent.style.paddingBottom = '20px'
-    firstParent.style.minHeight = '100%'
-    document.body.style.overflow = 'none'
-    document.documentElement.style.overflowY = 'hidden'
-  },
-  methods: {
-    closeDialog (e) {
-      this.$emit('input', false)
-      document.documentElement.style.overflowY = 'auto'
-      this.isSignin = true
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  $padding: 28px;
-  $mt: 40px;
-  @font-face {
-    font-family: kaushanscript;
-    src: url('/fonts/KaushanScript-Regular.ttf');
-  }
-  #my-dialog{
-    max-width: 500px;
-    margin: auto;
-    overflow: hidden;
-    @media screen and (max-width: 615px) {
-      max-width: 90%;
-    }
-  }
-  .dialog-header{
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 $padding 0 $padding;
-    background: #e4b727;
-    border-bottom: 2px solid $primary;
-    span{
-      color: $primary;
-      font-size: 26px;
-      font-family: kaushanscript,sans-serif;
-    }
-  }
   .dialog-box-mail{
     margin-top: $mt;
     .dialog-box-form{

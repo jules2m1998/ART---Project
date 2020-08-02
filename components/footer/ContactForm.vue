@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="max-width: 450px;">
     <h1>
       {{ title.toUpperCase() }}
     </h1>
@@ -58,6 +58,7 @@ export default {
       span{
         height: $inputh;
         border: $border solid rgba(255,255,255,.5);
+        width: 50%;
         input{
           height: 100%;
           color: $yellow;
@@ -108,6 +109,7 @@ export default {
       display: flex;
       justify-content: flex-end;
       margin-top: 12px;
+      font-style: oblique;
     }
   }
 </style>

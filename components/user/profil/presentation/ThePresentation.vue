@@ -1,8 +1,8 @@
 <template>
   <v-card id="pre">
     <div id="avatar">
-      <v-avatar size="150">
-        <v-icon style="font-size: 146px" color="grey darken-3">
+      <v-avatar size="120">
+        <v-icon style="font-size: 126px" color="grey darken-3">
           fas fa-user-circle
         </v-icon>
       </v-avatar>
@@ -48,7 +48,8 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding: 20px;
+    padding: 28px;
+    border-radius: $radius;
     #update{
     }
     #text{
@@ -61,16 +62,18 @@ export default {
         }
       }
       #welcome{
-        font-size: 1.5rem;
+        font-size: 1.45rem;
       }
       #prof{
-        font-size: 1rem;
-        font-weight: bold;
+        font-size: 0.8rem;
         font-style: oblique;
+        margin-top: 8px;
       }
       #place{
-        color: rgb(128, 128, 133);
+        color: #808085;
         font-style: oblique;
+        font-size: 0.7959rem;
+        margin-top: 8px;
       }
     }
   }
