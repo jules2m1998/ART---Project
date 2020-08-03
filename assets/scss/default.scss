@@ -61,3 +61,6 @@ button{
     font-family: kaushanscript,sans-serif;
   }
 }
+.v-dialog:not(.v-dialog--fullscreen) {
+  display: flex;
+}

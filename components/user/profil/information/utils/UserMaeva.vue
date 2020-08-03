@@ -271,7 +271,7 @@
           <div class="input--dialog--box">
             <v-autocomplete
               v-model="phones"
-              :items="phonenumberList"
+              :items="phones"
               readonly
               item-text="name"
               item-value="name"
@@ -290,14 +290,24 @@
                   color="#D6DAEF"
                   text-color="#595B65"
                   v-bind="data.attrs"
+                  class="phone-chip--parent"
+                  style="margin-top: 5px"
                 >
-                  <v-icon v-if="data.item.valid" small left color="green">
-                    check_circle
-                  </v-icon>
-                  <v-icon v-if="!data.item.valid" small left color="orange">
-                    error
-                  </v-icon>
-                  {{ data.item.name }}
+                  <div class="phone-chip">
+                    <div class="operator" :style="{ background: data.item.operator.color }">{{ data.item.operator.name }}</div>
+                    <div class="number">{{ data.item.name }} <span v-if="data.item.isPro">(pro)</span></div>
+                    <div class="buttons">
+                      <button class="black">
+                        <v-icon>fas fa-info</v-icon>
+                      </button>
+                      <button class="edit--btn">
+                        <v-icon>fas fa-pencil-alt</v-icon>
+                      </button>
+                      <button style="background: transparent" @click.prevent="removePhone(data.item.name)">
+                        <v-icon class="black--text">fas fa-times</v-icon>
+                      </button>
+                    </div>
+                  </div>
                 </v-chip>
               </template>
             </v-autocomplete>
@@ -319,6 +329,7 @@
                   title="Modifier vos numéros de téléphone"
                   :element="{}"
                   @number="setPhone"
+                  @add="addPhone"
                 />
               </v-dialog>
             </div>
@@ -380,15 +391,15 @@ export default {
         valid: false
       }
     ],
-    phones: ['690552927', '673415829'],
-    phonenumberList: [
+    phones: [
       {
         name: '690552927',
-        valid: true
-      },
-      {
-        name: '673415829',
-        valid: true
+        valid: true,
+        operator: {
+          name: 'Orange',
+          color: '#ff6600'
+        },
+        isPro: true
       }
     ],
     langcodeList: [],
@@ -514,11 +525,59 @@ export default {
     setPhone (e) {
       this.phones = e
       this.phonenumberList = e
+    },
+    removePhone (data) {
+      this.phones.splice(this.phones.indexOf(data), 1)
+    },
+    addPhone (e) {
+      if (!this.phones.includes(e)) {
+        this.phones.push(e)
+      }
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+  .phone-chip{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .operator{
+      padding: 8px;
+      color: white;
+      margin-right: 6px;
+      background: blue;
+    }
+    .buttons{
+      display: flex;
+      flex-direction: row;
+      margin-left: 6px;
+      button{
+        height: 16px;
+        border-radius: 16px;
+        width: 16px;
+        background: blue;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 3px;
+        &.edit--btn{
+          background: transparent;
+          margin-left: 12px;
+          i{
+            color: black;
+          }
+        }
+        i{
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  .phone-chip--parent{
+    padding: 0!important;
+  }
   .row-box {
     height: 60px !important;
   }

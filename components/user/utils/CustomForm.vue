@@ -46,17 +46,20 @@
         outlined
         :prepend-inner-icon="input.icon"
         @input="setElement"
+        :rules="errors"
         dense
       />
     </div>
     <v-autocomplete
       v-if="input.type === 'auto-complate'"
-      :items="proffessions"
-      :filter="customFilter"
+      :items="input.list"
       item-text="name"
+      item-value="name"
       :label="input.label"
       v-model="element"
+      @input="setElement"
       :prepend-inner-icon="input.icon"
+      :rules="errors"
       single-line
       outlined
       dense
@@ -65,8 +68,10 @@
 </template>
 
 <script>
+import regex from '~/mixins/regex'
 export default {
   name: 'CustomForm',
+  mixins: [regex],
   props: {
     /**
      * Exemple : first: {
@@ -83,16 +88,13 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    isRequired: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
-    proffessions: [
-      { name: 'Florida', abbr: 'FL', id: 1 },
-      { name: 'Georgia', abbr: 'GA', id: 2 },
-      { name: 'Nebraska', abbr: 'NE', id: 3 },
-      { name: 'California', abbr: 'CA', id: 4 },
-      { name: 'New York', abbr: 'NY', id: 5 }
-    ],
     element: ''
   }),
   methods: {
@@ -100,7 +102,6 @@ export default {
       const textOne = item.name.toLowerCase()
       const textTwo = item.abbr.toLowerCase()
       const searchText = queryText.toLowerCase()
-
       return textOne.includes(searchText) ||
         textTwo.includes(searchText)
     },
@@ -109,6 +110,18 @@ export default {
     },
     setElement () {
       this.$emit('input', this.element)
+    }
+  },
+  computed: {
+    errors () {
+      const rules = []
+      if (this.isRequired) {
+        rules.push(value => !!value || 'Champs obligatoire')
+      }
+      if (this.isType('phone')) {
+        rules.push(value => this.regexPhone(value) || 'Numéro de téléphone invalide')
+      }
+      return rules
     }
   }
 }

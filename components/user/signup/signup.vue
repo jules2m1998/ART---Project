@@ -73,7 +73,14 @@ export default {
         label: 'Choississez votre proffession',
         icon: 'work',
         value: '',
-        type: 'auto-complate'
+        type: 'auto-complate',
+        list: [
+          { name: 'Florida', abbr: 'FL', id: 1 },
+          { name: 'Georgia', abbr: 'GA', id: 2 },
+          { name: 'Nebraska', abbr: 'NE', id: 3 },
+          { name: 'California', abbr: 'CA', id: 4 },
+          { name: 'New York', abbr: 'NY', id: 5 }
+        ]
       }
     },
     checkbox: false
