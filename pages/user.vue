@@ -6,8 +6,7 @@
           <the-menu :elements="menus" :is-responsive="isResponsive" />
         </div>
         <div id="routes">
-          <the-profil />
-          <set-information />
+          <nuxt-child />
         </div>
       </div>
     </v-container>
@@ -16,15 +15,13 @@
 
 <script>
 import TheMenu from '~/components/menu/TheMenu'
-import TheProfil from '~/components/user/profil/TheProfil'
-import SetInformation from '~/components/user/profil/information/SetInformation'
 export default {
   name: 'Profile',
-  components: { SetInformation, TheProfil, TheMenu },
+  components: { TheMenu },
   data: () => ({
     menus: [
       {
-        to: '#',
+        to: 'profile',
         ico: 'person',
         name: 'Profil'
       },

@@ -13,6 +13,7 @@
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
+      <adresses />
       <set-password class="mt-8" />
     </v-expansion-panels>
   </div>
@@ -21,11 +22,12 @@
 <script>
 import SetPassword from '~/components/user/profil/information/password/SetPassword'
 import UserMaeva from '~/components/user/profil/information/utils/UserMaeva'
+import Adresses from '~/components/user/profil/information/adresses/Adresses'
 export default {
   name: 'SetInformation',
-  components: { UserMaeva, SetPassword },
+  components: { Adresses, UserMaeva, SetPassword },
   data: () => ({
-    panel: [0, 1],
+    panel: [0, 1, 1],
     disabled: false,
     form: {
       langue: {

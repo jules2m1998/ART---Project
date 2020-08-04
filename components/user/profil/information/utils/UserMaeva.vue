@@ -220,123 +220,6 @@
         </div>
         <br>
         <br>
-        <div class="row-box row-2">
-          <div class="d-flex  align-center input-block">
-            <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Adresses mails</span>
-            <v-icon class="label-icon">
-              person
-            </v-icon>
-          </div>
-          <div>
-            <v-autocomplete
-              v-model="emails"
-              :items="emailList"
-              readonly
-              item-text="name"
-              item-value="name"
-              append-icon=""
-              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
-              chips
-              multiple
-              outlined
-              dense
-              disabled
-            >
-              <template v-slot:selection="data">
-                <v-chip
-                  small
-                  color="#D6DAEF"
-                  text-color="#595B65"
-                  v-bind="data.attrs"
-                >
-                  <v-icon v-if="data.item.valid" small left color="green">
-                    check_circle
-                  </v-icon>
-                  <v-icon v-if="!data.item.valid" small left color="red">
-                    error
-                  </v-icon>
-                  {{ data.item.name }}
-                </v-chip>
-              </template>
-            </v-autocomplete>
-          </div>
-        </div>
-        <div class="row-box row-2">
-          <div class="d-flex  align-center input-block">
-            <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Numéros de téléphone</span>
-            <v-icon class="label-icon">
-              person
-            </v-icon>
-          </div>
-          <div class="input--dialog--box">
-            <v-autocomplete
-              v-model="phones"
-              :items="phones"
-              readonly
-              item-text="name"
-              item-value="name"
-              append-icon=""
-              small
-              chips
-              multiple
-              :class="{'disable-input':updateVerification,'enable-input':!updateVerification}"
-              outlined
-              dense
-              disabled
-            >
-              <template v-slot:selection="data">
-                <v-chip
-                  small
-                  color="#D6DAEF"
-                  text-color="#595B65"
-                  v-bind="data.attrs"
-                  class="phone-chip--parent"
-                  style="margin-top: 5px"
-                >
-                  <div class="phone-chip">
-                    <div class="operator" :style="{ background: data.item.operator.color }">{{ data.item.operator.name }}</div>
-                    <div class="number">{{ data.item.name }} <span v-if="data.item.isPro">(pro)</span></div>
-                    <div class="buttons">
-                      <button class="black">
-                        <v-icon>fas fa-info</v-icon>
-                      </button>
-                      <button class="edit--btn">
-                        <v-icon>fas fa-pencil-alt</v-icon>
-                      </button>
-                      <button style="background: transparent" @click.prevent="removePhone(data.item.name)">
-                        <v-icon class="black--text">fas fa-times</v-icon>
-                      </button>
-                    </div>
-                  </div>
-                </v-chip>
-              </template>
-            </v-autocomplete>
-            <div class="input--dialog--box--button">
-              <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    icon
-                    color="green"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <v-icon>fas fa-plus-circle</v-icon>
-                  </v-btn>
-                </template>
-                <dialog-form
-                  v-model="dialog"
-                  type="phone-add"
-                  title="Modifier vos numéros de téléphone"
-                  :element="{}"
-                  @number="setPhone"
-                  @add="addPhone"
-                />
-              </v-dialog>
-            </div>
-          </div>
-        </div>
-        <br>
-        <br>
         <br>
         <br>
         <div class="d-flex justify-end">
@@ -359,10 +242,8 @@ import citiesFile from 'cities.json'
 import timezoneFile from './../../../../../assets/json/timezone.json'
 import countriesFile from './../../../../../assets/json/countries.json'
 import langcodeFile from './../../../../../assets/json/langcode.json'
-import DialogForm from '~/components/user/utils/DialogForm'
 export default {
   name: 'UserMaeva',
-  components: { DialogForm },
   data: () => ({
     valid: false,
     updated: false,
@@ -393,6 +274,7 @@ export default {
     ],
     phones: [
       {
+        id: 0,
         name: '690552927',
         valid: true,
         operator: {
@@ -407,6 +289,8 @@ export default {
     modal: false,
     dialog: false,
     dialog1: false,
+    dialogAdd: false,
+    dialogUpdate: false,
     nameRules: [
       v => !!v || 'Name is required'
     ]
@@ -520,18 +404,6 @@ export default {
         const searchText = queryText.toLowerCase()
         return textOne.includes(searchText) ||
           textTwo.includes(searchText)
-      }
-    },
-    setPhone (e) {
-      this.phones = e
-      this.phonenumberList = e
-    },
-    removePhone (data) {
-      this.phones.splice(this.phones.indexOf(data), 1)
-    },
-    addPhone (e) {
-      if (!this.phones.includes(e)) {
-        this.phones.push(e)
       }
     }
   }

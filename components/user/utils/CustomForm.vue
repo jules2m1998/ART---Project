@@ -10,6 +10,7 @@
       :prepend-inner-icon="input.icon"
       :type="input.type"
       @input="setElement"
+      :rules="errors"
       dense
     />
     <div v-else-if="input.type === 'password'" class="div-pass">
@@ -50,20 +51,21 @@
         dense
       />
     </div>
-    <v-autocomplete
-      v-if="input.type === 'auto-complate'"
-      :items="input.list"
-      item-text="name"
-      item-value="name"
-      :label="input.label"
-      v-model="element"
-      @input="setElement"
-      :prepend-inner-icon="input.icon"
-      :rules="errors"
-      single-line
-      outlined
-      dense
-    />
+    <template v-if="input.type === 'auto-complate'">
+      <v-autocomplete
+        :items="input.list"
+        item-text="name"
+        item-value="name"
+        :label="input.label"
+        v-model="element"
+        @input="setElement"
+        :prepend-inner-icon="input.icon"
+        :rules="errors"
+        single-line
+        outlined
+        dense
+      />
+    </template>
   </div>
 </template>
 
@@ -86,7 +88,7 @@ export default {
       required: true
     },
     value: {
-      type: String,
+      type: String || Object,
       required: true
     },
     isRequired: {
@@ -121,8 +123,14 @@ export default {
       if (this.isType('phone')) {
         rules.push(value => this.regexPhone(value) || 'Numéro de téléphone invalide')
       }
+      if (this.isType('email')) {
+        rules.push(value => this.regexEmail(value) || 'Adresse email invalide')
+      }
       return rules
     }
+  },
+  created () {
+    this.element = this.value
   }
 }
 </script>
