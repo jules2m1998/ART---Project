@@ -6,7 +6,6 @@
         :id="'js-menu-item-' + myKey"
         :to="element.to"
         color="white"
-        :class="{ active: myKey === 0}"
         dark
         x-large
         min-width="100%"
@@ -22,7 +21,7 @@
         :id="'js-menu-item-' + myKey"
         :to="element.to"
         color="white"
-        :class="{ actived: myKey === 0}"
+        class="responsive-item"
         dark
         x-large
         style="color: #F5C511; text-transform: capitalize; box-shadow: unset; font-size: 20px"
@@ -86,11 +85,16 @@ export default {
   .v-btn:not(.v-btn--text):not(.v-btn--outlined).v-btn--active:before {
     opacity: 0!important;
   }
-  .active{
+  .v-btn--active{
     background: $yellow!important;
     border: unset;
   }
-  .actived{
-    border-bottom: 1px solid $yellow;
+  .responsive-item.v-btn--active{
+    border-bottom: 2px solid !important;
+    background: unset!important;
+    border-radius: 0;
+  }
+  .v-btn__content {
+    justify-content: flex-start!important;
   }
 </style>

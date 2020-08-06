@@ -7,13 +7,6 @@
         </v-icon>
       </v-avatar>
     </div>
-    <div id="update">
-      <v-btn color="secondary" fab x-small dark>
-        <v-icon color="primary" style="font-size: 15px">
-          fas fa-pencil-alt
-        </v-icon>
-      </v-btn>
-    </div>
     <div id="text">
       <div id="name">
         Hello <span>{{ user.username }}</span>
@@ -50,11 +43,23 @@ export default {
     justify-content: flex-start;
     padding: 28px;
     border-radius: $radius;
-    #update{
+    @media screen and (max-width: 425px) {
+      justify-content: center;
+      flex-direction: column;
+    }
+    #avatar{
+      display: flex;
+      justify-content: center;
     }
     #text{
       margin-left: 30px;
       color: $primary;
+      @media screen and (max-width: 425px) {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
       #name{
         font-size: 1.7rem;
         span{

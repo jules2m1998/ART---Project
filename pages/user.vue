@@ -21,27 +21,27 @@ export default {
   data: () => ({
     menus: [
       {
-        to: 'profile',
+        to: '/user/profile',
         ico: 'person',
         name: 'Profil'
       },
       {
-        to: '#',
+        to: '/user/facture',
         ico: 'description',
         name: 'Facture'
       },
       {
-        to: '#',
+        to: '/user/favoris',
         ico: 'favorite_border',
         name: 'Favoris'
       },
       {
-        to: '#',
+        to: '/user/avis',
         ico: 'grade',
         name: 'Avis'
       },
       {
-        to: '#',
+        to: '/user/entreprises',
         ico: 'business',
         name: 'Entreprises'
       }
@@ -74,5 +74,9 @@ export default {
       grid-template-columns: 1fr;
       grid-gap: 24px;
     }
+  }
+  #menu{
+    width: 100%;
+    overflow: auto;
   }
 </style>
