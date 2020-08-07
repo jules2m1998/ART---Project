@@ -1,7 +1,7 @@
 <template>
   <div class="dialog-box-form">
-    <custom-form :input="forms.email" v-model="forms.email.value" />
-    <custom-form :input="forms.password" v-model="forms.email.value" />
+    <custom-form v-model="forms.email.value" :input="forms.email" />
+    <custom-form v-model="forms.email.value" :input="forms.password" />
     <div class="bottom-form">
       <v-checkbox
         v-model="checkbox"
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import CustomForm from '~/components/user/utils/CustomForm'
 export default {
   name: 'Signin',
@@ -63,7 +64,21 @@ export default {
     ],
     elt: null
   }),
+  computed: {
+    current () {
+      return this.$store.state.user.current
+    },
+    userList () {
+      return this.$store.state.user.userList
+    }
+  },
+  mounted () {
+    console.log(this.current)
+  },
   methods: {
+    ...mapMutations({
+      login: 'user/setCurrent'
+    }),
     closeDialog (e) {
       this.$emit('input', false)
       document.documentElement.style.overflowY = 'auto'
@@ -75,7 +90,9 @@ export default {
       this.forms.email.value = e
     },
     submit () {
-      this.$router.push('/user/profile')
+      const email = this.forms.email.value
+      const data = this.userList.filter(x => x.emailList.filter(y => y.name === email) !== [])
+      if (data !== []) { this.login(data[0]) } else { console.log(data) }
     }
   }
 }

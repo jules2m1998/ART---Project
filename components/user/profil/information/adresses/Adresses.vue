@@ -62,10 +62,10 @@
                     <div class="buttons">
                       <v-tooltip bottom>
                         <template v-slot:activator="{ on, attrs }">
-                          <div v-on="on" v-bind="attrs">
+                          <div v-bind="attrs" v-on="on">
                             <v-dialog v-model="isDialogEmailUpdate" persistent max-width="550px" style="overflow-y: hidden">
-                              <template v-slot:activator="{ on, attrs }" v-on="on">
-                                <button class="edit--btn" v-on="on" v-bind="attrs" @click.prevent>
+                              <template v-slot:activator="{on, attrs}" v-on="on">
+                                <button class="edit--btn" v-bind="attrs" v-on="on" @click.prevent>
                                   <v-icon>fas fa-pencil-alt</v-icon>
                                 </button>
                               </template>
@@ -84,8 +84,10 @@
                       </v-tooltip>
                       <v-tooltip bottom>
                         <template v-slot:activator="{ on, attrs }">
-                          <button style="background: transparent" @click.prevent="removeEmail(data.item.id)" v-on="on" v-bind="attrs">
-                            <v-icon class="black--text">fas fa-times</v-icon>
+                          <button style="background: transparent" v-bind="attrs" @click.prevent="removeEmail(data.item.id)" v-on="on">
+                            <v-icon class="black--text">
+                              fas fa-times
+                            </v-icon>
                           </button>
                         </template>
                         <span style="font-size: 10px">Supprimer</span>
@@ -152,23 +154,27 @@
                 style="margin: 5px 5px 5px 0"
               >
                 <div class="phone-chip">
-                  <div class="operator" :style="{ background: data.item.operator.color }">{{ data.item.operator.name }}</div>
-                  <div class="number">{{ data.item.name }} <span v-if="data.item.isPro">(pro)</span></div>
+                  <div class="operator" :style="{ background: data.item.operator.color }">
+                    {{ data.item.operator.name }}
+                  </div>
+                  <div class="number">
+                    {{ data.item.name }} <span v-if="data.item.isPro">(pro)</span>
+                  </div>
                   <div class="buttons">
                     <v-tooltip bottom>
                       <template v-slot:activator="{ on, attrs }">
-                        <button class="black" v-on="on" v-bind="attrs">
+                        <button class="black" v-bind="attrs" v-on="on">
                           <v-icon>fas fa-info</v-icon>
                         </button>
                       </template>
-                      <span></span>
+                      <span />
                     </v-tooltip>
                     <v-tooltip bottom>
                       <template v-slot:activator="{ on, attrs }">
-                        <div v-on="on" v-bind="attrs">
+                        <div v-bind="attrs" v-on="on">
                           <v-dialog v-model="isDialogPhoneUpdate" persistent max-width="550px" style="overflow-y: hidden">
                             <template v-slot:activator="{ on, attrs }" v-on="on">
-                              <button class="edit--btn" v-on="on" v-bind="attrs" @click.prevent>
+                              <button class="edit--btn" v-bind="attrs" v-on="on" @click.prevent>
                                 <v-icon>fas fa-pencil-alt</v-icon>
                               </button>
                             </template>
@@ -187,8 +193,10 @@
                     </v-tooltip>
                     <v-tooltip bottom>
                       <template v-slot:activator="{ on, attrs }">
-                        <button style="background: transparent" @click.prevent="removePhone(data.item.id)" v-on="on" v-bind="attrs">
-                          <v-icon class="black--text">fas fa-times</v-icon>
+                        <button style="background: transparent" v-bind="attrs" @click.prevent="removePhone(data.item.id)" v-on="on">
+                          <v-icon class="black--text">
+                            fas fa-times
+                          </v-icon>
                         </button>
                       </template>
                       <span style="font-size: 10px">Supprimer</span>
@@ -242,14 +250,9 @@ export default {
     isDialogEmailUpdate: false,
     emailList: [
       {
-        name: 'freddykamgang.gmail.com',
+        name: 'freddykamgang@gmail.com',
         valid: true,
         id: 0
-      },
-      {
-        name: 'freddykamgang.chickdev.space',
-        valid: false,
-        id: 1
       }
     ],
     phones: [

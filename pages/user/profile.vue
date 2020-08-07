@@ -9,7 +9,7 @@
 import TheProfil from '~/components/user/profil/TheProfil'
 import SetInformation from '~/components/user/profil/information/SetInformation'
 export default {
-  name: 'index',
+  name: 'Index',
   components: { SetInformation, TheProfil }
 }
 </script>

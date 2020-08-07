@@ -261,15 +261,10 @@ export default {
     fuseau: '(GMT+01:00) Hour of West Central Africa(Africa/Algiers)',
     lang: 'French - FR',
     otherLang: ['English - EN'],
-    emails: ['freddykamgang.gmail.com', 'freddykamgang.chickdev.space'],
     emailList: [
       {
-        name: 'freddykamgang.gmail.com',
+        name: 'freddykamgang@gmail.com',
         valid: true
-      },
-      {
-        name: 'freddykamgang.chickdev.space',
-        valid: false
       }
     ],
     phones: [

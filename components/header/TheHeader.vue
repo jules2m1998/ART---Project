@@ -12,7 +12,7 @@
           <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
         </div>
         <div id="btn-lang" class="d-flex flex-row">
-          <div class="btn-sign">
+          <div v-if="current === null" class="btn-sign">
             <template>
               <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
                 <template v-slot:activator="{ on, attrs }">
@@ -30,6 +30,37 @@
                 <default-form v-model="dialog" type="signin" />
               </v-dialog>
             </template>
+          </div>
+          <div v-else class="btn-sign">
+            <v-menu offset-y>
+              <template v-slot:activator="{ attrs, on }">
+                <v-btn
+                  id="btn-connect"
+                  small
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-avatar size="26px" class="mr-3">
+                    <img :src="current.img" alt="Image du profile connecté'">
+                  </v-avatar>
+                  {{ current.firstname }}
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, key) in userMenu" :key="key">
+                  <v-list-item-icon>
+                    <v-icon v-text="item.icon" />
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      <nuxt-link :to="item.to" style="color: black">
+                        {{ item.name }}
+                      </nuxt-link>
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </div>
         </div>
       </div>
@@ -51,8 +82,35 @@ export default {
     }
   },
   data: () => ({
-    dialog: false
+    dialog: false,
+    userMenu: [
+      {
+        name: 'Profile',
+        to: 'user/profile',
+        icon: 'person'
+      },
+      {
+        name: 'Administration',
+        to: '',
+        icon: 'settings'
+      },
+      {
+        name: 'Deconnexion',
+        to: '',
+        icon: 'login'
+      }
+    ]
   }),
+  computed: {
+    current () {
+      return this.$store.state.user.current
+    }
+  },
+  watch: {
+    current (newValue, oldValue) {
+      console.log(newValue)
+    }
+  },
   methods: {
     removeOverflow () {
       document.documentElement.style.overflowY = 'hidden'
@@ -83,7 +141,7 @@ export default {
       flex-direction: row;
       justify-content: center;
       #btn-lang{
-        #btnMembre{
+        #btnMembre, #btn-connect{
           text-transform: none;
           background: $primary;
           color: $yellow;
@@ -95,6 +153,9 @@ export default {
             font-size: 1.1rem;
             margin-right: 5px;
           }
+        }
+        #btn-connect{
+          padding: 0 12px 0 0!important;
         }
       }
     }

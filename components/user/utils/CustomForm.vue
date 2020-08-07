@@ -9,9 +9,9 @@
       outlined
       :prepend-inner-icon="input.icon"
       :type="input.type"
-      @input="setElement"
       :rules="errors"
       dense
+      @input="setElement"
     />
     <div v-else-if="input.type === 'password'" class="div-pass">
       <v-text-field
@@ -22,8 +22,8 @@
         single-line
         outlined
         :prepend-inner-icon="input.icon"
-        @input="setElement"
         dense
+        @input="setElement"
       />
       <v-btn class="btn-pass" icon @mousedown="input.show = true" @mouseup="input.show = false">
         <v-icon>{{ input.show ? 'visibility' : 'visibility_off' }}</v-icon>
@@ -46,24 +46,24 @@
         single-line
         outlined
         :prepend-inner-icon="input.icon"
-        @input="setElement"
         :rules="errors"
         dense
+        @input="setElement"
       />
     </div>
     <template v-if="input.type === 'auto-complate'">
       <v-autocomplete
+        v-model="element"
         :items="input.list"
         item-text="name"
         item-value="name"
         :label="input.label"
-        v-model="element"
-        @input="setElement"
         :prepend-inner-icon="input.icon"
         :rules="errors"
         single-line
         outlined
         dense
+        @input="setElement"
       />
     </template>
   </div>
@@ -99,21 +99,6 @@ export default {
   data: () => ({
     element: ''
   }),
-  methods: {
-    customFilter (item, queryText, itemText) {
-      const textOne = item.name.toLowerCase()
-      const textTwo = item.abbr.toLowerCase()
-      const searchText = queryText.toLowerCase()
-      return textOne.includes(searchText) ||
-        textTwo.includes(searchText)
-    },
-    isType (type) {
-      return this.input.type === type
-    },
-    setElement () {
-      this.$emit('input', this.element)
-    }
-  },
   computed: {
     errors () {
       const rules = []
@@ -131,6 +116,21 @@ export default {
   },
   created () {
     this.element = this.value
+  },
+  methods: {
+    customFilter (item, queryText, itemText) {
+      const textOne = item.name.toLowerCase()
+      const textTwo = item.abbr.toLowerCase()
+      const searchText = queryText.toLowerCase()
+      return textOne.includes(searchText) ||
+        textTwo.includes(searchText)
+    },
+    isType (type) {
+      return this.input.type === type
+    },
+    setElement () {
+      this.$emit('input', this.element)
+    }
   }
 }
 </script>

@@ -11,13 +11,13 @@
     </div>
     <div class="form">
       <template v-if="type.includes('phone')">
-        <custom-form v-model="newElement.value" :input="newElement" :is-required="true"/>
-        <custom-form v-model="operators.value.name" :input="operators" :is-required="true"/>
+        <custom-form v-model="newElement.value" :input="newElement" :is-required="true" />
+        <custom-form v-model="operators.value.name" :input="operators" :is-required="true" />
         <v-checkbox
           v-model="isPro"
           :label="'Est-ce un numéro professionnel ?'"
           dense
-        ></v-checkbox>
+        />
       </template>
       <template v-if="type.includes('mail')">
         <custom-form v-model="newEmail.value" :input="newEmail" />
@@ -25,10 +25,12 @@
     </div>
     <v-card-actions>
       <div class="right">
-        <v-btn color="red" text v-if="type.includes('update')" @click="deleteElt">Supprimer</v-btn>
+        <v-btn v-if="type.includes('update')" color="red" text @click="deleteElt">
+          Supprimer
+        </v-btn>
       </div>
       <div class="left">
-        <v-btn color="green" text @click="save" :disabled="required">
+        <v-btn color="green" text :disabled="required" @click="save">
           <template v-if="type.includes('update')">
             Modifier
           </template>
@@ -36,7 +38,9 @@
             Ajouter
           </template>
         </v-btn>
-        <v-btn color="red" text @click="resetClose">Annuler</v-btn>
+        <v-btn color="red" text @click="resetClose">
+          Annuler
+        </v-btn>
       </div>
     </v-card-actions>
   </v-card>
@@ -49,6 +53,7 @@ import regex from '~/mixins/regex'
 export default {
   name: 'DialogForm',
   components: { CustomForm },
+  mixins: [dialog, regex],
   props: {
     type: {
       type: String,
@@ -63,7 +68,81 @@ export default {
       required: true
     }
   },
-  mixins: [dialog, regex],
+  data: () => ({
+    tel: '',
+    phones: [],
+    newElement: {
+      label: 'Nouveau numéro de téléphone',
+      value: '',
+      type: '',
+      code: '+237'
+    },
+    newEmail: {
+      label: 'Email',
+      icon: 'alternate_email',
+      value: '',
+      type: 'email'
+    },
+    operators: {
+      label: 'Choisissez votre opérateur de téléphonie',
+      icon: 'work',
+      value: '',
+      type: 'auto-complate',
+      list: [
+        {
+          name: 'Orange',
+          color: '#ff6600'
+        },
+        {
+          name: 'MTN',
+          color: '#febc00'
+        },
+        {
+          name: 'Nextell',
+          color: '#E31A22'
+        },
+        {
+          name: 'Camtel',
+          color: '#00adef'
+        }
+      ]
+    },
+    isPro: false
+  }),
+  computed: {
+    required () {
+      return this.phoneRequired()
+    }
+  },
+  created () {
+    this.newElement = {
+      label: 'Nouveau numéro de téléphone',
+      value: '',
+      type: '',
+      code: '+237'
+    }
+    this.operators.value = {
+      name: '',
+      color: ''
+    }
+    if (this.type.includes('phone')) {
+      this.newElement.type = 'phone'
+      if (this.isType('phone-add')) {
+        this.newElement.label = 'Nouveau numéro de téléphone'
+      } else {
+        this.newElement.value = this.element.name
+        this.operators.value = this.element.operator
+        this.isPro = this.element.isPro
+      }
+    }
+    if (this.type.includes('email')) {
+      this.newElement.type = 'email'
+      if (!this.isType('email-add')) {
+        this.newEmail.value = this.element.name
+        this.newElement.valid = this.element.valid
+      }
+    }
+  },
   methods: {
     remove (item, list) {
       list.splice(list.indexOf(item), 1)
@@ -121,88 +200,11 @@ export default {
     },
     phoneRequired () {
       if (this.type.includes('phone')) {
-        console.log(this.operators.value)
         return !((this.operators.value.name !== undefined && this.operators.value.name !== '') &&
           (this.newElement.value !== undefined && this.newElement.value !== '' && this.regexPhone(this.newElement.value)))
       } else if (this.type.includes('email')) {
         return !(this.newEmail.value !== '' && this.regexEmail(this.newEmail.value))
       }
-    }
-  },
-  data: () => ({
-    tel: '',
-    phones: [],
-    newElement: {
-      label: 'Nouveau numéro de téléphone',
-      value: '',
-      type: '',
-      code: '+237'
-    },
-    newEmail: {
-      label: 'Email',
-      icon: 'alternate_email',
-      value: '',
-      type: 'email'
-    },
-    operators: {
-      label: 'Choisissez votre opérateur de téléphonie',
-      icon: 'work',
-      value: '',
-      type: 'auto-complate',
-      list: [
-        {
-          name: 'Orange',
-          color: '#ff6600'
-        },
-        {
-          name: 'MTN',
-          color: '#febc00'
-        },
-        {
-          name: 'Nextell',
-          color: '#E31A22'
-        },
-        {
-          name: 'Camtel',
-          color: '#00adef'
-        }
-      ]
-    },
-    isPro: false
-  }),
-  created () {
-    this.newElement = {
-      label: 'Nouveau numéro de téléphone',
-      value: '',
-      type: '',
-      code: '+237'
-    }
-    this.operators.value = {
-      name: '',
-      color: ''
-    }
-    if (this.type.includes('phone')) {
-      this.newElement.type = 'phone'
-      if (this.isType('phone-add')) {
-        this.newElement.label = 'Nouveau numéro de téléphone'
-      } else {
-        this.newElement.value = this.element.name
-        this.operators.value = this.element.operator
-        this.isPro = this.element.isPro
-      }
-    }
-    if (this.type.includes('email')) {
-      this.newElement.type = 'email'
-      if (!this.isType('email-add')) {
-        this.newEmail.value = this.element.name
-        this.newElement.valid = this.element.valid
-      }
-    }
-    console.log(this.element)
-  },
-  computed: {
-    required () {
-      return this.phoneRequired()
     }
   }
 }

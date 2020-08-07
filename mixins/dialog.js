@@ -23,6 +23,10 @@ export default {
       this.$emit('input', false)
       document.documentElement.style.overflowY = 'auto'
       this.isSignin = true
+      document.documentElement.style.overflowY = 'auto'
     }
+  },
+  destroyed () {
+    document.documentElement.style.overflowY = 'auto'
   }
 }

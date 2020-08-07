@@ -1,0 +1,42 @@
+export const state = () => ({
+  current: null,
+  userList: [
+    {
+      firstname: 'Junior Steve',
+      lastname: 'Essono Ella ',
+      gender: 'Home',
+      title: 'Ing.',
+      country: 'Cameroun',
+      city: 'Douala',
+      date: '1996-05-20',
+      fuseau: '(GMT+01:00) Hour of West Central Africa(Africa/Algiers)',
+      lang: 'French - FR',
+      otherLang: ['English - EN'],
+      emailList: [
+        {
+          name: 'junioressono@gmail.com',
+          valid: true
+        }
+      ],
+      phones: [
+        {
+          id: 0,
+          name: '690552927',
+          valid: true,
+          operator: {
+            name: 'Orange',
+            color: '#ff6600'
+          },
+          isPro: true
+        }
+      ],
+      img: '/user.jpeg'
+    }
+  ]
+})
+
+export const mutations = {
+  setCurrent (state, value) {
+    state.current = value
+  }
+}

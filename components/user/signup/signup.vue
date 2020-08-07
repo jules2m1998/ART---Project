@@ -16,7 +16,7 @@
       style="position: relative; bottom: 12px"
     />
     <transition name="wither">
-      <custom-form v-model="form.proffessions.value" v-if="checkbox" :input="form.proffessions" />
+      <custom-form v-if="checkbox" v-model="form.proffessions.value" :input="form.proffessions" />
     </transition>
     <v-btn block color="secondary" class="mt-6 black--text">
       S'inscrire
