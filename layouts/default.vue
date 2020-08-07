@@ -3,10 +3,12 @@
     <v-main>
       <nuxt />
     </v-main>
-    <top-footer :datas="datas" class="responsive" />
-    <footer>
-      <the-footer />
-    </footer>
+    <template v-if="!$router.currentRoute.fullPath.includes('map')">
+      <top-footer :datas="datas" class="responsive" />
+      <footer>
+        <the-footer />
+      </footer>
+    </template>
   </v-app>
 </template>
 
@@ -40,6 +42,9 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    console.log(this.$router.currentRoute.fullPath)
   }
 }
 </script>
