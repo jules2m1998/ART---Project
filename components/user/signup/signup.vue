@@ -41,7 +41,7 @@ export default {
         label: 'Prénom',
         icon: '',
         value: '',
-        type: 'email'
+        type: 'text'
       },
       email: {
         label: 'Email',

@@ -302,12 +302,14 @@ export default {
       })
     },
     emailUpdate (e) {
+      console.log(e)
       this.emailList = this.emailList.map((x) => {
         if (x.id === e.id) {
           return e
         }
         return x
       })
+      console.log(this.emailList)
     }
   }
 }

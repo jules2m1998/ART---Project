@@ -77,7 +77,7 @@ export default {
         isPro: this.isPro
       }
       const email = {
-        name: this.newElement.value,
+        name: this.newEmail.value,
         valid: false
       }
       if (this.isType('phone-add')) {

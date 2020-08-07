@@ -5,9 +5,6 @@
       <div class="row-box row-2">
         <div class="d-flex  align-center input-block">
           <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Ancien mot de passe</span>
-          <v-icon class="label-icon">
-            person
-          </v-icon>
         </div>
         <div cols="8">
           <custom-form v-model="old.value" :input="old" />
@@ -16,9 +13,6 @@
       <div class="row-box row-2">
         <div class="d-flex align-center">
           <span class="grey--text text--lighten-1-1 text-subtitle-1 label-text">Nouveau mot de passe</span>
-          <v-icon class="label-icon">
-            person
-          </v-icon>
         </div>
         <div class="my-double">
           <v-text-field
@@ -174,9 +168,6 @@ export default {
     }
     .label-text{
       display: block;
-    }
-    .label-icon{
-      display: none;
     }
   }
   @media (max-width: 600px){

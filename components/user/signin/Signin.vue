@@ -11,7 +11,7 @@
       />
       <a href="#">Mot de passe oublié</a>
     </div>
-    <v-btn block color="secondary" class="mt-6 black--text">
+    <v-btn block color="secondary" class="mt-6 black--text" @click="submit">
       Se connecter
     </v-btn>
   </div>
@@ -73,6 +73,9 @@ export default {
     },
     setEmail (e) {
       this.forms.email.value = e
+    },
+    submit () {
+      this.$router.push('/user/profile')
     }
   }
 }
