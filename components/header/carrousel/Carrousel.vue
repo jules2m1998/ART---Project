@@ -1,27 +1,49 @@
 <template>
   <div class="carrousel">
     <div class="slides">
-      <carrousel-slide v-for="(item, key) in slides" :key="key" :item="item" :index="key" />
+      <carrousel-slide
+        v-for="(item, key) in slides"
+        :key="key"
+        :item="item"
+        :index="key"
+        @hidden="hideTitle"
+        @show="showTitle"
+      />
     </div>
-    <div class="other">
-      <button class="buttons carrousel-next" @click.prevent="next">
-        go
-      </button>
-      <div class="carrousel-pagination">
-        <button v-for="n in slidesCount" :key="n" class="steppers" :class="{ active : n-1 === index}" @click="goto(n-1)" />
+    <v-container style="z-index: 22">
+      <div class="other">
+        <div id="search-pub">
+          <div id="search">
+            <div v-show="text.isShow" class="my-title" :class="text.animation">
+              <p>
+                {{ text.title }}
+              </p>
+            </div>
+            <p class="my-subtitle">
+              Votre annuaire universelle et service de renseignement
+            </p>
+            <div class="search">
+              <search />
+            </div>
+          </div>
+          <div id="pub">
+            Espace pub
+          </div>
+        </div>
+        <div class="carrousel-pagination">
+          <button v-for="n in slidesCount" :key="n" class="steppers" :class="{ active : n-1 === index}" @click="goto(n-1)" />
+        </div>
       </div>
-      <button class="buttons carrousel-prev" @click.prevent="prev">
-        rebff
-      </button>
-    </div>
+    </v-container>
   </div>
 </template>
 
 <script>
 import CarrouselSlide from '~/components/header/carrousel/CarrouselSlide'
+import Search from '@/components/search/Search'
 export default {
   name: 'Carrousel',
-  components: { CarrouselSlide },
+  components: { Search, CarrouselSlide },
   props: {
     slides: {
       type: Array,
@@ -34,7 +56,12 @@ export default {
     interval: null,
     animations: ['animePLeft', 'animePRight', 'animePBottom', 'animePTop'],
     tmp: [],
-    loopTimer: 5000
+    loopTimer: 5000,
+    text: {
+      isShow: true,
+      title: '',
+      animation: ''
+    }
   }),
   computed: {
     slidesCount () {
@@ -96,6 +123,10 @@ export default {
       const value = this.animations[random].slice()
       this.animations.splice(random, 1)
       return value
+    },
+    showTitle (e) {
+      this.text.isShow = false
+      this.text = { isShow: true, ...e }
     }
   }
 }
@@ -111,6 +142,7 @@ export default {
     height: 100%;
     position: relative;
     background: black;
+    display: flex;
     .slides{
       position: absolute;
       top: 0;
@@ -123,8 +155,56 @@ export default {
       width: 100%;
       height: 100%;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      #search-pub{
+        display: grid;
+        grid-template-columns: auto 300px;
+        grid-gap: 20px;
+        margin-bottom: 100px;
+        width: 100%;
+        #search{
+          width: 100%;
+          height: 100%;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr auto;
+          .my-title{
+            font-size: 2.2rem;
+            max-width: 720px;
+            font-weight: 100 !important;
+            width: 100%;
+            color: white;
+            text-shadow: 1px 1px 15px #00000054;
+            z-index: 100;
+          }
+          p{
+            margin: 0!important;
+          }
+          .my-subtitle{
+            font-size: 0.8rem;
+            max-width: 720px;
+            font-weight: 100 !important;
+            width: 100%;
+            color: white;
+            text-shadow: 1px 1px 15px #00000054;
+          }
+          .search{
+            align-self: flex-end;
+            width: 80%;
+          }
+        }
+        #pub{
+          width: 300px;
+          height: 300px;
+          background: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 4px;
+        }
+      }
       .buttons{
         &.carrousel-next{
 
@@ -134,7 +214,7 @@ export default {
         }
       }
       .carrousel-pagination{
-        align-self: flex-end;
+        align-self: flex-start;
         margin-bottom: 20px;
         z-index: 101;
         .steppers{
