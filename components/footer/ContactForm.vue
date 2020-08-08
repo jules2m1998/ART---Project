@@ -92,6 +92,9 @@ export default {
       display: flex;
       flex-direction: row;
       height: $inputh;
+      @media screen and (max-width: 358px){
+        flex-direction: column;
+      }
       input{
         color: $yellow;
         flex-grow: 4;
@@ -101,6 +104,9 @@ export default {
         border-radius: 0 $radius $radius 0;
         padding: 6px 16px;
         color: $primary;
+        @media screen and (max-width: 358px){
+          border-radius: $radius;
+        }
       }
     }
     #msg-desa{
