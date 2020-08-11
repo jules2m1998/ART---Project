@@ -72,6 +72,7 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
     background-size: cover!important;
+
     img{
       display: none;
     }
