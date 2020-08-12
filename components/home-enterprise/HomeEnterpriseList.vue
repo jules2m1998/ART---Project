@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-slide-group multiple show-arrows>
+    <v-slide-group multiple show-arrows class="my-slide">
       <v-slide-item
         v-for="n in 25"
         :key="n"
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import HomeEnterpriseItem from 'assets/topFooter/home-enterprise/HomeEnterpriseItem'
+import HomeEnterpriseItem from '@/components/home-enterprise/HomeEnterpriseItem'
 export default {
   name: 'HomeEnterpriseList',
   components: { HomeEnterpriseItem },
@@ -22,6 +22,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 </style>

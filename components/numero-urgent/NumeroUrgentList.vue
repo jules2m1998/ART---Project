@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-wrap flex-row">
+  <div class="numero-urgent-list">
     <numero-urgent-item v-for="(item, key) in phones" :key="key" :item="item" />
   </div>
 </template>
@@ -17,6 +17,13 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.numero-urgent-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  @media screen and (max-width: 526px) {
+    justify-content: center;
+  }
+}
 </style>

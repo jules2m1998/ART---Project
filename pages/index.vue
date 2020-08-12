@@ -25,11 +25,11 @@
 
 <script>
 
-import TheHomeEnterprise from 'assets/topFooter/home-enterprise/TheHomeEnterprise'
 import TheHeader from '~/components/header/TheHeader'
 import TheCategories from '@/components/categoris/TheCategories'
 import TheNumeroUrgent from '@/components/numero-urgent/TheNumeroUrgent'
 import GoogleMap from '@/components/google-map/GoogleMap'
+import TheHomeEnterprise from '@/components/home-enterprise/TheHomeEnterprise'
 export default {
   components: { TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
   data () {
@@ -277,6 +277,9 @@ export default {
   display: grid;
   grid-template-columns: auto 300px;
   grid-gap: 10px;
+  @media screen and (max-width: 536px) {
+    grid-template-columns: 1fr;
+  }
   .pub{
     width: 300px;
     background: #cccccc;
@@ -286,6 +289,10 @@ export default {
     justify-content: center;
     align-items: center;
     margin-top: 12px;
+    @media screen and (max-width: 536px) {
+      width: 100%;
+      height: 90px;
+    }
   }
 }
 .index-bottom{

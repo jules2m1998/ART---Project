@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import HomeEnterpriseList from 'assets/topFooter/home-enterprise/HomeEnterpriseList'
+import HomeEnterpriseList from '@/components/home-enterprise/HomeEnterpriseList'
 export default {
   name: 'TheHomeEnterprise',
   components: { HomeEnterpriseList }

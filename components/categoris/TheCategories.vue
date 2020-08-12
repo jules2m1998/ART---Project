@@ -10,15 +10,22 @@
 import CategoryList from '@/components/categoris/CategoryList'
 export default {
   name: 'TheCategories',
-  components: { CategoryList },
+  components: {
+    CategoryList
+  },
   props: {
     categories: {
       type: Array,
       required: true
     }
+  },
+  data: () => ({
+  }),
+  mounted () {
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 </style>
