@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="position: relative; width: 100%; height: 100%">
     <GmapMap :center="center" :map-type-id="mapTypeId" :zoom="5">
       <GmapMarker
         v-for="(item, index) in markers"
@@ -26,7 +26,10 @@ export default {
 
 <style lang="scss" scoped>
 .vue-map-container {
-  height: 100vh;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 </style>

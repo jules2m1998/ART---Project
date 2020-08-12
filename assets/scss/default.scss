@@ -20,6 +20,11 @@ input, button, select{
     outline: none;
   }
 }
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 button{
   text-transform: none!important;
 }
@@ -247,4 +252,9 @@ $inf: 1.5s;
   to{
     opacity: $opacityS;
   }
+}
+
+/** HOME **/
+.home-title{
+  font-size: 15px;
 }
