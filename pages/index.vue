@@ -34,17 +34,10 @@ export default {
   components: { TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
   data () {
     return {
-      posts: {
-        slides: [
-          'industrie Forestière',
-          'Industrie du textile',
-          'eau et énergie',
-          'production de caoutchouc et',
-          'Fabrique des machines',
-          'industrie extractive',
-          'fabricatioon de meubles'
-        ]
-      },
+      /**
+       * Liste des slides
+       * @type {Array}
+       */
       sliders: [
         {
           title: 'Consequuntur esse fuga libero maxime officia. Aliquam',
@@ -71,6 +64,10 @@ export default {
           img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
         }
       ],
+      /**
+       * Liste des catégories
+       * @type {Array}
+       */
       categories: [
         {
           text: 'Texte de test 2',
@@ -229,6 +226,10 @@ export default {
           ico: 'home'
         }
       ],
+      /**
+       * Liste des numéros d'urgences
+       * @type {Array}
+       */
       phones: [
         {
           number: '118',
@@ -255,6 +256,10 @@ export default {
           description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
         }
       ],
+      /**
+       * Liste des entreprises à proximité
+       * @type {Array}
+       */
       enterprise: [
         {
           name: 'Groupe forget audioprothésistes',
@@ -284,7 +289,7 @@ export default {
     width: 300px;
     background: #cccccc;
     border-radius: 6px;
-    height: 100%;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;

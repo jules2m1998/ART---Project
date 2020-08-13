@@ -52,6 +52,11 @@ export default {
     }
   },
   watch: {
+    /**
+     * Ecoute les changements ur la propriété isResponsive et rajoute des comportement en fonction de sa valeur
+     * @param n {Boolean}
+     * @param o {Boolean}
+     */
     isResponsive (n, o) {
       const current = document.getElementById('js-menu-item-' + this.myKey)
       const child = current.querySelector('span')

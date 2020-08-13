@@ -12,6 +12,9 @@ export default {
   name: 'Search',
   components: { SearchBar, MyMenu },
   data: () => ({
+    /**
+     * Liste des menus
+     */
     menus: [
       {
         name: 'Entreprises / professionnels',

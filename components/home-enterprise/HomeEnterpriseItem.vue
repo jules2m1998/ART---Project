@@ -59,6 +59,9 @@
 export default {
   name: 'HomeEnterpriseItem',
   data: () => ({
+    /**
+     * La note d'une entreprise
+     */
     rating: 1
   })
 }

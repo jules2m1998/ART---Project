@@ -82,7 +82,15 @@ export default {
     }
   },
   data: () => ({
+    /**
+     * Définit l'état de la boite de dialogue à savoir visible ou non
+     * @type {Boolean}
+     */
     dialog: false,
+    /**
+     * Menu visible une fois connecté
+     * @type {Boolean}
+     */
     userMenu: [
       {
         name: 'Profile',
@@ -102,16 +110,18 @@ export default {
     ]
   }),
   computed: {
+    /**
+     * Recupère l'utilisateur courant
+     * @return {Object|null}
+     */
     current () {
       return this.$store.state.user.current
     }
   },
-  watch: {
-    current (newValue, oldValue) {
-      console.log(newValue)
-    }
-  },
   methods: {
+    /**
+     * Met le overflowY de la page à hidden
+     */
     removeOverflow () {
       document.documentElement.style.overflowY = 'hidden'
     }
@@ -124,9 +134,9 @@ export default {
     z-index: 2;
   }
   header{
-    height: 96vh;
-    min-height: 708px;
-    max-height: 740px;
+    height: 90vh;
+    min-height: 630px;
+    max-height: 720px;
     position: relative;
     overflow: hidden;
     #carrousel{

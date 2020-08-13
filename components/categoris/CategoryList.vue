@@ -51,6 +51,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * Sert à afficher plus de catégories
+     */
     showMore () {
       if (this.nbCategorie % this.nbItem !== this.nbCategorie) {
         this.nbItem += 10

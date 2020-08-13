@@ -24,6 +24,9 @@ export default {
   name: 'Signin',
   components: { CustomForm },
   data: () => ({
+    /**
+     * Represente le formulaire
+     */
     forms: {
       email: {
         label: 'Email',

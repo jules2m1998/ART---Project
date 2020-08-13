@@ -14,8 +14,17 @@
 export default {
   name: 'GoogleMap',
   data: () => ({
+    /**
+     * Indique à la map sur quel point se centrer
+     */
     center: { lat: -3.350235, lng: 111.995865 },
+    /**
+     * Type de map
+     */
     mapTypeId: 'terrain',
+    /**
+     * Les différentes marquers placé sur la map
+     */
     markers: [
       { position: { lat: -0.48585, lng: 117.1466 } },
       { position: { lat: -6.9127778, lng: 107.6205556 } }

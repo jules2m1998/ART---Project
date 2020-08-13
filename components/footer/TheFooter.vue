@@ -82,6 +82,9 @@ export default {
   name: 'TheFooter',
   components: { BottomFooter, Pay, ContactForm, MyLink, Social },
   data: () => ({
+    /**
+     * Première liste des lien footer
+     */
     list1: {
       title: 'A propos de nous',
       list: [
@@ -119,6 +122,9 @@ export default {
         }
       ]
     },
+    /**
+     * Deuxième liste des lien footer
+     */
     list2: {
       title: 'Liens rapides',
       list: [
@@ -144,6 +150,9 @@ export default {
         }
       ]
     },
+    /**
+     * Liste des politiques
+     */
     politiques: [
       {
         title: 'Politique de confidentialité',
@@ -158,6 +167,9 @@ export default {
         link: '#'
       }
     ],
+    /**
+     * Liste des modes de payement
+     */
     payMods: {
       title: 'Paiements supportés',
       list: [

@@ -27,6 +27,9 @@
 export default {
   name: 'ContactForm',
   data: () => ({
+    /**
+     * Le titre du formulaire
+     */
     title: 'Abonnez-vous a notre newsletter'
   })
 }

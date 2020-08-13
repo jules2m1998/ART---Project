@@ -15,10 +15,7 @@
 import HomeEnterpriseItem from '@/components/home-enterprise/HomeEnterpriseItem'
 export default {
   name: 'HomeEnterpriseList',
-  components: { HomeEnterpriseItem },
-  data: () => ({
-    model: null
-  })
+  components: { HomeEnterpriseItem }
 }
 </script>
 

@@ -23,6 +23,9 @@
             </p>
             <div class="search">
               <search />
+              <p>
+                Près de<span>04 millions</span>d'entreprises et proffessionnels à votre disposition
+              </p>
             </div>
           </div>
           <div id="pub">
@@ -65,7 +68,7 @@ export default {
     /**
      * @type {string[]}
      */
-    animations: ['animePLeft', 'animePRight', 'animePBottom', 'animePTop'],
+    animations: ['animePLeft', 'animePRight', 'animePTop'],
     /**
      * @type {string[]}
      */
@@ -109,7 +112,6 @@ export default {
     })
   },
   methods: {
-
     /**
      * Permet de retourner à la slide suivante
      */
@@ -278,11 +280,22 @@ export default {
           .search{
             align-self: flex-end;
             width: 100%;
+            position: relative;
+            p{
+              position: absolute;
+              bottom: -30px;
+              color: white;
+              font-size: 12px;
+              span{
+                background: rgba(245, 197, 17, 0.32);
+                padding: 0 2px 0 2px;
+              }
+            }
           }
         }
         #pub{
           width: 300px;
-          height: 300px;
+          height: 250px;
           background: white;
           display: flex;
           justify-content: center;

@@ -32,8 +32,9 @@ export default {
 <style lang="scss" scoped>
   .search-bar{
     width: 100%;
+    max-width: 700px;
     display: grid;
-    grid-template-columns: 1fr 1px 1fr 0.4fr;
+    grid-template-columns: 1fr 1px 1fr 140px;
     align-items: stretch;
     height: 49px;
     background: white;
@@ -56,8 +57,24 @@ export default {
         height: 100%;
         align-items: center;
         input{
-          &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          &::placeholder {
             font-size: 12px;
+            text-overflow: ellipsis !important;
+          }
+          [placeholder]{
+             text-overflow:ellipsis;
+           }
+          &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            text-overflow:ellipsis;
+          }
+          &::-moz-placeholder { /* Firefox 19+ */
+            text-overflow:ellipsis;
+          }
+          &:-ms-input-placeholder { /* IE 10+ */
+            text-overflow:ellipsis;
+          }
+          &:-moz-placeholder { /* Firefox 18- */
+            text-overflow:ellipsis;
           }
         }
       }
