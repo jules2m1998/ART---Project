@@ -134,9 +134,7 @@ export default {
     z-index: 2;
   }
   header{
-    height: 90vh;
-    min-height: 630px;
-    max-height: 720px;
+    min-height: 720px;
     position: relative;
     overflow: hidden;
     #carrousel{

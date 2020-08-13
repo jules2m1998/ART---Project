@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-6">
+  <div>
     <h1 class="home-title mb-4">
       Les catégories populaires
     </h1>

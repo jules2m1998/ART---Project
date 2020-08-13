@@ -22,7 +22,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  @media screen and (max-width: 526px) {
+  @media screen and (max-width: 647px) {
     justify-content: center;
   }
 }

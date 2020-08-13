@@ -1,5 +1,5 @@
 $yellow: #F5C511;
-$primary: #0A138D;
+$primary: #0a138d;
 $radius: 8px;
 
 $padding: 28px;
@@ -43,6 +43,14 @@ button{
   font-family: kaushanscript;
   src: url('/fonts/KaushanScript-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'Product Sans Medium Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Product Sans Medium Regular'), url('/fonts/ProductSans-Medium.woff') format('woff');
+}
+
 #my-dialog{
   max-width: 500px;
   margin: auto;

@@ -207,21 +207,18 @@ export default {
 
 <style lang="scss" scoped>
   $hStepper: 8px;
-  *{
-    /*z-index: 0;*/
-  }
   .carrousel{
     width: 100%;
     height: 100%;
     position: relative;
-    background: black;
+    background: $primary;
     display: flex;
     &:before{
       content: '';
       width: 100%;
       height: 100%;
       position: absolute;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(10, 19, 141, .54);;
       z-index: 10;
     }
     .slides{

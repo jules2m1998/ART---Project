@@ -10,7 +10,7 @@
           Groupe forguet Audioprothésistes
         </div>
         <div class="my-type">
-          <v-icon size="14" color="black">
+          <v-icon size="16" color="black">
             home
           </v-icon> Santé / Audioprothésie
         </div>
@@ -76,7 +76,7 @@ export default {
   .my-top{
     background: url("https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
     background-size: cover;
-    height: 80px;
+    height: 90px;
     border-radius: 6px;
     overflow: hidden;
     width: 100%;
@@ -99,16 +99,23 @@ export default {
       .my-title{
         font-size: 14px;
         color: white;
-        font-weight: bold;
+        height: 40px;
+        max-width: 180px;
+        display: flex;
+        align-items: flex-end;
+        font-family: 'Product Sans Medium Regular',sans-serif;
         z-index: 2;
-        margin: 0 10px 4px 14px;
+        margin: 8px 0 8px 12px;
       }
       .my-type{
         background: $yellow;
         width: 80%;
-        font-size: 10px;
+        font-size: 11px;
         border-radius: 0 12px 12px 0;
-        padding: 4px 0 4px 10px;
+        padding: 0 0 0 12px;
+        display: flex;
+        align-items: center;
+        height: 24px;
       }
     }
   }

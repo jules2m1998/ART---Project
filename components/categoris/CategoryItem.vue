@@ -3,7 +3,7 @@
     :to="item.to"
     small
     rounded
-    class="ma-2"
+    style="margin-right: 16px; margin-bottom: 16px;"
     outlined
     :color="item.color"
   >
@@ -28,6 +28,7 @@ export default {
 <style lang="scss" scoped>
 .v-btn{
   text-transform: lowercase;
+  font-family: 'Product Sans Medium Regular',sans-serif;
   &:before {
     background-color: unset!important;
   }

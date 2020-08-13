@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-6 urgents">
+  <div class="urgents">
     <h1 class="home-title">
       Les numéros d'uregences
     </h1>
@@ -26,6 +26,7 @@ export default {
 
 <style lang="scss" scoped>
   .urgents{
+    margin-top: 72px;
     .my-msg{
       font-size: 12px;
       color: #636363;

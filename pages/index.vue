@@ -5,6 +5,9 @@
       <div class="my-content pb-8">
         <div class="d-flex flex-column">
           <the-categories :categories="categories" />
+          <div class="inner-pub">
+            pub
+          </div>
           <the-numero-urgent :phones="phones" />
         </div>
         <div class="pub">
@@ -279,24 +282,38 @@ export default {
 
 <style lang="scss">
 .my-content{
+  margin-top: 56px;
   display: grid;
   grid-template-columns: auto 300px;
   grid-gap: 10px;
-  @media screen and (max-width: 536px) {
+  @media screen and (max-width: 749px) {
     grid-template-columns: 1fr;
+  }
+  .inner-pub{
+    width: 300px;
+    height: 100px;
+    display: none;
+    background: #cccccc;
+    border-radius: 6px;
+    margin: 56px auto auto;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 760px){
+      display: flex;
+    }
   }
   .pub{
     width: 300px;
     background: #cccccc;
     border-radius: 6px;
-    height: 250px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 12px;
-    @media screen and (max-width: 536px) {
-      width: 100%;
-      height: 90px;
+    @media screen and (max-width: 749px) {
+      width: 300px;
+      height: 100px;
+      margin: auto;
     }
   }
 }

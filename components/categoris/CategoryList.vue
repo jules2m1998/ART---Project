@@ -2,7 +2,7 @@
   <div class="categoryList">
     <category-item v-for="(item, key) in rendCategori" :key="key" :item="item" />
     <div id="more-btn" @click="showMore">
-      <v-btn class="mx-2" fab small color="secondary">
+      <v-btn class="mx-2" depressed fab small color="secondary">
         <v-icon color="black">
           more_horiz
         </v-icon>
@@ -74,6 +74,9 @@ export default {
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  font-family: 'Product Sans Medium Regular',sans-serif;
 }
 .v-btn--fab.v-size--small {
   height: 30px;

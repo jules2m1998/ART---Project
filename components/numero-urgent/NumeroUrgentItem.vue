@@ -35,6 +35,12 @@ $carre: 200px;
   height: $carre;
   border-radius: 6px;
   padding: 10px 20px;
+  @media screen and (max-width: 440px){
+    width: 100%;
+  }
+  @media screen and (max-width: 648px) and (min-width: 440px){
+    width: 45%;
+  }
   .header-title{
     display: flex;
     width: 100%;
