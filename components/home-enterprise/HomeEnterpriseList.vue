@@ -1,21 +1,21 @@
 <template>
   <div>
-    <v-slide-group multiple show-arrows class="my-slide">
-      <v-slide-item
-        v-for="n in 25"
-        :key="n"
-      >
-        <home-enterprise-item />
-      </v-slide-item>
-    </v-slide-group>
+    <div id="carousel" style="visibility: hidden">
+      <home-enterprise-item v-for="item in 10" :key="item" />
+    </div>
   </div>
 </template>
 
 <script>
+import Carousel from '../../assets/js/slide'
 import HomeEnterpriseItem from '@/components/home-enterprise/HomeEnterpriseItem'
 export default {
   name: 'HomeEnterpriseList',
-  components: { HomeEnterpriseItem }
+  components: { HomeEnterpriseItem },
+  mounted () {
+    // eslint-disable-next-line no-new
+    new Carousel(document.querySelector('#carousel'))
+  }
 }
 </script>
 
