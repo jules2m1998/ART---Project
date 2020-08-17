@@ -75,26 +75,29 @@ class Carousel {
   onWindowResize () {
     let slidesVisible
     let slidesToScroll
-    this.gotoItem(0)
-    if (parseInt(this.parent.offsetWidth / this.itemWidth + '') > this.items.length) {
-      slidesVisible = this.items.length
-    } else {
-      slidesVisible = parseInt(this.parent.offsetWidth / this.itemWidth + '')
-    }
-    if (slidesVisible !== 0) {
-      this.options.slidesVisible = slidesVisible
-      slidesToScroll = parseInt(slidesVisible / 2 + '')
-      if (slidesVisible !== 1) {
-        slidesToScroll = parseInt(slidesVisible / 2 + '')
+    if (this.maxVisible !== parseInt(this.parent.offsetWidth / this.itemWidth + '')) {
+      this.gotoItem(0)
+      if (parseInt(this.parent.offsetWidth / this.itemWidth + '') > this.items.length) {
+        slidesVisible = this.items.length
       } else {
-        slidesToScroll = 1
+        slidesVisible = parseInt(this.parent.offsetWidth / this.itemWidth + '')
       }
-      this.options.slidesToScroll = slidesToScroll
-      this.resize()
-    } else {
-      this.options.slidesToScroll = 1
+      if (slidesVisible !== 0) {
+        this.options.slidesVisible = slidesVisible
+        slidesToScroll = parseInt(slidesVisible / 2 + '')
+        if (slidesVisible !== 1) {
+          slidesToScroll = parseInt(slidesVisible / 2 + '')
+        } else {
+          slidesToScroll = 1
+        }
+        this.options.slidesToScroll = slidesToScroll
+        this.resize()
+      } else {
+        this.options.slidesToScroll = 1
+      }
+      this.moveCallbacks.forEach(cb => cb(this.currentItem))
+      this.maxVisible = parseInt(this.parent.offsetWidth / this.itemWidth + '')
     }
-    this.moveCallbacks.forEach(cb => cb(this.currentItem))
   }
 
   /**
@@ -107,6 +110,9 @@ class Carousel {
     return div
   }
 
+  /**
+   * Création des buttons suivant et précédent en appliquant le comportement de disparition
+   */
   createNavigation () {
     const nextButton = this.createDivWithClass('carousel__next')
     const prevButton = this.createDivWithClass('carousel__prev')

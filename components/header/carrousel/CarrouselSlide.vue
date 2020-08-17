@@ -2,11 +2,6 @@
   <transition :name="transition">
     <div v-show="visible" class="carrousel-slide" :style="{ background: 'url(' + item.img + ') center no-repeat' }">
       <img :src="item.img" :alt="item.alt" height="20">
-      <v-container style="z-index: 11; display: none">
-        <p class="my-title delai" :class="item.animation">
-          {{ item.title }}
-        </p>
-      </v-container>
     </div>
   </transition>
 </template>
