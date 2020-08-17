@@ -26,12 +26,14 @@ class Carousel {
     this.itemWidth = 0
 
     // Modification du DOm
+    this.arrowContent = this.createDivWithClass('arrow__Content')
     this.carouselContent = this.createDivWithClass('carousel-content')
     this.root = this.createDivWithClass('carousel')
     this.container = this.createDivWithClass('carousel__container')
     this.root.appendChild(this.container)
     this.carouselContent.appendChild(this.root)
-    this.element.appendChild(this.carouselContent)
+    this.arrowContent.appendChild(this.carouselContent)
+    this.element.appendChild(this.arrowContent)
     this.items = children.map((slide) => {
       const item = this.createDivWithClass('carousel__item')
       item.appendChild(slide)
@@ -53,8 +55,18 @@ class Carousel {
    * Redimensionne la page
    */
   resize () {
-    this.carouselContent.style.width = this.options.slidesVisible * this.itemWidth + 'px'
+    this.carouselContent.style.width = this.visibleWidth
+    this.arrowContent.style.width = this.visibleWidth
     this.parent.style.margin = 'auto'
+    this.arrowContent.style.margin = 'auto'
+  }
+
+  /**
+   * Retourne la taille en pixel du nombre d'élément visible
+   * @return {string}
+   */
+  get visibleWidth () {
+    return this.options.slidesVisible * this.itemWidth + 'px'
   }
 
   /**
@@ -98,9 +110,9 @@ class Carousel {
   createNavigation () {
     const nextButton = this.createDivWithClass('carousel__next')
     const prevButton = this.createDivWithClass('carousel__prev')
-    this.element.style.position = 'relative'
-    this.element.appendChild(nextButton)
-    this.element.appendChild(prevButton)
+    this.arrowContent.style.position = 'relative'
+    this.arrowContent.appendChild(nextButton)
+    this.arrowContent.appendChild(prevButton)
 
     nextButton.addEventListener('click', this.next.bind(this))
     prevButton.addEventListener('click', this.prev.bind(this))

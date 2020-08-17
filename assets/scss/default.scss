@@ -277,7 +277,7 @@ $inf: 1.5s;
   border-radius:50%;
   top:50%;
   margin-top:-20px;
-  right: 20px;
+  right: -20px;
   box-shadow:0 15px 35px #3232321a,0 5px 15px #0000001a;
   cursor:pointer;
   transition:transform .3s,opacity .3s
@@ -288,7 +288,7 @@ $inf: 1.5s;
 .carousel__prev {
   background-image:url(https://www.grafikart.fr/demo/JS/Carousel/34e24e9b7204d9bc7367d0d520ca4157.svg);
   right:auto;
-  left:20px;
+  left:-20px;
 }
 .carousel__next--hidden,.carousel__prev--hidden {
   display: none;
