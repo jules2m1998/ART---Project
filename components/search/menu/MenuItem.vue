@@ -24,6 +24,7 @@ export default {
     font-weight: bold;
     position: relative;
     text-align: center;
+    flex-grow: 1;
     &::after{
       content: '';
       position: absolute;
