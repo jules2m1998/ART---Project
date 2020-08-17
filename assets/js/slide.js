@@ -123,7 +123,7 @@ class Carousel {
       } else {
         prevButton.classList.remove('carousel__prev--hidden')
       }
-      if (this.items.length - index < this.options.slidesVisible || this.options.slidesVisible === this.items.length) {
+      if (this.items.length - index <= this.options.slidesVisible || this.options.slidesVisible === this.items.length) {
         nextButton.classList.add('carousel__next--hidden')
       } else {
         nextButton.classList.remove('carousel__next--hidden')

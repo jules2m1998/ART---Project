@@ -1,5 +1,64 @@
 <template>
   <div class="carrousel">
+    <v-container id="logo__menu" class="d-flex flex-column">
+      <div class="d-flex flex-row justify-space-between">
+        <div id="logo">
+          <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
+        </div>
+        <div id="btn-lang" class="d-flex flex-row">
+          <div v-if="current === null" class="btn-sign">
+            <template>
+              <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    id="btnMembre"
+                    small
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="removeOverflow"
+                  >
+                    <v-icon>person</v-icon>
+                    Espace membre
+                  </v-btn>
+                </template>
+                <default-form v-model="dialog" type="signin" />
+              </v-dialog>
+            </template>
+          </div>
+          <div v-else class="btn-sign">
+            <v-menu offset-y>
+              <template v-slot:activator="{ attrs, on }">
+                <v-btn
+                  id="btn-connect"
+                  small
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-avatar size="26px" class="mr-3">
+                    <img :src="current.img" alt="Image du profile connecté'">
+                  </v-avatar>
+                  {{ current.firstname }}
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, key) in userMenu" :key="key">
+                  <v-list-item-icon>
+                    <v-icon v-text="item.icon" />
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      <nuxt-link :to="item.to" style="color: black">
+                        {{ item.name }}
+                      </nuxt-link>
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
+        </div>
+      </div>
+    </v-container>
     <div class="slides">
       <carrousel-slide
         v-for="(item, key) in slides"
@@ -13,14 +72,16 @@
       <div class="other">
         <div id="search-pub">
           <div id="search">
-            <div v-show="text.isShow" class="my-title" :class="text.animation">
-              <p>
+            <div>
+              <div v-show="text.isShow" class="my-title" :class="text.animation">
+                <p>
+                  {{ text.title }}
+                </p>
+              </div>
+              <p v-show="text.isShow" class="my-subtitle" :class="opposite(text.animation)">
                 {{ text.title }}
               </p>
             </div>
-            <p v-show="text.isShow" class="my-subtitle" :class="opposite(text.animation)">
-              {{ text.title }}
-            </p>
             <div class="search">
               <search />
               <p>
@@ -43,9 +104,10 @@
 <script>
 import CarrouselSlide from '~/components/header/carrousel/CarrouselSlide'
 import Search from '@/components/search/Search'
+import DefaultForm from '~/components/user/utils/DefaultForm'
 export default {
   name: 'Carrousel',
-  components: { Search, CarrouselSlide },
+  components: { DefaultForm, Search, CarrouselSlide },
   props: {
     slides: {
       type: Array,
@@ -84,7 +146,33 @@ export default {
       isShow: true,
       title: '',
       animation: ''
-    }
+    },
+    /**
+     * Définit l'état de la boite de dialogue à savoir visible ou non
+     * @type {Boolean}
+     */
+    dialog: false,
+    /**
+     * Menu visible une fois connecté
+     * @type {Boolean}
+     */
+    userMenu: [
+      {
+        name: 'Profile',
+        to: 'user/profile',
+        icon: 'person'
+      },
+      {
+        name: 'Administration',
+        to: '',
+        icon: 'settings'
+      },
+      {
+        name: 'Deconnexion',
+        to: '',
+        icon: 'login'
+      }
+    ]
   }),
   computed: {
     /**
@@ -100,6 +188,13 @@ export default {
      */
     animCount () {
       return this.animations.length
+    },
+    /**
+     * Recupère l'utilisateur courant
+     * @return {Object|null}
+     */
+    current () {
+      return this.$store.state.user.current
     }
   },
   mounted () {
@@ -180,7 +275,9 @@ export default {
      */
     showTitle (e) {
       this.text.isShow = false
-      this.text = { isShow: true, ...e }
+      setTimeout(() => {
+        this.text = { isShow: true, ...e }
+      }, 1)
     },
     /**
      * Retourne l'animation opposé à celle passé en paramètre
@@ -200,6 +297,12 @@ export default {
       if (item.toLowerCase().includes('bottom')) {
         return 'animePTop'
       }
+    },
+    /**
+     * Met le overflowY de la page à hidden
+     */
+    removeOverflow () {
+      document.documentElement.style.overflowY = 'hidden'
     }
   }
 }
@@ -213,6 +316,8 @@ export default {
     position: relative;
     background: $primary;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     &:before{
       content: '';
       width: 100%;
@@ -221,6 +326,32 @@ export default {
       background: rgba(10, 19, 141, .54);;
       z-index: 10;
     }
+    #logo__menu{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      z-index: 10;
+      margin-top: 10px;
+      #btn-lang{
+        #btnMembre, #btn-connect{
+          text-transform: none;
+          background: $primary;
+          color: $yellow;
+          border: 1px solid $yellow;
+          border-radius: 12px;
+          font-size: 10px;
+          box-shadow: 0 0 8px 0 #f5c51142;
+          i{
+            font-size: 1.1rem;
+            margin-right: 5px;
+          }
+        }
+        #btn-connect{
+          padding: 0 12px 0 0!important;
+        }
+      }
+    }
+  }
     .slides{
       position: absolute;
       top: 0;
@@ -333,5 +464,4 @@ export default {
         }
       }
     }
-  }
 </style>

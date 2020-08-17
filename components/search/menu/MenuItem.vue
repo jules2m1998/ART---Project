@@ -33,8 +33,8 @@ export default {
       height: 6px;
     }
     &.nuxt-link-active{
-      color: $yellow!important;
-      text-shadow: 0 0 4px #f5c511bd;
+      //color: $yellow!important;
+      //text-shadow: 0 0 4px #f5c511bd;
     }
     &.nuxt-link-active:after{
       content: '';
@@ -45,6 +45,7 @@ export default {
       height: 6px;
       background: $yellow;
       border-radius: 8px 8px 0 0;
+      z-index: -1;
     }
   }
 </style>
