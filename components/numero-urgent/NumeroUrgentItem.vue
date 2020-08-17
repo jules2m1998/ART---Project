@@ -11,7 +11,7 @@
         {{ item.title }}
       </div>
     </div>
-    <div class="my-descr">
+    <div class="my-descr mt-1">
       {{ item.description }}
     </div>
   </div>

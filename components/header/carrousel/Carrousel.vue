@@ -19,7 +19,7 @@
               </p>
             </div>
             <p v-show="text.isShow" class="my-subtitle" :class="opposite(text.animation)">
-              Votre annuaire universelle et service de renseignement
+              {{ text.title }}
             </p>
             <div class="search">
               <search />
@@ -259,6 +259,9 @@ export default {
             color: white;
             text-shadow: 1px 1px 15px #00000054;
             z-index: 100;
+            height: 104px;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
           p{
             margin: 0!important;
