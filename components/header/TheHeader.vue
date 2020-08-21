@@ -41,6 +41,9 @@ export default {
     position: relative;
     overflow: hidden;
 
+    @media screen and (max-width: 440px){
+      min-height: 670px;
+    }
     #carrousel {
       position: absolute;
       top: 0;

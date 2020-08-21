@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-menu :menus="menus" />
+    <my-menu :menus="menus" @changecurrent="doUpdate" />
     <search-bar />
   </div>
 </template>
@@ -18,18 +18,33 @@ export default {
     menus: [
       {
         name: 'Entreprises / professionnels',
-        to: '/'
+        to: '/',
+        visible: true,
+        isCurrent: true,
+        id: 1
       },
       {
         name: 'particuliers',
-        to: '/s'
+        to: '/s',
+        visible: true,
+        isCurrent: false,
+        id: 2
       },
       {
         name: 'Recherche inversee',
-        to: '/s'
+        to: '/s',
+        visible: true,
+        isCurrent: false,
+        id: 3
       }
     ]
-  })
+  }),
+  methods: {
+    doUpdate (e) {
+      this.menus = e
+      debugger
+    }
+  }
 }
 </script>
 

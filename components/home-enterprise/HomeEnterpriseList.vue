@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="carousel" style="visibility: hidden">
-      <home-enterprise-item v-for="item in 25" :key="item" />
+      <home-enterprise-item v-for="item in 15" :key="item" />
     </div>
   </div>
 </template>

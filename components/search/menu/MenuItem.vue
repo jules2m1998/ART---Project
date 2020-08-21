@@ -9,6 +9,12 @@
 export default {
   name: 'MenuItem',
   props: {
+    /**
+     * @type {Object} item
+     * @type {string} item.name
+     * @type {string} item.to
+     * @type {boolean} item.visible
+     */
     item: {
       type: Object,
       required: true

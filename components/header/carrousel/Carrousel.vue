@@ -72,7 +72,7 @@
       <div class="other">
         <div id="search-pub">
           <div id="search">
-            <div>
+            <div style="min-height: 200px">
               <div v-show="text.isShow" class="my-title" :class="text.animation">
                 <p>
                   {{ text.title }}
@@ -417,6 +417,9 @@ export default {
               bottom: -30px;
               color: white;
               font-size: 12px;
+              @media screen and (max-width: 424px){
+                bottom: -46px;
+              }
               span{
                 background: rgba(245, 197, 17, 0.32);
                 padding: 0 2px 0 2px;
