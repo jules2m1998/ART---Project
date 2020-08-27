@@ -23,6 +23,11 @@
         </v-container>
       </div>
     </div>
+    <v-container>
+      <div class="pub--long">
+        publicité
+      </div>
+    </v-container>
   </div>
 </template>
 
@@ -331,5 +336,14 @@ export default {
     align-items: center;
     justify-content: center;
   }
+}
+.pub--long{
+  width: 100%;
+  background: #cccccc;
+  height: 111px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 56px auto;
 }
 </style>
