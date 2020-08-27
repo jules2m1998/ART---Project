@@ -27,6 +27,9 @@
       <div class="pub--long">
         publicité
       </div>
+      <div class="villes">
+        <villes />
+      </div>
     </v-container>
   </div>
 </template>
@@ -38,8 +41,9 @@ import TheCategories from '@/components/categoris/TheCategories'
 import TheNumeroUrgent from '@/components/numero-urgent/TheNumeroUrgent'
 import GoogleMap from '@/components/google-map/GoogleMap'
 import TheHomeEnterprise from '@/components/home-enterprise/TheHomeEnterprise'
+import Villes from '~/components/ville-home/Villes'
 export default {
-  components: { TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
+  components: { Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
   data () {
     return {
       /**
