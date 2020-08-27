@@ -11,7 +11,7 @@
         @click="tooglePartner"
       >
         <v-icon color="white" size="15">
-          remove
+          {{ toogle ? 'remove' : 'add' }}
         </v-icon>
       </v-btn> Avec les opérateurs concesseionnaires
     </h2>
@@ -26,9 +26,20 @@ import PartnerItem from '~/components/partner-home/PartnerItem'
 export default {
   name: 'PartnerList',
   components: { PartnerItem },
+  data: () => ({
+    /**
+     * @type {boolean}
+     */
+    toogle: true
+  }),
   methods: {
+    /**
+     * Affiche et masque une liste de partenaires
+     * @param {MouseEvent} e
+     */
     tooglePartner (e) {
       const parts = e.path[4].querySelector('.js-content')
+      this.toogle = !parts.classList.contains('show')
       if (parts.classList.contains('show')) {
         parts.classList.remove('show')
         parts.classList.add('hide')
