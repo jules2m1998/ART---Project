@@ -1,64 +1,5 @@
 <template>
   <div class="carrousel">
-    <v-container id="logo__menu" class="d-flex flex-column">
-      <div class="d-flex flex-row justify-space-between">
-        <div id="logo">
-          <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
-        </div>
-        <div id="btn-lang" class="d-flex flex-row">
-          <div v-if="current === null" class="btn-sign">
-            <template>
-              <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    id="btnMembre"
-                    small
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="removeOverflow"
-                  >
-                    <v-icon>person</v-icon>
-                    Espace membre
-                  </v-btn>
-                </template>
-                <default-form v-model="dialog" type="signin" />
-              </v-dialog>
-            </template>
-          </div>
-          <div v-else class="btn-sign">
-            <v-menu offset-y>
-              <template v-slot:activator="{ attrs, on }">
-                <v-btn
-                  id="btn-connect"
-                  small
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-avatar size="26px" class="mr-3">
-                    <img :src="current.img" alt="Image du profile connecté'">
-                  </v-avatar>
-                  {{ current.firstname }}
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item v-for="(item, key) in userMenu" :key="key">
-                  <v-list-item-icon>
-                    <v-icon v-text="item.icon" />
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <nuxt-link :to="item.to" style="color: black">
-                        {{ item.name }}
-                      </nuxt-link>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </div>
-        </div>
-      </div>
-    </v-container>
     <div class="slides">
       <carrousel-slide
         v-for="(item, key) in slides"
@@ -68,9 +9,68 @@
         @show="showTitle"
       />
     </div>
-    <v-container style="z-index: 22">
+    <v-container style="z-index: 22; height: 100%">
       <div class="other">
-        <div id="search-pub">
+        <div id="logo__menu" class="d-flex flex-column">
+          <div class="d-flex flex-row justify-space-between">
+            <div id="logo">
+              <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
+            </div>
+            <div id="btn-lang" class="d-flex flex-row">
+              <div v-if="current === null" class="btn-sign">
+                <template>
+                  <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        id="btnMembre"
+                        small
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="removeOverflow"
+                      >
+                        <v-icon>person</v-icon>
+                        Espace membre
+                      </v-btn>
+                    </template>
+                    <default-form v-model="dialog" type="signin" />
+                  </v-dialog>
+                </template>
+              </div>
+              <div v-else class="btn-sign">
+                <v-menu offset-y>
+                  <template v-slot:activator="{ attrs, on }">
+                    <v-btn
+                      id="btn-connect"
+                      small
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-avatar size="26px" class="mr-3">
+                        <img :src="current.img" alt="Image du profile connecté'">
+                      </v-avatar>
+                      {{ current.firstname }}
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item v-for="(item, key) in userMenu" :key="key">
+                      <v-list-item-icon>
+                        <v-icon v-text="item.icon" />
+                      </v-list-item-icon>
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          <nuxt-link :to="item.to" style="color: black">
+                            {{ item.name }}
+                          </nuxt-link>
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="search--pub">
           <div id="search">
             <div>
               <div v-show="text.isShow" class="my-title" :class="text.animation">
@@ -85,7 +85,7 @@
             <div class="search">
               <search />
               <p>
-                Près de<span>04 millions</span>d'entreprises et proffessionnels à votre disposition
+                Près de <span>04 millions</span> d'entreprises et proffessionnels à votre disposition
               </p>
             </div>
           </div>
@@ -310,6 +310,9 @@ export default {
 
 <style lang="scss" scoped>
   $hStepper: 8px;
+  p{
+    margin: 0;
+  }
   .carrousel{
     width: 100%;
     height: 100%;
@@ -326,102 +329,73 @@ export default {
       background: rgba(10, 19, 141, .54);;
       z-index: 10;
     }
-    #logo__menu{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      z-index: 10;
-      margin-top: 10px;
-      #btn-lang{
-        #btnMembre, #btn-connect{
-          text-transform: none;
-          background: $primary;
-          color: $yellow;
-          border: 1px solid $yellow;
-          border-radius: 12px;
-          font-size: 10px;
-          box-shadow: 0 0 8px 0 #f5c51142;
-          i{
-            font-size: 1.1rem;
-            margin-right: 5px;
-          }
-        }
-        #btn-connect{
-          padding: 0 12px 0 0!important;
-        }
-      }
-    }
-  }
-    .slides{
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-    }
     .other{
       width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-end;
-      #search-pub{
+      justify-content: space-between;
+      #logo__menu{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        z-index: 10;
+        margin-top: 10px;
+        #btn-lang{
+          #btnMembre, #btn-connect{
+            text-transform: none;
+            background: $primary;
+            color: $yellow;
+            border: 1px solid $yellow;
+            border-radius: 12px;
+            font-size: 10px;
+            box-shadow: 0 0 8px 0 #f5c51142;
+            i{
+              font-size: 1.1rem;
+              margin-right: 5px;
+            }
+          }
+          #btn-connect{
+            padding: 0 12px 0 0!important;
+          }
+        }
+      }
+      #search--pub{
         display: grid;
         grid-template-columns: auto 300px;
         grid-gap: 20px;
-        margin-bottom: 100px;
         width: 100%;
         @media screen and (max-width: 760px){
           grid-template-columns: 1fr;
         }
         #search{
-          width: 100%;
-          height: 100%;
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: auto 1fr auto;
-          .my-title{
-            font-size: 2.2rem;
-            max-width: 720px;
-            font-weight: 100 !important;
-            width: 100%;
-            color: white;
-            text-shadow: 1px 1px 15px #00000054;
-            z-index: 100;
-            height: 104px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          p{
-            margin: 0!important;
-          }
-          .my-subtitle{
-            font-size: 0.8rem;
-            max-width: 720px;
-            font-weight: 100 !important;
-            width: 100%;
-            color: white;
-            text-shadow: 1px 1px 15px #00000054;
-            @media screen and (max-width: 760px){
-              margin-bottom: 56px!important;
-            }
-          }
+          color: white;
+          display: flex;
+          height: 300px;
+          flex-direction: column;
+          justify-content: space-between;
           .search{
-            align-self: flex-end;
-            width: 100%;
-            position: relative;
             p{
-              position: absolute;
-              bottom: -30px;
-              color: white;
+              font-family: 'Open sans', sans-serif;
               font-size: 12px;
+              font-style: italic;
+              margin-top: 12px;
               span{
-                background: rgba(245, 197, 17, 0.32);
-                padding: 0 2px 0 2px;
+                background: rgba($yellow, .6);
               }
             }
+          }
+          .my-title{
+            height: 112px;
+            overflow: hidden;
+            font-family: 'Open sans', sans-serif;
+            font-size: 48px;
+            line-height: 56px;
+            font-weight: 600;
+          }
+          .my-subtitle{
+            font-family: 'Open sans', sans-serif;
+            font-size: 16px;
           }
         }
         #pub{
@@ -430,19 +404,12 @@ export default {
           background: white;
           display: flex;
           justify-content: center;
+          align-self: flex-end;
           align-items: center;
           border-radius: 4px;
           @media screen and (max-width: 760px){
             display: none;
           }
-        }
-      }
-      .buttons{
-        &.carrousel-next{
-
-        }
-        &.carrousel-prev{
-
         }
       }
       .carrousel-pagination{
@@ -463,5 +430,14 @@ export default {
           }
         }
       }
+    }
+  }
+    .slides{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
     }
 </style>
