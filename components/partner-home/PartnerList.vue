@@ -8,6 +8,7 @@
         width="15"
         height="15"
         x-small
+        depressed
         @click="tooglePartner"
       >
         <v-icon color="white" size="15">

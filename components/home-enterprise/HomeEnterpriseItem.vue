@@ -21,8 +21,8 @@
         Lorem ipsum dolor sit amet, consectetur
       </div>
       <div class="rating-links">
-        <div class="rating">
-          <v-rating v-model="rating" color="secondary" dense x-small /> (12)
+        <div class="rating mr-1">
+          <v-rating v-model="rating" color="secondary" dense small /> (12)
         </div>
         <div class="open">
           Ouvert à 08h30
@@ -31,18 +31,18 @@
     </div>
     <div class="my-bottom">
       <div id="btns">
-        <v-btn color="primary" x-small height="26px">
-          <v-icon size="12">
+        <v-btn color="primary" x-small height="36" width="36">
+          <v-icon size="14">
             call
           </v-icon>
         </v-btn>
-        <v-btn color="primary" x-small height="26px">
-          <v-icon size="12">
+        <v-btn color="primary" x-small height="36" width="36">
+          <v-icon size="14">
             email
           </v-icon>
         </v-btn>
-        <v-btn color="primary" x-small height="26px">
-          <v-icon size="12">
+        <v-btn color="primary" x-small height="36" width="36">
+          <v-icon size="14">
             language
           </v-icon>
         </v-btn>
@@ -103,19 +103,18 @@ export default {
         max-width: 180px;
         display: flex;
         align-items: flex-end;
-        font-family: 'Product Sans Medium Regular',sans-serif;
+        font-family: 'open sans',sans-serif;
         z-index: 2;
         margin: 8px 0 8px 12px;
       }
       .my-type{
-        background: $yellow;
-        width: 80%;
+        background: rgba($yellow, .8);
+        display: inline-block;
         font-size: 11px;
         border-radius: 0 12px 12px 0;
-        padding: 0 0 0 12px;
-        display: flex;
-        align-items: center;
+        padding: 0 12px 0 12px;
         height: 24px;
+        line-height: 24px;
       }
     }
   }
@@ -131,10 +130,12 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: center;
       margin-top: 10px;
       .rating{
         display: flex;
-        font-size: 10px;
+        font-size: 13px;
+        font-family: 'Open sans', sans-serif;
       }
       .open{
         font-size: 10px;
@@ -147,10 +148,13 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     .itineraire{
       a{
         color: $primary;
-        font-size: 10px;
+        font-size: 11px;
+        font-family: 'Open sans', sans-serif;
+        font-weight: 600;
       }
     }
   }
