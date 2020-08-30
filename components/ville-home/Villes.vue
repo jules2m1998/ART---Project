@@ -24,9 +24,12 @@ export default {
     margin-bottom: 26px;
     .home--title{
       font-size: 16px;
+      margin-bottom: 16px;
     }
     p{
       font-size: 13px;
+      font-family: 'roboto', sans-serif;
+      font-weight: 300;
       color: #333333;
     }
   }

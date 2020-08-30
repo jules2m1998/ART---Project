@@ -20,7 +20,6 @@ export default {
     width: 120px;
     height: 120px;
     border: 1px solid #dddddd;
-    box-shadow: 0 0 6px 1px #dddddd;
     border-radius: 4px;
     display: flex;
     align-items: center;

@@ -47,11 +47,11 @@ $carre: 200px;
     flex-direction: column;
     .my-phone{
       color: white;
-      font-size: 36px;
+      font-size: 48px;
       font-weight: bold;
     }
     .my-title{
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
       color: white;
       text-transform: uppercase;
@@ -59,8 +59,9 @@ $carre: 200px;
   }
   .my-descr{
     font-size: 11px;
-    text-overflow: ellipsis;
-    color: #e5dada;
+    font-weight: 300;
+    color: white;
+    font-style: italic;
   }
 }
 </style>

@@ -56,4 +56,7 @@ export default {
   .w-100{
     width: 100%;
   }
+body{
+  font-family: 'Open sans', sans-serif;
+}
 </style>

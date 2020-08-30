@@ -1,10 +1,14 @@
 <template>
   <div class="desc-enter">
     <div class="description">
-      <h1 class="my-title">Entreprise populaires à proximité</h1>
+      <h1 class="my-title">
+        Entreprise populaires à proximité
+      </h1>
       <div class="d-flex flex-column">
         <p>Retrouvez toutes les entreprises et structures administratives proche de vous en un clic</p>
-        <v-btn small width="160" height="38" color="primary">Plus de resultat</v-btn>
+        <v-btn small width="160" height="38" color="primary" style="margin-top: 20px;">
+          Plus de resultat
+        </v-btn>
       </div>
     </div>
     <home-enterprise-list />
@@ -26,14 +30,14 @@ export default {
   align-self: flex-start;
   .my-title{
     font-size: 18px;
-    font-family: "Product Sans Medium Regular",sans-serif;
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 26px;
   }
   p{
     font-family: "roboto",sans-serif;
     font-size: 13px;
     margin-bottom: 12px;
+    font-weight: 300;
     color: #333333;
   }
 }

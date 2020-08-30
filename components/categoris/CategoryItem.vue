@@ -28,7 +28,9 @@ export default {
 <style lang="scss" scoped>
 .v-btn{
   text-transform: lowercase;
-  font-family: 'Product Sans Medium Regular',sans-serif;
+  font-family: "Open Sans",sans-serif;
+  font-size: 13px;
+  font-weight: bold;
   &:before {
     background-color: unset!important;
   }

@@ -28,8 +28,9 @@ export default {
   .urgents{
     margin-top: 72px;
     .my-msg{
-      font-size: 12px;
-      color: #636363;
+      font-family: 'Open sans', sans-serif;
+      font-size: 13px;
+      color: #333333;
     }
   }
 </style>
