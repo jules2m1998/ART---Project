@@ -74,7 +74,7 @@
           <div id="search">
             <div>
               <div v-show="text.isShow" class="my-title" :class="text.animation">
-                <p>
+                <p id="my-title">
                   {{ text.title }}
                 </p>
               </div>
@@ -84,7 +84,7 @@
             </div>
             <div class="search">
               <search />
-              <p>
+              <p class="">
                 Près de <span>04 millions</span> d'entreprises et proffessionnels à votre disposition
               </p>
             </div>
@@ -102,6 +102,7 @@
 </template>
 
 <script>
+import clamp from 'assets/js/clamp'
 import CarrouselSlide from '~/components/header/carrousel/CarrouselSlide'
 import Search from '@/components/search/Search'
 import DefaultForm from '~/components/user/utils/DefaultForm'
@@ -199,6 +200,8 @@ export default {
   },
   mounted () {
     this.startAutoSlide()
+    const title = document.querySelector('#my-title')
+    clamp(title, 2)
   },
   created () {
     this.tmp = [...this.animations]
@@ -392,6 +395,8 @@ p{
           font-size: 48px;
           line-height: 56px;
           font-weight: 600;
+          display: flex;
+          align-items: flex-end;
         }
         .my-subtitle{
           font-family: 'Open sans', sans-serif;

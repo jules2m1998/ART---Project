@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="description">
-      <p>Ville populaire reconnue comme capitale économique du pays</p>
-      <p>Ville populaire reconnue comme capitale économique du pays</p>
+      Ville populaire reconnue comme capitale économique du pays
+      Ville populaire reconnue comme capitale économique du pays
     </div>
   </div>
 </template>
@@ -52,9 +52,8 @@ export default {
         border: none;
       }
       .description{
-         p{
-          opacity: 1;
-        }
+        width: 450px;
+        opacity: 1;
       }
     }
     .ville-item--img{
@@ -99,17 +98,16 @@ export default {
       }
     }
     .description{
-      p{
-        font-size: 12px;
-        color: #777676;
-        margin-bottom: 0!important;
-        font-style: italic;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        opacity: 0;
-        transition: opacity 0.5s;
-      }
+      font-size: 12px;
+      color: #777676;
+      margin-bottom: 0!important;
+      font-style: italic;
+      //white-space: nowrap;
+      //overflow: hidden;
+      //text-overflow: ellipsis;
+      width: 450px;
+      opacity: 0;
+      transition: opacity 0.5s;
     }
   }
 </style>

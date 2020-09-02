@@ -25,6 +25,9 @@ input, button, select{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.border{
+  border: 1px solid red;
+}
 button{
   text-transform: none!important;
 }
