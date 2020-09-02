@@ -15,6 +15,8 @@ class Carousel {
   constructor (element, options = {}) {
     this.element = element
     this.parent = element.parentElement
+    this.parent.style.width = '100%'
+    this.parent.style.overflow = 'hidden'
     this.options = Object.assign({}, {
       slidesToScroll: 1,
       slidesVisible: 1,
@@ -49,6 +51,9 @@ class Carousel {
     // eslint-disable-next-line standard/no-callback-literal
     this.moveCallbacks.forEach(cb => cb(0))
     this.element.style.visibility = 'visible'
+    this.element.style.display = 'flex'
+    this.element.style.justifyContent = 'flex-end'
+    this.element.style.marginRight = '24px'
   }
 
   /**
@@ -57,8 +62,6 @@ class Carousel {
   resize () {
     this.carouselContent.style.width = this.visibleWidth
     this.arrowContent.style.width = this.visibleWidth
-    this.parent.style.margin = 'auto'
-    this.arrowContent.style.margin = 'auto'
   }
 
   /**

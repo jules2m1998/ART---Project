@@ -23,6 +23,18 @@
         </v-container>
       </div>
     </div>
+    <v-container>
+      <div class="pub--long">
+        publicité
+      </div>
+      <div class="villes">
+        <villes />
+      </div>
+    </v-container>
+    <div class="lines" />
+    <v-container>
+      <partner />
+    </v-container>
   </div>
 </template>
 
@@ -33,8 +45,10 @@ import TheCategories from '@/components/categoris/TheCategories'
 import TheNumeroUrgent from '@/components/numero-urgent/TheNumeroUrgent'
 import GoogleMap from '@/components/google-map/GoogleMap'
 import TheHomeEnterprise from '@/components/home-enterprise/TheHomeEnterprise'
+import Villes from '~/components/ville-home/Villes'
+import Partner from '~/components/partner-home/Partner'
 export default {
-  components: { TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
+  components: { Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
   data () {
     return {
       /**
@@ -331,5 +345,20 @@ export default {
     align-items: center;
     justify-content: center;
   }
+}
+.pub--long{
+  width: 100%;
+  background: #cccccc;
+  height: 111px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 56px auto;
+}
+.lines{
+  width: 100%;
+  height: 2px;
+  background: $yellow;
+  margin-bottom: 50px;
 }
 </style>

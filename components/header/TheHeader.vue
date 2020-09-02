@@ -35,7 +35,7 @@ export default {
     z-index: 2;
   }
   header {
-    height: 80vh;
+    height: 90vh;
     max-height: 620px;
     min-height: 520px;
     position: relative;
