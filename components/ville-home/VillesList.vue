@@ -1,7 +1,7 @@
 <template>
   <div class="ville-list">
     <div class="content">
-      <ville-item v-for="index in 10" :key="index" class="js-ville--item" />
+      <ville-item v-for="(index, key) in value" :key="key" :item="index" class="js-ville--item" />
     </div>
     <v-btn width="35" height="40" x-small color="secondary" class="ville--next--btn">
       <v-icon color="primary">
@@ -16,6 +16,12 @@ import VilleItem from '~/components/ville-home/VilleItem'
 export default {
   name: 'VillesList',
   components: { VilleItem },
+  props: {
+    value: {
+      type: Array,
+      required: true
+    }
+  },
   data: () => ({
     activedClass: 'ville--actived'
   }),

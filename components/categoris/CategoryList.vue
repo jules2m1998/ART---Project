@@ -18,7 +18,7 @@ export default {
   name: 'CategoryList',
   components: { CategoryItem },
   props: {
-    categories: {
+    value: {
       type: Array,
       required: true
     }
@@ -40,14 +40,14 @@ export default {
      * @return {Object[]}
      */
     rendCategori () {
-      return this.categories.filter((value, key) => key < this.nbItem)
+      return this.value.filter((value, key) => key < this.nbItem)
     },
     /**
      * Retourne le nombre de categorie
      * @return {number}
      */
     nbCategorie () {
-      return this.categories.length
+      return this.value.length
     }
   },
   methods: {

@@ -73,7 +73,6 @@ export default {
       this.isResponsive = true
     }
     this.addMediaQuery()
-    console.log(this.value)
   },
   methods: {
     addMediaQuery () {

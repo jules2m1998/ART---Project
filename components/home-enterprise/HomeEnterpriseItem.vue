@@ -3,29 +3,30 @@
     class="my-enterprise mx-2"
     max-width="400"
   >
-    <div class="my-top">
+    <div class="my-top" :style="{'background-image': 'url(' + item['background-img'] + ')'}">
       <div class="shadow" />
       <div class="my-text">
         <div class="my-title">
-          Groupe forguet Audioprothésistes
+          {{ item.name }}
         </div>
         <div class="my-type">
           <v-icon size="16" color="black">
-            home
-          </v-icon> Santé / Audioprothésie
+            {{ item.domain.icon }}
+          </v-icon>
+          {{ item.domain.title }}
         </div>
       </div>
     </div>
     <div class="my-middle">
       <div class="location ellipsis">
-        Lorem ipsum dolor sit amet, consectetur
+        {{ item.description }}
       </div>
       <div class="rating-links">
         <div class="rating mr-1">
-          <v-rating v-model="rating" color="secondary" dense small /> (12)
+          <v-rating v-model="item.note" color="secondary" dense small /> ({{ item.note }})
         </div>
         <div class="open">
-          Ouvert à 08h30
+          Ouvert à {{ item['open-hour'] }}
         </div>
       </div>
     </div>
@@ -58,11 +59,13 @@
 <script>
 export default {
   name: 'HomeEnterpriseItem',
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  },
   data: () => ({
-    /**
-     * La note d'une entreprise
-     */
-    rating: 1
   })
 }
 </script>
@@ -74,7 +77,6 @@ export default {
   display: flex;
   flex-direction: column;
   .my-top{
-    background: url("https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
     background-size: cover;
     height: 90px;
     border-radius: 6px;

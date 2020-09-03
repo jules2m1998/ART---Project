@@ -1,6 +1,6 @@
 <template>
   <div class="numero-urgent-list">
-    <numero-urgent-item v-for="(item, key) in phones" :key="key" :item="item" />
+    <numero-urgent-item v-for="(item, key) in value" :key="key" :item="item" />
   </div>
 </template>
 <script>
@@ -9,7 +9,7 @@ export default {
   name: 'NumeroUrgentList',
   components: { NumeroUrgentItem },
   props: {
-    phones: {
+    value: {
       type: Array,
       required: true
     }

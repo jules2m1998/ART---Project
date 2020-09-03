@@ -1,7 +1,7 @@
 <template>
   <div class="partners">
-    <partner-list />
-    <partner-list />
+    <partner-list v-model="value.content.list[0]" />
+    <partner-list v-model="value.content.list[1]" />
   </div>
 </template>
 
@@ -9,7 +9,13 @@
 import PartnerList from '~/components/partner-home/PartnerList'
 export default {
   name: 'Partner',
-  components: { PartnerList }
+  components: { PartnerList },
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 

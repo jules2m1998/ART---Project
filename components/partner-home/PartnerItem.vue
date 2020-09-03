@@ -1,7 +1,7 @@
 <template>
   <div class="partner--item">
     <div class="partner--img">
-      <img src="/pay/mtn.png" alt="mtn">
+      <img :src="item.img" alt="mtn">
     </div>
     <div class="partner-title">
       MTN Cameroun
@@ -11,7 +11,13 @@
 
 <script>
 export default {
-  name: 'PartnerItem'
+  name: 'PartnerItem',
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
@@ -23,7 +29,7 @@ export default {
     border-radius: 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
     padding: 6px;
     .partner--img{

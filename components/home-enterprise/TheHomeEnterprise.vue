@@ -2,23 +2,31 @@
   <div class="desc-enter">
     <div class="description">
       <h1 class="my-title">
-        Entreprise populaires à proximité
+        {{ value.content.title }}
       </h1>
       <div class="d-flex flex-column">
-        <p>Retrouvez toutes les entreprises et structures administratives proche de vous en un clic</p>
+        <p>{{ value.content.description }}</p>
         <v-btn small width="160" height="38" color="primary" style="margin-top: 20px;">
           Plus de resultat
         </v-btn>
       </div>
     </div>
-    <home-enterprise-list />
+    <home-enterprise-list v-model="value.content.entreprises" />
   </div>
 </template>
 <script>
 import HomeEnterpriseList from '@/components/home-enterprise/HomeEnterpriseList'
 export default {
   name: 'TheHomeEnterprise',
-  components: { HomeEnterpriseList }
+  components: { HomeEnterpriseList },
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  mounted () {
+  }
 }
 </script>
 

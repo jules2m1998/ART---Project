@@ -4,11 +4,11 @@
     <v-container>
       <div class="my-content pb-8">
         <div class="d-flex flex-column">
-          <the-categories :categories="categories" />
+          <the-categories v-model="index.components['1']" />
           <div class="inner-pub">
             pub
           </div>
-          <the-numero-urgent :phones="phones" />
+          <the-numero-urgent v-model="index.components['2']" />
         </div>
         <div class="pub">
           Publicités
@@ -19,7 +19,7 @@
       <google-map />
       <div class="enterprise">
         <v-container>
-          <the-home-enterprise />
+          <the-home-enterprise v-model="index.components['3']" />
         </v-container>
       </div>
     </div>
@@ -28,12 +28,12 @@
         publicité
       </div>
       <div class="villes">
-        <villes />
+        <villes v-model="index.components['4']" />
       </div>
     </v-container>
     <div class="lines" />
     <v-container>
-      <partner />
+      <partner v-model="index.components['5']" />
     </v-container>
   </div>
 </template>
@@ -59,168 +59,6 @@ export default {
   },
   data () {
     return {
-      /**
-       * Liste des catégories
-       * @type {Array}
-       */
-      categories: [
-        {
-          text: 'Texte de test 2',
-          to: '/',
-          color: 'red darken-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 3',
-          to: '/',
-          color: 'purple darken-3',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        }
-      ],
       /**
        * Liste des numéros d'urgences
        * @type {Array}

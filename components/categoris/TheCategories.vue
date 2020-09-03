@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1 class="home-title mb-4">
-      Les catégories populaires
+      {{ value.content.title }}
     </h1>
-    <category-list :categories="categories" />
+    <category-list v-model="value.content['category-list']" />
   </div>
 </template>
 <script>
@@ -14,8 +14,8 @@ export default {
     CategoryList
   },
   props: {
-    categories: {
-      type: Array,
+    value: {
+      type: Object,
       required: true
     }
   },

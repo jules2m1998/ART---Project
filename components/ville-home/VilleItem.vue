@@ -1,8 +1,8 @@
 <template>
   <div class="ville-item">
-    <div class="ville-item--img">
+    <div class="ville-item--img" :style="{'background-image': 'url(' + item.img + ')'}">
       <v-btn color="#333333">
-        Douala
+        {{ item.title }}
       </v-btn>
     </div>
     <div class="ville-item--bottom">
@@ -28,20 +28,24 @@
       </div>
     </div>
     <div class="description">
-      Ville populaire reconnue comme capitale économique du pays
-      Ville populaire reconnue comme capitale économique du pays
+      {{ item.description }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'VilleItem'
+  name: 'VilleItem',
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-  $background: "/header/home_background.jpg";
   .ville-item{
     transition: width 0.5s;
     &.ville--actived{
@@ -58,7 +62,7 @@ export default {
     }
     .ville-item--img{
       box-shadow: 0 0 12px 1px #0000004f;
-      background: url($background) center center no-repeat;
+      background-position: center;
       background-size: cover;
       height: 164px;
       width: 100%;
@@ -102,12 +106,9 @@ export default {
       color: #777676;
       margin-bottom: 0!important;
       font-style: italic;
-      //white-space: nowrap;
-      //overflow: hidden;
-      //text-overflow: ellipsis;
       width: 450px;
       opacity: 0;
-      transition: opacity 0.5s;
+      transition: opacity 1s;
     }
   }
 </style>

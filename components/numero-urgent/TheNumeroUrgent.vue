@@ -1,12 +1,12 @@
 <template>
   <div class="urgents">
     <h1 class="home-title">
-      Les numéros d'uregences
+      {{ value.content.title }}
     </h1>
     <p class="my-msg">
-      Le numéros d'appels d'urgence permettent de joindre gratuitement les secours 24H/24
+      {{ value.content['sub-title'] }}
     </p>
-    <numero-urgent-list :phones="phones" />
+    <numero-urgent-list v-model="value.content.numbers" />
   </div>
 </template>
 
@@ -16,10 +16,12 @@ export default {
   name: 'TheNumeroUrgent',
   components: { NumeroUrgentList },
   props: {
-    phones: {
-      type: Array,
+    value: {
+      type: Object,
       required: true
     }
+  },
+  mounted () {
   }
 }
 </script>

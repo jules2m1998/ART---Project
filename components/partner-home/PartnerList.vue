@@ -14,10 +14,11 @@
         <v-icon color="white" size="15">
           {{ toogle ? 'remove' : 'add' }}
         </v-icon>
-      </v-btn> Avec les opérateurs concesseionnaires
+      </v-btn>
+      {{ value.title }}
     </h2>
     <div class="partner-list-content d-flex flex-row js-content show">
-      <partner-item v-for="iten in 4" :key="iten" class="mr-6" />
+      <partner-item v-for="(iten, key) in value.list" :key="key" class="mr-6" :item="iten" />
     </div>
   </div>
 </template>
@@ -27,6 +28,12 @@ import PartnerItem from '~/components/partner-home/PartnerItem'
 export default {
   name: 'PartnerList',
   components: { PartnerItem },
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
   data: () => ({
     /**
      * @type {boolean}
