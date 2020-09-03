@@ -4,7 +4,7 @@
     class="pt-5 bg--cover"
   >
     <div id="carrousel">
-      <carrousel :slides="slides" />
+      <carrousel v-model="value" />
     </div>
   </header>
 </template>
@@ -16,14 +16,16 @@ export default {
   name: 'TheHeader',
   components: { Carrousel },
   props: {
-    slides: {
-      type: Array,
+    value: {
+      type: Object,
       required: true
     }
   },
   data: () => ({
   }),
   computed: {
+  },
+  mounted () {
   },
   methods: {
   }

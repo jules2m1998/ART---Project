@@ -2,7 +2,7 @@
   <div class="carrousel">
     <div class="slides">
       <carrousel-slide
-        v-for="(item, key) in slides"
+        v-for="(item, key) in value.components['0'].content.slides"
         :key="key"
         :item="item"
         :index="key"
@@ -14,7 +14,7 @@
         <div id="logo__menu" class="d-flex flex-column">
           <div class="d-flex flex-row justify-space-between">
             <div id="logo">
-              <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
+              <img :src="value.content.logo" alt="logo de l'annuaire universel du cameroun">
             </div>
             <div id="btn-lang" class="d-flex flex-row">
               <div v-if="current === null" class="btn-sign">
@@ -79,13 +79,13 @@
                 </p>
               </div>
               <p v-show="text.isShow" class="my-subtitle" :class="opposite(text.animation)">
-                {{ text.title }}
+                {{ text.subTitle }}
               </p>
             </div>
             <div class="search">
-              <search />
+              <search v-model="value.components['1']" />
               <p class="">
-                Près de <span>04 millions</span> d'entreprises et proffessionnels à votre disposition
+                {{ value.content.information }}
               </p>
             </div>
           </div>
@@ -110,8 +110,8 @@ export default {
   name: 'Carrousel',
   components: { DefaultForm, Search, CarrouselSlide },
   props: {
-    slides: {
-      type: Array,
+    value: {
+      type: Object,
       required: true
     }
   },
@@ -181,7 +181,7 @@ export default {
      * @return {number}
      */
     slidesCount () {
-      return this.slides.length
+      return this.value.components['0'].content.slides.length
     },
     /**
      * Retourne le nombre d'animation
@@ -205,7 +205,7 @@ export default {
   },
   created () {
     this.tmp = [...this.animations]
-    this.slides.forEach((item) => {
+    this.value.components['0'].content.slides.forEach((item) => {
       item.animation = this.getAnimation()
     })
   },

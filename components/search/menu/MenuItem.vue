@@ -1,7 +1,7 @@
 <template>
-  <nuxt-link class="menu" :to="item.to">
+  <nuxt-link class="menu" :to="item.title">
     <span>
-      {{ item.name.toUpperCase() }}
+      {{ item.title.toUpperCase() }}
     </span>
   </nuxt-link>
 </template>
@@ -19,6 +19,8 @@ export default {
       type: Object,
       required: true
     }
+  },
+  mounted () {
   }
 }
 </script>

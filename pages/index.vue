@@ -1,6 +1,6 @@
 <template>
   <div class="font-sans">
-    <the-header :slides="sliders" />
+    <the-header v-model="index.components['0']" />
     <v-container>
       <div class="my-content pb-8">
         <div class="d-flex flex-column">
@@ -40,6 +40,7 @@
 
 <script>
 
+import Axios from 'axios'
 import TheHeader from '~/components/header/TheHeader'
 import TheCategories from '@/components/categoris/TheCategories'
 import TheNumeroUrgent from '@/components/numero-urgent/TheNumeroUrgent'
@@ -49,38 +50,15 @@ import Villes from '~/components/ville-home/Villes'
 import Partner from '~/components/partner-home/Partner'
 export default {
   components: { Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
+  async asyncData ({ params, app }) {
+    const messageRef = app.$fireDb.ref('home-page') // Where 'cases' is the json object
+    const { data } = await Axios.get(messageRef.toString() + '.json')
+    return {
+      index: data
+    }
+  },
   data () {
     return {
-      /**
-       * Liste des slides
-       * @type {Array}
-       */
-      sliders: [
-        {
-          title: 'Consequuntur esse fuga libero maxime officia. Aliquam',
-          img: 'https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Expected 1 line break before closing tag but no line breaks found',
-          img: 'https://images.unsplash.com/photo-1560285509-3ebfa70a171d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=80'
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: "Les parenthèses attendues autour de l'argument",
-          img: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-        },
-        {
-          title: 'Les parenthèses attendues autour de avec des accolades',
-          img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Les parenthèses attendues autour de avec des accolades',
-          img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-        }
-      ],
       /**
        * Liste des catégories
        * @type {Array}
@@ -290,6 +268,10 @@ export default {
         }
       ]
     }
+  },
+  created () {
+  },
+  methods: {
   }
 }
 </script>

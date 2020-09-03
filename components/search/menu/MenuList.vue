@@ -1,8 +1,8 @@
 <template>
   <div v-show="isLoad">
     <div class="menu-list" :class="{'isResponsive': isResponsive}">
-      <template v-for="(item, key) in menus">
-        <menu-item v-if="item.visible" :key="key" :item="item" @click="addCurrent(item.id)" />
+      <template v-for="(item, key) in value">
+        <menu-item :key="key" :item="item" />
       </template>
       <v-menu v-if="isResponsive" offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -36,7 +36,7 @@ export default {
   name: 'MenuList',
   components: { MenuItem },
   props: {
-    menus: {
+    value: {
       type: Array,
       required: true
     }
@@ -47,19 +47,19 @@ export default {
   }),
   computed: {
     menusNotVisible () {
-      return this.menus.filter(x => !x.visible)
+      return this.value.filter(x => !x.visible)
     }
   },
   watch: {
     isResponsive (value) {
       let menu
       if (value) {
-        menu = this.menus.map((x) => {
+        menu = this.value.map((x) => {
           x.visible = x.isCurrent
           return x
         })
       } else {
-        menu = this.menus.map((x) => {
+        menu = this.value.map((x) => {
           x.visible = true
           return x
         })
@@ -73,6 +73,7 @@ export default {
       this.isResponsive = true
     }
     this.addMediaQuery()
+    console.log(this.value)
   },
   methods: {
     addMediaQuery () {
@@ -83,7 +84,7 @@ export default {
       media.addEventListener('change', screenTest)
     },
     addCurrent (id) {
-      const menu = [...this.menus].map((x) => {
+      const menu = [...this.value].map((x) => {
         x.isCurrent = x.id === id
         return x
       })

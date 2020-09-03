@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-menu :menus="menus" @changecurrent="doUpdate" />
+    <my-menu v-model="value.content.forms" :menus="menus" @changecurrent="doUpdate" />
     <search-bar />
   </div>
 </template>
@@ -11,6 +11,12 @@ import SearchBar from '@/components/search-bar/SearchBar'
 export default {
   name: 'Search',
   components: { SearchBar, MyMenu },
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
   data: () => ({
     /**
      * Liste des menus
@@ -39,10 +45,11 @@ export default {
       }
     ]
   }),
+  mounted () {
+  },
   methods: {
     doUpdate (e) {
       this.menus = e
-      debugger
     }
   }
 }

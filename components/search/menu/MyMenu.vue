@@ -1,6 +1,6 @@
 <template>
   <div style="margin-bottom: 4px; margin-left: 6px">
-    <menu-list :menus="menus" />
+    <menu-list v-model="value" />
   </div>
 </template>
 <script>
@@ -9,10 +9,12 @@ export default {
   name: 'MyMenu',
   components: { MenuList },
   props: {
-    menus: {
+    value: {
       type: Array,
       required: true
     }
+  },
+  mounted () {
   }
 }
 </script>

@@ -13,15 +13,19 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/firebase": "^6.1.1",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "animate.css": "^4.1.0",
     "cities.json": "^1.1.5",
+    "firebase": "^7.19.1",
+    "fs": "0.0.1-security",
     "google-maps-api-loader": "^1.1.1",
     "nuxt": "^2.13.0",
     "vue": "^2.6.11",
     "vue-notifications": "^1.0.2",
     "vue2-google-maps": "^0.10.7",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "write-json-file": "^4.3.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
