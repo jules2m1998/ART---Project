@@ -67,9 +67,11 @@ export default {
   },
   watch: {
     index: {
-      handler (val) {
+      async handler (val) {
         if (this.iteration > 0) {
-          console.log(val)
+          const messageRef = this.$fireDb.ref('home-page') // Where 'cases' is the json object
+          const { data } = await Axios.put(messageRef.toString() + '.json', val)
+          console.log(data)
         }
         this.iteration++
       },

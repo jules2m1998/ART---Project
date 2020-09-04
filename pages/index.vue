@@ -50,7 +50,7 @@ import Villes from '~/components/ville-home/Villes'
 import Partner from '~/components/partner-home/Partner'
 export default {
   components: { Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
-  async asyncData ({ params, app }) {
+  async asyncData ({ app }) {
     const messageRef = app.$fireDb.ref('home-page') // Where 'cases' is the json object
     const { data } = await Axios.get(messageRef.toString() + '.json')
     return {
