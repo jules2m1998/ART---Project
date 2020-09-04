@@ -1,7 +1,7 @@
 <template>
   <header
     id="header"
-    class="pt-5 bg--cover"
+    class="pt-5 bg--cover js-editable-class"
   >
     <div id="carrousel">
       <carrousel v-model="value" />

@@ -8,7 +8,7 @@
           <div class="inner-pub">
             pub
           </div>
-          <the-numero-urgent v-model="index.components['2']" />
+          <the-numero-urgent v-model="index.components['2']" class="js-editable-class" />
         </div>
         <div class="pub">
           Publicités
@@ -19,7 +19,7 @@
       <google-map />
       <div class="enterprise">
         <v-container>
-          <the-home-enterprise v-model="index.components['3']" />
+          <the-home-enterprise v-model="index.components['3']" class="js-editable-class" />
         </v-container>
       </div>
     </div>
@@ -28,12 +28,12 @@
         publicité
       </div>
       <div class="villes">
-        <villes v-model="index.components['4']" />
+        <villes v-model="index.components['4']" class="js-editable-class" />
       </div>
     </v-container>
     <div class="lines" />
     <v-container>
-      <partner v-model="index.components['5']" />
+      <partner v-model="index.components['5']" class="js-editable-class" />
     </v-container>
   </div>
 </template>
@@ -85,18 +85,25 @@ export default {
     const saveBtn = this.createEditButton('js-save-btn')
     const deleteBtn = this.createEditButton('js-delete-btn')
     const container = this.createEditButton('js-container')
+    const containerComp = this.createEditButton('js-container')
 
-    container.appendChild(editBtn)
-    container.appendChild(saveBtn)
-    container.appendChild(deleteBtn)
+    container.appendChild(editBtn.cloneNode())
+    container.appendChild(saveBtn.cloneNode())
+    container.appendChild(deleteBtn.cloneNode())
+
+    containerComp.appendChild(editBtn)
 
     const editable = document.querySelectorAll('.editable')
+    const component = document.querySelectorAll('.js-editable-class')
     editable.forEach((editable) => {
-      this.fromOne(editable, editable.dataset.func, container)
+      this.fromOne(editable, container)
+    })
+    component.forEach((component) => {
+      this.fromOneComponent(component, containerComp)
     })
   },
   methods: {
-    fromOne (editable, callback, container) {
+    fromOne (editable, container) {
       editable.style.border = '2px solid transparent'
       editable.style.position = 'relative'
       editable.appendChild(container.cloneNode(true))
@@ -113,10 +120,8 @@ export default {
       })
       deleteBtn.addEventListener('click', () => {
         editable.contentEditable = false
-        deleteBtn.style.display = 'none'
-        saveBtn.style.display = 'none'
-        editBtn.classList.add('visible')
         this.emitter(editable, 'reset')
+        this.fromOne(editable, container)
       })
       saveBtn.addEventListener('click', () => {
         deleteBtn.style.display = 'none'
@@ -125,6 +130,14 @@ export default {
         editable.contentEditable = false
         this.emitter(editable, 'save')
       })
+    },
+    fromOneComponent (editable, container) {
+      editable.style.position = 'relative'
+      container.classList.add('direct')
+      editable.appendChild(container.cloneNode(true))
+      const editBtn = editable.querySelector('.direct').querySelector('.js-edit-btn')
+      console.log(editBtn)
+      editBtn.classList.add('visible')
     },
     createEditButton (name) {
       const div = document.createElement('div')
@@ -217,6 +230,7 @@ export default {
   right: -15px;
   display: flex;
   flex-direction: row;
+  z-index: 2000;
 }
 .js-edit-btn, .js-delete-btn, .js-save-btn{
   width:30px;
@@ -229,6 +243,11 @@ export default {
   display: none;
   margin-right: 3px;
 }
+.js-editable-class> .js-container{
+  margin-top:0;
+  left: 0;
+  right: unset;
+}
 .js-delete-btn{
   background:transparent url(https://image.flaticon.com/icons/svg/1828/1828843.svg) center center no-repeat;
   background-size: cover;
@@ -240,10 +259,10 @@ export default {
 .editable{
   border: 2px solid transparent;
 }
-.editable:hover{
+.editable:hover, .js-editable-class:hover{
   border: 2px dashed #a8a8a8!important;
 }
-.editable:hover .visible.js-edit-btn{
+.editable:hover .visible.js-edit-btn, .js-editable-class:hover> .direct .visible.js-edit-btn{
   display: block!important;
 }
 </style>

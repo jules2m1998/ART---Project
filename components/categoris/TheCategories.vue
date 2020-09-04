@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="js-editable-class">
     <h1 class="home-title mb-4 editable" @save="setTitle" @reset="resetTitle">
       {{ value.content.title }}
     </h1>

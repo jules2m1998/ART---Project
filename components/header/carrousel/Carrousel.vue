@@ -82,7 +82,7 @@
                 {{ text.subTitle }}
               </p>
             </div>
-            <div class="search">
+            <div class="search js-editable-class">
               <search v-model="value.components['1']" />
               <p class="editable" @save="setInformation" @reset="resetInformation">
                 {{ value.content.information }}
