@@ -1,5 +1,5 @@
 <template>
-  <v-container id="top--footer" fluid class="bg-img  d-flex align-center">
+  <v-container id="top--footer" fluid class="bg-img  d-flex align-center js-editable-class">
     <div class="blue-bg" />
     <top-footer-list :stats="datas" />
   </v-container>

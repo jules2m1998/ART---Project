@@ -8,24 +8,24 @@
         <div id="box-top" class="">
           <div id="box-logo-desc-contact" class="">
             <div id="logo">
-              <img src="/logo.png" alt="Logo de l'annuaire universel du cameroun">
+              <img :src="value.content['footer-logo']" alt="Logo de l'annuaire universel du cameroun">
             </div>
-            <p class="">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque culpa distinctio error ex expedita iure maiores perferendis quam sint? A assumenda autem beatae delectus ipsa ipsum iusto molestiae nulla.
+            <p class="editable">
+              {{ value.content.description }}
             </p>
-            <div id="num-title" class="">
+            <div id="num-title">
               <v-icon class="mr-2">
                 settings_phone
               </v-icon>
-              <span>
-                Service clientèle
+              <span class="editable">
+                {{ value.content['service-client-infos'].title }}
               </span>
             </div>
-            <div id="number" class="">
-              +237 622 006 540
+            <div id="number" class="editable">
+              {{ value.content['service-client-infos'].phone }}
             </div>
-            <div id="bottom-title" class="">
-              Du lundi au vendredi entre 08h00 à 18h00
+            <div id="bottom-title" class="editable">
+              {{ value.content['service-client-infos'].interval }}
             </div>
           </div>
           <div id="box-social-link-form" class="">
@@ -81,6 +81,12 @@ import BottomFooter from '~/components/footer/BottomFooter'
 export default {
   name: 'TheFooter',
   components: { BottomFooter, Pay, ContactForm, MyLink, Social },
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
   data: () => ({
     /**
      * Première liste des lien footer
@@ -195,7 +201,51 @@ export default {
         }
       ]
     }
-  })
+  }),
+
+  mounted () {
+    const editBtn = this.createEditButton('js-edit-btn')
+    const container = this.createEditButton('js-container')
+    const containerComp = this.createEditButton('js-container')
+
+    container.appendChild(editBtn.cloneNode())
+
+    containerComp.appendChild(editBtn)
+
+    const editable = document.querySelectorAll('.editable')
+    const component = document.querySelectorAll('.js-editable-class')
+    editable.forEach((editable) => {
+      this.fromOne(editable, container)
+    })
+    component.forEach((component) => {
+      this.fromOneComponent(component, containerComp)
+    })
+  },
+  methods: {
+    fromOne (editable, container) {
+      editable.style.border = '2px solid transparent'
+      editable.style.position = 'relative'
+      editable.appendChild(container.cloneNode(true))
+      const editBtn = editable.querySelector('.js-edit-btn')
+      editBtn.classList.add('visible')
+    },
+    fromOneComponent (editable, container) {
+      editable.style.position = 'relative'
+      container.classList.add('direct')
+      editable.appendChild(container.cloneNode(true))
+      const editBtn = editable.querySelector('.direct').querySelector('.js-edit-btn')
+      editBtn.classList.add('visible')
+    },
+    createEditButton (name) {
+      const div = document.createElement('div')
+      div.setAttribute('class', name)
+      return div
+    },
+    emitter (element, type) {
+      const event = new CustomEvent(type)
+      element.dispatchEvent(event)
+    }
+  }
 }
 </script>
 

@@ -50,6 +50,7 @@ import Villes from '~/components/ville-home/Villes'
 import Partner from '~/components/partner-home/Partner'
 export default {
   components: { Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
+  layout: 'adminLayout',
   async asyncData ({ app }) {
     const messageRef = app.$fireDb.ref('home-page') // Where 'cases' is the json object
     const { data } = await Axios.get(messageRef.toString() + '.json')
@@ -136,7 +137,6 @@ export default {
       container.classList.add('direct')
       editable.appendChild(container.cloneNode(true))
       const editBtn = editable.querySelector('.direct').querySelector('.js-edit-btn')
-      console.log(editBtn)
       editBtn.classList.add('visible')
     },
     createEditButton (name) {
