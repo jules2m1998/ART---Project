@@ -59,52 +59,6 @@ export default {
   },
   data () {
     return {
-      /**
-       * Liste des numéros d'urgences
-       * @type {Array}
-       */
-      phones: [
-        {
-          number: '118',
-          color: 'red',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        },
-        {
-          number: '118',
-          color: 'green',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        },
-        {
-          number: '118',
-          color: 'black',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        },
-        {
-          number: '118',
-          color: 'blue',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        }
-      ],
-      /**
-       * Liste des entreprises à proximité
-       * @type {Array}
-       */
-      enterprise: [
-        {
-          name: 'Groupe forget audioprothésistes',
-          domain: 'Santé / Audioprothésie',
-          location: '370-950 monté des Pionniers, Terrebeeeeeeeeeeeee',
-          note: 12,
-          open: '08h30',
-          phone: '690981056',
-          mail: '',
-          site: ''
-        }
-      ]
     }
   },
   created () {

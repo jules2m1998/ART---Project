@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="home-title mb-4">
+    <h1 class="home-title mb-4 editable">
       {{ value.content.title }}
     </h1>
     <category-list v-model="value.content['category-list']" />

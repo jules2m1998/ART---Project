@@ -74,7 +74,7 @@
           <div id="search">
             <div>
               <div v-show="text.isShow" class="my-title" :class="text.animation">
-                <p id="my-title">
+                <p id="my-title" class="">
                   {{ text.title }}
                 </p>
               </div>
@@ -84,7 +84,7 @@
             </div>
             <div class="search">
               <search v-model="value.components['1']" />
-              <p class="">
+              <p class="editable" @save="setInformation" @reset="resetInformation">
                 {{ value.content.information }}
               </p>
             </div>
@@ -305,7 +305,13 @@ export default {
      * Met le overflowY de la page à hidden
      */
     removeOverflow () {
-      document.documentElement.style.overflowY = 'hidden'
+      document.documentElement.styleoverflowY = 'hidden'
+    },
+    setInformation (e) {
+      this.value.content.information = e.target.textContent.trim()
+    },
+    resetInformation (e) {
+      e.target.textContent = this.value.content.information
     }
   }
 }

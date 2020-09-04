@@ -1,9 +1,9 @@
 <template>
   <div class="urgents">
-    <h1 class="home-title">
+    <h1 class="home-title editable">
       {{ value.content.title }}
     </h1>
-    <p class="my-msg">
+    <p class="my-msg editable">
       {{ value.content['sub-title'] }}
     </p>
     <numero-urgent-list v-model="value.content.numbers" />

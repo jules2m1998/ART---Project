@@ -7,7 +7,7 @@
           more_horiz
         </v-icon>
       </v-btn>
-      {{ text }}
+      <span class="editable">{{ text }}</span>
     </div>
   </div>
 </template>
