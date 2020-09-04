@@ -1,10 +1,12 @@
 <template>
   <div class="villes">
     <div class="description">
-      <h1 class="home--title">
+      <h1 class="home--title editable" @save="setTitle" @reset="resetTitle">
         {{ value.content.title }}
       </h1>
-      <p>{{ value.content.description }}</p>
+      <p class="editable" @save="setDescription" @reset="resetDescription">
+        {{ value.content.description }}
+      </p>
     </div>
     <villes-list v-model="value.content.villes" style="margin-bottom: 26px;" />
   </div>
@@ -19,6 +21,20 @@ export default {
     value: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    setTitle (e) {
+      this.value.content.title = e.target.textContent.trim()
+    },
+    resetTitle (e) {
+      e.target.textContent = this.value.content.title
+    },
+    setDescription (e) {
+      this.value.content.description = e.target.textContent.trim()
+    },
+    resetDescription (e) {
+      e.target.textContent = this.value.content.description
     }
   }
 }

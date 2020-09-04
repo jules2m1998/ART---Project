@@ -251,7 +251,7 @@ export default {
   width:30px;
   height:30px;
   background:#fff url(https://image.flaticon.com/icons/svg/598/598234.svg) center center no-repeat;
-  background-size:10px 10px;
+  background-size:12px 12px;
   border-radius:50%;
   box-shadow:0 15px 35px #3232321a,0 5px 15px #0000001a;
   cursor:pointer;

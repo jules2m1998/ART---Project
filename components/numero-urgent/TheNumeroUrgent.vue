@@ -1,9 +1,9 @@
 <template>
   <div class="urgents">
-    <h1 class="home-title editable">
+    <h1 class="home-title editable" @save="setTitle" @reset="resetTitle">
       {{ value.content.title }}
     </h1>
-    <p class="my-msg editable">
+    <p class="my-msg editable" @save="setSubTitle" @reset="resetSubTitle">
       {{ value.content['sub-title'] }}
     </p>
     <numero-urgent-list v-model="value.content.numbers" />
@@ -22,6 +22,20 @@ export default {
     }
   },
   mounted () {
+  },
+  methods: {
+    setTitle (e) {
+      this.value.content.title = e.target.textContent.trim()
+    },
+    resetTitle (e) {
+      e.target.textContent = this.value.content.title
+    },
+    setSubTitle (e) {
+      this.value.content['sub-title'] = e.target.textContent.trim()
+    },
+    resetSubTitle (e) {
+      e.target.textContent = this.value.content['sub-title']
+    }
   }
 }
 </script>

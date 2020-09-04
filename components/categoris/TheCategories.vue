@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="home-title mb-4 editable">
+    <h1 class="home-title mb-4 editable" @save="setTitle" @reset="resetTitle">
       {{ value.content.title }}
     </h1>
     <category-list v-model="value.content['category-list']" />
@@ -22,6 +22,14 @@ export default {
   data: () => ({
   }),
   mounted () {
+  },
+  methods: {
+    setTitle (e) {
+      this.value.content.title = e.target.textContent.trim()
+    },
+    resetTitle (e) {
+      e.target.textContent = this.value.content.title
+    }
   }
 }
 </script>

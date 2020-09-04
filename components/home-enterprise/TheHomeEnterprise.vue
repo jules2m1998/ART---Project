@@ -1,11 +1,13 @@
 <template>
   <div class="desc-enter">
     <div class="description">
-      <h1 class="my-title">
+      <h1 class="my-title editable" @save="setTitle" @reset="resetTitle">
         {{ value.content.title }}
       </h1>
       <div class="d-flex flex-column">
-        <p>{{ value.content.description }}</p>
+        <p class="editable" @save="setDescription" @reset="resetDescription">
+          {{ value.content.description }}
+        </p>
         <v-btn small width="160" height="38" color="primary" style="margin-top: 20px;">
           Plus de resultat
         </v-btn>
@@ -26,6 +28,20 @@ export default {
     }
   },
   mounted () {
+  },
+  methods: {
+    setTitle (e) {
+      this.value.content.title = e.target.textContent.trim()
+    },
+    resetTitle (e) {
+      e.target.textContent = this.value.content.title
+    },
+    setDescription (e) {
+      this.value.content.description = e.target.textContent.trim()
+    },
+    resetDescription (e) {
+      e.target.textContent = this.value.content.description
+    }
   }
 }
 </script>
