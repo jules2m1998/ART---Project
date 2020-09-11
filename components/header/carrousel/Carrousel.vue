@@ -29,7 +29,7 @@
                       A propos de nous <v-icon>keyboard_arrow_down</v-icon>
                     </v-btn>
                   </template>
-                  <v-list>
+                  <v-list class="mt-2">
                     <v-list-item
                       v-for="index in 5"
                       :key="index"
