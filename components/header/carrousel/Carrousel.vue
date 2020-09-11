@@ -17,55 +17,63 @@
               <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
             </div>
             <div id="btn-lang" class="d-flex flex-row">
-              <div v-if="current === null" class="btn-sign">
-                <template>
-                  <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                        id="btnMembre"
-                        small
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="removeOverflow"
-                      >
-                        <v-icon>person</v-icon>
-                        Espace membre
-                      </v-btn>
-                    </template>
-                    <default-form v-model="dialog" type="signin" />
-                  </v-dialog>
-                </template>
-              </div>
-              <div v-else class="btn-sign">
-                <v-menu offset-y>
-                  <template v-slot:activator="{ attrs, on }">
+              <div class="menu-item">
+                <v-menu open-on-hover offset-y>
+                  <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                      id="btn-connect"
-                      small
+                      id="menu-btn"
                       v-bind="attrs"
+                      text
                       v-on="on"
                     >
-                      <v-avatar size="26px" class="mr-3">
-                        <img :src="current.img" alt="Image du profile connecté'">
-                      </v-avatar>
-                      {{ current.firstname }}
+                      A propos de nous <v-icon>keyboard_arrow_down</v-icon>
                     </v-btn>
                   </template>
                   <v-list>
-                    <v-list-item v-for="(item, key) in userMenu" :key="key">
-                      <v-list-item-icon>
-                        <v-icon v-text="item.icon" />
-                      </v-list-item-icon>
-                      <v-list-item-content>
-                        <v-list-item-title>
-                          <nuxt-link :to="item.to" style="color: black">
-                            {{ item.name }}
-                          </nuxt-link>
-                        </v-list-item-title>
-                      </v-list-item-content>
+                    <v-list-item
+                      v-for="index in 5"
+                      :key="index"
+                    >
+                      <v-list-item-title>Test</v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-menu>
+              </div>
+              <div class="menu-item">
+                <select id="select-lang">
+                  <option selected>
+                    EN
+                  </option>
+                  <option>FR</option>
+                </select>
+              </div>
+              <div class="menu-item">
+                <div class="content-profile-btn">
+                  <template>
+                    <v-dialog v-model="dialog" persistent max-width="550px" style="overflow-y: hidden">
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                          id="profile-btn"
+                          width="40"
+                          height="40"
+                          fab
+                          dark
+                          large
+                          color="white"
+                          depressed
+                          v-bind="attrs"
+                          v-on="on"
+                          @click="removeOverflow"
+                        >
+                          <v-icon color="black">
+                            person
+                          </v-icon>
+                        </v-btn>
+                      </template>
+                      <default-form v-model="dialog" type="signin" />
+                    </v-dialog>
+                  </template>
+                </div>
               </div>
             </div>
           </div>
@@ -105,7 +113,7 @@
 import clamp from 'assets/js/clamp'
 import CarrouselSlide from '~/components/header/carrousel/CarrouselSlide'
 import Search from '@/components/search/Search'
-import DefaultForm from '~/components/user/utils/DefaultForm'
+import DefaultForm from '@/components/user/utils/DefaultForm'
 export default {
   name: 'Carrousel',
   components: { DefaultForm, Search, CarrouselSlide },
@@ -345,21 +353,81 @@ p{
       z-index: 10;
       margin-top: 10px;
       #btn-lang{
-        #btnMembre, #btn-connect{
-          text-transform: none;
-          background: $primary;
-          color: $yellow;
-          border: 1px solid $yellow;
-          border-radius: 12px;
-          font-size: 10px;
-          box-shadow: 0 0 8px 0 #f5c51142;
-          i{
-            font-size: 1.1rem;
-            margin-right: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .menu-item{
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:after{
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 5px;
+            background: white;
+            margin-right: 12px;
+            margin-left: 14px;
           }
-        }
-        #btn-connect{
-          padding: 0 12px 0 0!important;
+          &:last-child:after{
+            content: "";
+            width: 0;
+            height: 0;
+            border-radius: 0;
+            background: none;
+            margin-right: 0;
+            margin-left: 0;
+          }
+          #select-lang{
+            color: white;
+            padding: 10px;
+            option{
+              background: transparent;
+              color: black;
+            }
+          }
+          .content-profile-btn{
+            border: 22px solid $yellow;
+            width: 42px;
+            height: 42px;
+            border-radius: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s infinite;
+            #profile-btn{
+            }
+          }
+          #menu-btn{
+            font-size: 14px;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 700;
+            position: relative;
+            color: white;
+            padding: 0;
+            transition: all 0.5s;
+            &:after{
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 30px;
+              height: 3px;
+              background: white;
+              border-radius: 1px;
+              transition: all 0.5s;
+            }
+            &:hover:after{
+              width: 50%;
+              background: $yellow;
+            }
+            &:hover{
+              color: $yellow
+            }
+          }
         }
       }
     }

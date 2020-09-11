@@ -251,6 +251,35 @@ $inf: 1.5s;
   }
 }
 
+/** PULSE ANIMATION **/
+$pulse-color: rgba(255,255,255, 0.4);
+$pulse-w: 15px;
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba($pulse-color, 0.4);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 $pulse-w rgba($pulse-color, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba($pulse-color, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba($pulse-color, 0.4);
+    box-shadow: 0 0 0 0 rgba($pulse-color, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 $pulse-w rgba($pulse-color, 0);
+    box-shadow: 0 0 0 $pulse-w rgba($pulse-color, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba($pulse-color, 0);
+    box-shadow: 0 0 0 0 rgba($pulse-color, 0);
+  }
+}
+
 /** HOME **/
 h2{
   font-size: 16px;

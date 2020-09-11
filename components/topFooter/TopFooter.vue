@@ -26,7 +26,7 @@ export default {
     z-index: 10;
   }
   .bg-img{
-    background: url("~assets/topFooter/stat-bg.png");
+    background: url("~assets/topFooter/stat-bg.png") no-repeat fixed center;
     background-size: cover;
   }
   #top--footer{

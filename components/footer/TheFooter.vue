@@ -418,8 +418,27 @@ export default {
           display: flex;
           flex-wrap: wrap;
           a{
-            padding-right: 24px;
             color: white!important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:after{
+              content: "";
+              width: 5px;
+              height: 5px;
+              border-radius: 5px;
+              background: white;
+              margin: 0 10px;
+            }
+            &:last-child:after{
+              content: "";
+              width: 0;
+              height: 0;
+              border-radius: 0;
+              background: none;
+              margin-right: 0;
+              margin-left: 0;
+            }
           }
         }
         #mobile{

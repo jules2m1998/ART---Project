@@ -1,6 +1,7 @@
 <template>
   <div class="font-sans">
     <the-header :slides="sliders" />
+    <defilement />
     <v-container>
       <div class="my-content pb-8">
         <div class="d-flex flex-column">
@@ -47,8 +48,9 @@ import GoogleMap from '@/components/google-map/GoogleMap'
 import TheHomeEnterprise from '@/components/home-enterprise/TheHomeEnterprise'
 import Villes from '~/components/ville-home/Villes'
 import Partner from '~/components/partner-home/Partner'
+import Defilement from '@/components/defilement/Defilement'
 export default {
-  components: { Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
+  components: { Defilement, Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
   data () {
     return {
       /**
