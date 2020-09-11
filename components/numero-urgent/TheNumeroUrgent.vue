@@ -1,8 +1,8 @@
 <template>
   <div class="urgents">
-    <h1 class="home-title">
+    <h2 class="home-title">
       Les numéros d'uregences
-    </h1>
+    </h2>
     <p class="my-msg">
       Le numéros d'appels d'urgence permettent de joindre gratuitement les secours 24H/24
     </p>

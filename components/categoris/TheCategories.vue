@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 class="home-title mb-4">
+    <h2 class="home-title mb-4">
       Les catégories populaires
-    </h1>
+    </h2>
     <category-list :categories="categories" />
   </div>
 </template>

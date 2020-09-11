@@ -1,7 +1,8 @@
 <template>
   <div class="partner-list">
-    <h2 class="partner-list-title">
+    <h2 class="partner-list-title" @click="clickBtn">
       <v-btn
+        id="js-btn"
         class="mr-1"
         fab
         color="#6e6e6e"
@@ -12,11 +13,11 @@
         @click="tooglePartner"
       >
         <v-icon color="white" size="15">
-          {{ toogle ? 'remove' : 'add' }}
+          {{ isVisible ? 'remove' : 'add' }}
         </v-icon>
       </v-btn> Avec les opérateurs concesseionnaires
     </h2>
-    <div class="partner-list-content d-flex flex-row js-content show">
+    <div class="partner-list-content d-flex flex-row js-content">
       <partner-item v-for="iten in 4" :key="iten" class="mr-6" />
     </div>
   </div>
@@ -31,7 +32,7 @@ export default {
     /**
      * @type {boolean}
      */
-    toogle: true
+    isVisible: true
   }),
   methods: {
     /**
@@ -39,15 +40,18 @@ export default {
      * @param {MouseEvent} e
      */
     tooglePartner (e) {
+      e.stopPropagation()
       const parts = e.path[4].querySelector('.js-content')
-      this.toogle = !parts.classList.contains('show')
-      if (parts.classList.contains('show')) {
-        parts.classList.remove('show')
-        parts.classList.add('hide')
-      } else {
-        parts.classList.add('show')
-        parts.classList.remove('hide')
-      }
+      console.log(parts)
+      parts.classList.toggle('hide')
+    },
+    /**
+     * @param {MouseEvent} e
+     */
+    clickBtn (e) {
+      e.stopPropagation()
+      const elt = e.target.querySelector('#js-btn')
+      elt.click()
     }
   }
 }
@@ -61,17 +65,16 @@ export default {
     .partner-list-title{
       font-size: 12px;
       color: #6e6e6e;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
+      cursor: pointer;
     }
   }
   .js-content{
     height: auto;
-    transition: all .5s ease-out;
     overflow: hidden;
-  }
-  .show{
     max-height: 120px;
     opacity: 1;
+    transition: all .5s ease-out;
   }
   .hide{
     max-height: 0;

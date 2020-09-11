@@ -1,9 +1,9 @@
 <template>
   <div class="villes">
     <div class="description">
-      <h1 class="home--title">
+      <h2 class="home--title">
         Villes populaires
-      </h1>
+      </h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur dolores ea explicabo facilis labore odio? Aperiam consequatur ea earum eos excepturi minima quod ratione ullam veritatis vitae. Ex, velit!</p>
     </div>
     <villes-list style="margin-bottom: 26px;" />

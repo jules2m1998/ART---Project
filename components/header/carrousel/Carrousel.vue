@@ -74,9 +74,9 @@
           <div id="search">
             <div>
               <div v-show="text.isShow" class="my-title" :class="text.animation">
-                <p id="my-title">
+                <h1 id="my-title">
                   {{ text.title }}
-                </p>
+                </h1>
               </div>
               <p v-show="text.isShow" class="my-subtitle" :class="opposite(text.animation)">
                 {{ text.title }}
@@ -397,6 +397,9 @@ p{
           font-weight: 600;
           display: flex;
           align-items: flex-end;
+          h1{
+            font-size: inherit;
+          }
         }
         .my-subtitle{
           font-family: 'Open sans', sans-serif;

@@ -1,9 +1,9 @@
 <template>
   <div class="desc-enter">
     <div class="description">
-      <h1 class="my-title">
+      <h2 class="my-title">
         Entreprise populaires à proximité
-      </h1>
+      </h2>
       <div class="d-flex flex-column">
         <p>Retrouvez toutes les entreprises et structures administratives proche de vous en un clic</p>
         <v-btn small width="160" height="38" color="primary" style="margin-top: 20px;">
