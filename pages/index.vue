@@ -5,11 +5,13 @@
     <v-container>
       <div class="my-content pb-8">
         <div class="d-flex flex-column">
-          <the-categories :categories="categories" />
+          <the-categories v-if="false" :categories="categories" />
+          <skeleton-the-categories v-else />
           <div class="inner-pub">
             pub
           </div>
-          <the-numero-urgent :phones="phones" />
+          <the-numero-urgent v-if="false" :phones="phones" />
+          <skeleton-the-numero-urgent v-else />
         </div>
         <div class="pub">
           Publicités
@@ -20,7 +22,8 @@
       <google-map />
       <div class="enterprise">
         <v-container>
-          <the-home-enterprise />
+          <the-home-enterprise v-if="false" />
+          <skeleton-the-home-enterprise v-else />
         </v-container>
       </div>
     </div>
@@ -29,12 +32,14 @@
         publicité
       </div>
       <div class="villes">
-        <villes />
+        <villes v-if="false" />
+        <skeleton-villes v-else />
       </div>
     </v-container>
     <div class="lines" />
     <v-container>
-      <partner />
+      <partner v-if="false" />
+      <skeleton-partner v-else />
     </v-container>
   </div>
 </template>
@@ -49,8 +54,13 @@ import TheHomeEnterprise from '@/components/home-enterprise/TheHomeEnterprise'
 import Villes from '~/components/ville-home/Villes'
 import Partner from '~/components/partner-home/Partner'
 import Defilement from '@/components/defilement/Defilement'
+import SkeletonTheCategories from '@/components/categoris/skeleton/SkeletonTheCategories'
+import SkeletonTheNumeroUrgent from '@/components/numero-urgent/skeleton/SkeletonTheNumeroUrgent'
+import SkeletonTheHomeEnterprise from '@/components/home-enterprise/skeleton/SkeletonTheHomeEnterprise'
+import SkeletonVilles from '@/components/ville-home/skeleton/SkeletonVilles'
+import SkeletonPartner from '@/components/partner-home/skeleton/SkeletonPartner'
 export default {
-  components: { Defilement, Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
+  components: { SkeletonPartner, SkeletonVilles, SkeletonTheHomeEnterprise, SkeletonTheNumeroUrgent, SkeletonTheCategories, Defilement, Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
   data () {
     return {
       /**
@@ -292,6 +302,12 @@ export default {
         }
       ]
     }
+  },
+  head: {
+    title: 'Bienvenue dans l\'annuaire universelle',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Home page description' }
+    ]
   }
 }
 </script>

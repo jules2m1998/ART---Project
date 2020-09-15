@@ -1,23 +1,27 @@
 <template>
-  <v-container class="font-sans" fluid>
-    <v-container>
-      <div id="profile">
-        <div id="menu">
-          <the-menu :elements="menus" :is-responsive="isResponsive" />
+  <div>
+    <header-second />
+    <v-container class="font-sans" fluid>
+      <v-container>
+        <div id="profile">
+          <div id="menu">
+            <the-menu :elements="menus" :is-responsive="isResponsive" />
+          </div>
+          <div id="routes">
+            <nuxt-child />
+          </div>
         </div>
-        <div id="routes">
-          <nuxt-child />
-        </div>
-      </div>
+      </v-container>
     </v-container>
-  </v-container>
+  </div>
 </template>
 
 <script>
 import TheMenu from '~/components/menu/TheMenu'
+import HeaderSecond from '@/components/header-second/HeaderSecond'
 export default {
   name: 'Profile',
-  components: { TheMenu },
+  components: { HeaderSecond, TheMenu },
   data: () => ({
     menus: [
       {

@@ -318,3 +318,61 @@ h2{
 .carousel-content{
   margin: auto;
 }
+
+/** SKELETON **/
+.skeleton{
+  background-color: var(--skeleton, #0000001C);
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent,
+    var(--skeleton, rgba(0,0,0,.06)),
+    transparent);
+  transform: translateX(-100%);
+  animation: waves 1.6s linear .5s infinite;
+}
+.skeleton-title {
+  width: 300px;
+  height: 20px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.skeleton-sub-title{
+  width: 60%;
+  height: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+@keyframes waves {
+  0% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+.pulse-btn{
+  border: 22px solid $yellow;
+  width: 42px;
+  height: 42px;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite;
+  #profile-btn{
+  }
+}
