@@ -4,12 +4,11 @@ export default {
     fake: undefined,
     rect: null,
     top: null,
-    inme: undefined,
-    disappear: undefined,
-    appear: undefined,
-    mount: undefined,
-    parentMount: undefined,
-    mountParentLn: null
+    nodes: undefined,
+    boxes: [],
+    elementH: null,
+    first: true,
+    h: null
   }),
   methods: {
     /**
@@ -25,40 +24,24 @@ export default {
      * Applique le comportement sticky lors du scroll et anime les élément
      */
     onscroll () {
+      // Comportement du sticky
       const hasScrollClass = this.element.classList.contains('sticky')
       if (this.scrollY() > this.top && !hasScrollClass) {
         this.element.classList.add('sticky')
-        this.element.style.width = this.width + 'px'
+        this.element.style.width = '100%'
         this.element.parentNode.insertBefore(this.fake, this.element)
+        this.animateElements()
       } else if (this.scrollY() <= this.top && hasScrollClass) {
         this.element.classList.remove('sticky')
         this.element.parentNode.removeChild(this.fake)
+        this.animateElements(false)
       }
-      const nbScroll = this.scrollY() < this.mountParentLn ? this.scrollY() : this.mountParentLn
-      const parentHeight = this.scrollY() < this.mountParentLn ? (this.mountParentLn - this.scrollY()) !== 0 ? (this.mountParentLn - this.scrollY()) + 'px' : 'auto' : '0'
-      const parentMountH = this.mount.parentNode.getBoundingClientRect().height
-      // const transpourcent = parentMountH / this.mountParentLn * 100 > 0 ? parentMountH / this.mountParentLn * 100 : 0
-      let transAppear
-      let transDisAppear
-      if (this.scrollY() > 0) {
-        transAppear = parentMountH * this.appear.getBoundingClientRect().width / this.mountParentLn
-        transDisAppear = parentMountH * this.appear.getBoundingClientRect().width / this.mountParentLn
-      } else {
-        transAppear = 100
-        transDisAppear = 100
-      }
-
-      this.mount.style.transform = `translate3d(0, -${nbScroll}px, 0)`
-      this.mount.parentNode.style.height = parentHeight
-
-      this.appear.style.transform = `translate3d(-${100 - transAppear}%,0,0)`
-      this.disappear.style.transform = `translate3d(${100 - transDisAppear}%,0,0)`
     },
     /**
      * Permet la mise en responsive
      */
     onresize () {
-      this.element.style.width = 'auto'
+      this.element.style.width = '100%'
       this.element.classList.remove('sticky')
       this.fake.style.display = 'none'
       this.rect = this.element.getBoundingClientRect()
@@ -68,33 +51,69 @@ export default {
       this.fake.style.display = 'block'
       this.onscroll()
     },
-    /**
-     * Renvoie la hauteur du parent du mount
-     * @return {number | number}
-     */
-    parentMountBounding () {
-      return this.inme.getBoundingClientRect().height
+    initScrollData () {
+      this.element = document.querySelector('[data-sticky]')
+      this.rect = this.element.getBoundingClientRect()
+      this.top = this.rect.top + this.scrollY()
+      this.width = this.rect.width
+      this.fake = document.createElement('div')
+      this.fake.style.width = this.rect.width + 'px'
+      this.fake.style.height = this.rect.height + 'px'
+      window.addEventListener('scroll', this.onscroll.bind(this))
+      window.addEventListener('resize', this.onresize.bind(this))
+    },
+    initAnimationScroll () {
+      this.nodes = document.querySelectorAll('[data-animate]')
+      this.elementH = this.element.getBoundingClientRect().height
+      for (let i = 0; i < this.nodes.length; i++) {
+        const node = this.nodes[i]
+        // eslint-disable-next-line no-undef
+        TweenLite.set(node, { x: 0 })
+
+        this.boxes[i] = {
+          transform: node._gsTransform,
+          x: node.offsetLeft,
+          y: node.offsetTop,
+          node
+        }
+      }
+    },
+    animateElements (isDown = true) {
+      // eslint-disable-next-line no-undef
+      const tweenLite = TweenLite
+      for (let i = 0; i < this.boxes.length; i++) {
+        const box = this.boxes[i]
+
+        const lastX = box.x
+        const lastY = box.y
+
+        box.x = box.node.offsetLeft
+        box.y = box.node.offsetTop
+
+        // Continue if box hasn't moved
+        if (lastX === box.x && lastY === box.y) { continue }
+
+        // Reversed delta values taking into account current transforms
+        const x = box.transform.x + lastX - box.x
+        const y = box.transform.y + lastY - box.y
+        tweenLite.fromTo(box.node, 0.6, { x, y }, { x: 0, y: 0 })
+
+        // Tween to 0 to remove the transforms
+      }
+      if (isDown) {
+        if (this.first) {
+          this.h = this.element.getBoundingClientRect().height
+        }
+        tweenLite.fromTo(this.element, 0.6, { height: this.elementH }, { height: this.h })
+        this.first = false
+      }
+      if (!isDown) {
+        tweenLite.fromTo(this.element, 0.6, { height: this.element.getBoundingClientRect().height }, { height: this.elementH + 50 })
+      }
     }
   },
   mounted () {
-    this.element = document.querySelector('[data-sticky]')
-    this.rect = this.element.getBoundingClientRect()
-    this.top = this.rect.top + this.scrollY()
-    this.width = this.rect.width
-    this.fake = document.createElement('div')
-    this.fake.style.width = this.rect.width + 'px'
-    this.fake.style.height = this.rect.height + 'px'
-
-    this.inme = document.querySelector('[data-inme]')
-    this.disappear = document.querySelector('[data-disappear]')
-    this.appear = document.querySelector('[data-appear]')
-    this.mount = document.querySelector('[data-mount]')
-    this.parentMount = this.mount.parentNode
-
-    this.appear.parentNode.style.transform = `translate3d( ${this.appear.getBoundingClientRect().width}px,0,0)`
-    this.mountParentLn = this.parentMountBounding()
-
-    window.addEventListener('scroll', this.onscroll.bind(this))
-    window.addEventListener('resize', this.onresize.bind(this))
+    this.initScrollData()
+    this.initAnimationScroll()
   }
 }

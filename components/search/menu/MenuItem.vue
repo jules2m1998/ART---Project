@@ -1,6 +1,6 @@
 <template>
   <nuxt-link class="menu" :to="item.to">
-    <span>
+    <span style="white-space: nowrap">
       {{ item.name.toUpperCase() }}
     </span>
   </nuxt-link>

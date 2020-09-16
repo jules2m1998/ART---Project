@@ -1,32 +1,30 @@
 <template>
   <div class="header-second" data-sticky>
     <v-container>
-      <div class="top" data-inme>
-        <header-logo />
-        <div style="display: flex; flex-direction: row;">
-          <header-btn data-disappear style="padding-right: 12px" />
-          <div data-appear style="min-height: 100px; padding-left: 12px;padding-right: 12px;">
-            <div class="pulse-btn" style="position: relative; top: 26px;">
-              <v-btn
-                id="profile-btn"
-                width="40"
-                height="40"
-                fab
-                dark
-                large
-                color="white"
-                depressed
-              >
-                <v-icon color="black" size="20">
-                  fas fa-bars
-                </v-icon>
-              </v-btn>
-            </div>
+      <div class="top">
+        <header-logo class="logo" />
+        <div class="menu">
+          <header-btn />
+          <div class="pulse-btn">
+            <v-btn
+              id="profile-btn"
+              width="40"
+              height="40"
+              fab
+              dark
+              large
+              color="white"
+              depressed
+            >
+              <v-icon color="black" size="20">
+                fas fa-bars
+              </v-icon>
+            </v-btn>
           </div>
         </div>
-      </div>
-      <div class="bottom">
-        <search data-search data-mount />
+        <div data-animate class="bottom">
+          <search data-search data-mount />
+        </div>
       </div>
     </v-container>
   </div>
@@ -49,16 +47,45 @@ export default {
   background: url("/bg.jpg") no-repeat;
   .top{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    overflow-x: hidden;
-  }
-  .bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     width: 100%;
+    flex-wrap: wrap;
+    .logo{
+      order: 1;
+    }
+    .menu{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: calc(100% - 270px);
+      order: 2;
+    }
+    .bottom{
+      order: 3;
+      width: auto;
+      display: flex;
+      flex-direction: row;
+      align-self: flex-end;
+      padding-top: 50px;
+    }
+    [data-animate]{
+      //border: 1px solid red;
+    }
+  }
+  &.sticky{
+    .top{
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      .menu{
+        order: 3;
+        width: auto;
+      }
+      .bottom{
+        order: 2;
+        padding-top: 0;
+      }
+    }
   }
 }
 .sticky{
