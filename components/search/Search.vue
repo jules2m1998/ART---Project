@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-menu :menus="menus" @changecurrent="doUpdate" />
+    <my-menu v-if="this.isTopVisible" class="my-menu" :menus="menus" @changecurrent="doUpdate" />
     <search-bar />
   </div>
 </template>
@@ -11,6 +11,12 @@ import SearchBar from '@/components/search-bar/SearchBar'
 export default {
   name: 'Search',
   components: { SearchBar, MyMenu },
+  props: {
+    isTopVisible: {
+      type: Boolean,
+      default: true
+    }
+  },
   data: () => ({
     /**
      * Liste des menus
@@ -42,7 +48,6 @@ export default {
   methods: {
     doUpdate (e) {
       this.menus = e
-      debugger
     }
   }
 }

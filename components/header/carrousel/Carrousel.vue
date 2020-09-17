@@ -30,7 +30,7 @@
               </p>
             </div>
             <div class="search">
-              <search />
+              <search style="max-width: 728px;" />
               <p class="">
                 Près de <span>04 millions</span> d'entreprises et proffessionnels à votre disposition
               </p>

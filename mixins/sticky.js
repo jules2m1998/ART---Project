@@ -8,7 +8,8 @@ export default {
     boxes: [],
     elementH: null,
     first: true,
-    h: null
+    h: null,
+    isTopVisible: true
   }),
   methods: {
     /**
@@ -30,11 +31,13 @@ export default {
         this.element.classList.add('sticky')
         this.element.style.width = '100%'
         this.element.parentNode.insertBefore(this.fake, this.element)
+        this.isTopVisible = false
         this.animateElements()
       } else if (this.scrollY() <= this.top && hasScrollClass) {
         this.element.classList.remove('sticky')
         this.element.parentNode.removeChild(this.fake)
         this.animateElements(false)
+        this.isTopVisible = true
       }
     },
     /**
@@ -74,6 +77,7 @@ export default {
           transform: node._gsTransform,
           x: node.offsetLeft,
           y: node.offsetTop,
+          width: node.getBoundingClientRect().width,
           node
         }
       }
@@ -96,7 +100,7 @@ export default {
         // Reversed delta values taking into account current transforms
         const x = box.transform.x + lastX - box.x
         const y = box.transform.y + lastY - box.y
-        tweenLite.fromTo(box.node, 0.6, { x, y }, { x: 0, y: 0 })
+        tweenLite.fromTo(box.node, 0.6, { x, y }, { x: 0, y: 0, ease: 'slow(0.7, 0.7, false)' })
 
         // Tween to 0 to remove the transforms
       }
@@ -108,7 +112,7 @@ export default {
         this.first = false
       }
       if (!isDown) {
-        tweenLite.fromTo(this.element, 0.6, { height: this.element.getBoundingClientRect().height }, { height: this.elementH + 50 })
+        tweenLite.fromTo(this.element, 0, { height: this.element.getBoundingClientRect().height }, { height: 'auto' })
       }
     }
   },

@@ -32,7 +32,6 @@ export default {
 <style lang="scss" scoped>
   .search-bar{
     width: 100%;
-    max-width: 728px;
     display: grid;
     grid-template-columns: 1fr 1px 1fr 140px;
     align-items: stretch;
