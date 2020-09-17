@@ -55,12 +55,12 @@
 <script>
 import HeaderLogo from '@/components/header-logo/HeaderLogo'
 import HeaderBtn from '@/components/header-btn/HeaderBtn'
-// import sticky from '@/mixins/sticky'
+import sticky from '@/mixins/sticky'
 import Search from '@/components/search/Search'
 export default {
   name: 'HeaderSecond',
-  components: { Search, HeaderBtn, HeaderLogo }
-  // mixins: [sticky]
+  components: { Search, HeaderBtn, HeaderLogo },
+  mixins: [sticky]
 }
 </script>
 
