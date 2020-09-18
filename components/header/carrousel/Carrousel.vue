@@ -30,7 +30,7 @@
               </p>
             </div>
             <div class="search">
-              <search style="max-width: 728px;" />
+              <search style="max-width: 728px;" :is-responsive="isSearchResponsive" />
               <p class="">
                 Près de <span>04 millions</span> d'entreprises et proffessionnels à votre disposition
               </p>
@@ -121,7 +121,12 @@ export default {
         to: '',
         icon: 'login'
       }
-    ]
+    ],
+    /**
+     * Determine si la barre de recherche devient responsive
+     * @type {Boolean}
+     **/
+    isSearchResponsive: false
   }),
   computed: {
     /**
@@ -148,6 +153,11 @@ export default {
   },
   mounted () {
     this.startAutoSlide()
+    const media = window.matchMedia('(max-width: 440px)')
+    const screenTest = (e) => {
+      this.isSearchResponsive = e.matches
+    }
+    media.addEventListener('change', screenTest)
     const title = document.querySelector('#my-title')
     clamp(title, 2)
   },

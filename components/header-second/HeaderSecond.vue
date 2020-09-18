@@ -4,6 +4,18 @@
       <div class="top">
         <header-logo class="logo" />
         <div class="menu">
+          <div class="search-btn mr-3">
+            <v-btn icon color="white" @click="toogleSearbarVisibility">
+              <v-icon>
+                <template v-if="!isShow">
+                  fas fa-search
+                </template>
+                <template v-else>
+                  fas fa-times
+                </template>
+              </v-icon>
+            </v-btn>
+          </div>
           <div class="show">
             <header-btn />
           </div>
@@ -26,8 +38,8 @@
             </div>
           </div>
         </div>
-        <div data-animate class="bottom">
-          <search :is-top-visible="isTopVisible" data-search data-mount />
+        <div data-animate class="bottom" data-bottom-render>
+          <search :is-top-visible="isTopVisible" :is-search-bar-responsive="isSearchResponsive" :is-menu-responsive="isMenuResponsive" data-search data-mount />
         </div>
         <div class="the-box">
           <v-btn class="the-box-btn" color="#fff" text>
@@ -57,10 +69,57 @@ import HeaderLogo from '@/components/header-logo/HeaderLogo'
 import HeaderBtn from '@/components/header-btn/HeaderBtn'
 import sticky from '@/mixins/sticky'
 import Search from '@/components/search/Search'
+import responsive from '@/mixins/responsive'
 export default {
   name: 'HeaderSecond',
   components: { Search, HeaderBtn, HeaderLogo },
-  mixins: [sticky]
+  mixins: [sticky, responsive],
+  data: () => ({
+    /**
+     * Determine si la search bar du de la barre de recherche doit être responsive ou non
+     * @type {Boolean}
+     */
+    isSearchResponsive: false,
+    /**
+     * Determine si le menu de la barre de recherche doit être visible doit être responsive ou non
+     * @type {Boolean}
+     */
+    isMenuResponsive: false,
+    /**
+     * @type {HTMLElement}
+     */
+    bottom: undefined,
+    isShow: false
+  }),
+  mounted () {
+    this.bottom = document.querySelector('[data-bottom-render]')
+    window.addEventListener('resize', () => {
+      this.bottom.classList.remove('visible')
+      this.isShow = this.bottom.classList.contains('visible')
+    })
+    this.addMediaQuery(565, (e) => {
+      this.isSearchResponsive = e.matches
+    })
+    this.addMediaQuery(640, (e) => {
+      this.isMenuResponsive = e.matches
+    })
+    this.makeResponsive()
+  },
+  methods: {
+    toogleSearbarVisibility () {
+      this.bottom.classList.toggle('visible')
+      this.isShow = this.bottom.classList.contains('visible')
+    },
+    makeResponsive () {
+      const res = window.innerWidth
+      if (res < 640) {
+        this.isSearchResponsive = true
+        if (res < 565) {
+          this.isSearchResponsive = true
+        }
+      }
+    }
+  }
 }
 </script>
 
@@ -100,6 +159,7 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
+      align-items: center;
       width: calc(100% - 270px);
       order: 2;
       @media screen and (max-width: 623px) {
@@ -114,11 +174,18 @@ export default {
           display: inline-block;
         }
       }
+
+      .search-btn{
+        display: none;
+      }
     }
 
     @media screen and (max-width: 996px){
       .bottom{
-        width: auto!important;
+        width: 100%!important;
+        &>div{
+          width: 100%;
+        }
       }
       .the-box {
         display: none;
@@ -137,6 +204,9 @@ export default {
     }
   }
   &.sticky{
+    @media screen and (max-width: 809px) {
+      height: auto !important;
+    }
     .top{
       flex-wrap: nowrap;
       justify-content: space-between;
@@ -159,6 +229,23 @@ export default {
           }
         }
       }
+      @media screen and (max-width: 809px){
+        height: auto!important;
+        flex-wrap: wrap;
+        .menu{
+          order: 2;
+          .search-btn{
+            display: block;
+          }
+        }
+        .bottom{
+          order: 3;
+          display: none;
+          &.visible{
+            display: block;
+          }
+        }
+      }
       .bottom{
         order: 2;
         padding-top: 0;
@@ -166,7 +253,6 @@ export default {
         margin: auto;
         [data-search]{
           width: 100%;
-          margin: 0 10px;
           .my-menu{
             display: none;
             border: 1px solid red;
@@ -178,13 +264,11 @@ export default {
   .show{
     opacity: 1;
     width: auto;
-    transition: width .6s;
     display: inline-block;
   }
   .unshow{
     opacity: 0;
     width: 0;
-    transition: width .6s;
     display: none;
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <my-menu v-if="this.isTopVisible" class="my-menu" :menus="menus" @changecurrent="doUpdate" />
-    <search-bar />
+    <my-menu v-if="isTopVisible" class="my-menu" :menus="menus" :is-responsive="isMenuResponsive" @changecurrent="doUpdate" />
+    <search-bar :is-responsive="isSearchBarResponsive" />
   </div>
 </template>
 
@@ -15,6 +15,16 @@ export default {
     isTopVisible: {
       type: Boolean,
       default: true
+    },
+    isSearchBarResponsive: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    isMenuResponsive: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
   data: () => ({

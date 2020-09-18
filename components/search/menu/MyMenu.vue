@@ -1,6 +1,6 @@
 <template>
   <div style="margin-bottom: 4px; margin-left: 6px">
-    <menu-list :menus="menus" />
+    <menu-list :menus="menus" :is-responsive="isResponsive" />
   </div>
 </template>
 <script>
@@ -12,6 +12,11 @@ export default {
     menus: {
       type: Array,
       required: true
+    },
+    isResponsive: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   }
 }

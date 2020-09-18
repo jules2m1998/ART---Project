@@ -39,10 +39,14 @@ export default {
     menus: {
       type: Array,
       required: true
+    },
+    isResponsive: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
   data: () => ({
-    isResponsive: false,
     isLoad: false
   }),
   computed: {
@@ -69,25 +73,13 @@ export default {
   },
   mounted () {
     this.isLoad = true
-    if (window.innerWidth < 437) {
-      this.isResponsive = true
-    }
-    this.addMediaQuery()
   },
   methods: {
-    addMediaQuery () {
-      const media = window.matchMedia('(max-width: 437px)')
-      const screenTest = (e) => {
-        this.isResponsive = e.matches
-      }
-      media.addEventListener('change', screenTest)
-    },
     addCurrent (id) {
       const menu = [...this.menus].map((x) => {
         x.isCurrent = x.id === id
         return x
       })
-      console.log(menu, id)
       this.$emit('changecurrent', menu)
     }
   }

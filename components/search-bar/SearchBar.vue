@@ -1,5 +1,5 @@
 <template>
-  <div class="search-bar">
+  <div class="search-bar" :class="{ isResponsive: isResponsive }">
     <div class="input">
       <v-icon>
         search
@@ -25,7 +25,14 @@
 
 <script>
 export default {
-  name: 'SearchBar'
+  name: 'SearchBar',
+  props: {
+    isResponsive: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  }
 }
 </script>
 
@@ -38,19 +45,40 @@ export default {
     height: 49px;
     background: white;
     border-radius: 6px;
-    @media screen and (max-width: 440px){
-      grid-template-columns: 1fr;
-      height: auto;
-      background: unset;
-      border-radius: unset;
+    //@media screen and (max-width: 440px){
+    //  grid-template-columns: 1fr;
+    //  height: auto;
+    //  background: unset;
+    //  border-radius: unset;
+    //}
+    &.isResponsive {
+        grid-template-columns: 1fr;
+        height: auto;
+        background: unset;
+        border-radius: unset;
+      .input{
+          height: 49px;
+          background: white;
+          border-radius: 6px;
+          margin-bottom: 10px;
+      }
+      .my-btn{
+        button{
+          height: 49px;
+          border-radius: 6px;
+        }
+      }
     }
     .input{
-      @media screen and (max-width: 440px){
-        height: 49px;
-        background: white;
-        border-radius: 6px;
-        margin-bottom: 10px;
-      }
+      //@media screen and (max-width: 440px){
+      //  height: 49px;
+      //  background: white;
+      //  border-radius: 6px;
+      //  margin-bottom: 10px;
+      //}
+      display: grid;
+      grid-template-columns: 50px auto;
+      padding-right: 7px;
       label{
         display: flex;
         height: 100%;
@@ -77,9 +105,6 @@ export default {
           }
         }
       }
-      display: grid;
-      grid-template-columns: 50px auto;
-      padding-right: 7px;
       input{
         width: 100%;
       }
@@ -102,10 +127,10 @@ export default {
         border-radius: 0 6px 6px 0;
         background: $yellow;
         text-transform: uppercase!important;
-        @media screen and (max-width: 440px){
-          height: 49px;
-          border-radius: 6px;
-        }
+        //@media screen and (max-width: 440px){
+        //  height: 49px;
+        //  border-radius: 6px;
+        //}
       }
     }
   }
