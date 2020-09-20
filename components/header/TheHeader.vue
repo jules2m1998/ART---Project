@@ -41,6 +41,9 @@ export default {
     position: relative;
     overflow: hidden;
 
+    @media screen and (max-width: 616px){
+      min-height: 638px;
+    }
     @media screen and (max-width: 440px){
       min-height: 670px;
     }

@@ -7,7 +7,7 @@
           <div class="search-btn mr-3">
             <v-btn icon color="white" @click="toogleSearbarVisibility">
               <v-icon>
-                <template v-if="!isShow">
+                <template v-if="!isSearch">
                   fas fa-search
                 </template>
                 <template v-else>
@@ -89,13 +89,17 @@ export default {
      * @type {HTMLElement}
      */
     bottom: undefined,
-    isShow: false
+    /**
+     * Determine si le boutton lors du click est rechercher ou fermer
+     * @type {boolean}
+     **/
+    isSearch: false
   }),
   mounted () {
     this.bottom = document.querySelector('[data-bottom-render]')
     window.addEventListener('resize', () => {
       this.bottom.classList.remove('visible')
-      this.isShow = this.bottom.classList.contains('visible')
+      this.isSearch = this.bottom.classList.contains('visible')
     })
     this.addMediaQuery(565, (e) => {
       this.isSearchResponsive = e
@@ -103,21 +107,14 @@ export default {
     this.addMediaQuery(640, (e) => {
       this.isMenuResponsive = e
     })
-    // this.makeResponsive()
   },
   methods: {
+    /**
+     * Affiche la barre de recherche lors du click sur le boutton de recherche en sticky
+     */
     toogleSearbarVisibility () {
       this.bottom.classList.toggle('visible')
-      this.isShow = this.bottom.classList.contains('visible')
-    },
-    makeResponsive () {
-      const res = window.innerWidth
-      if (res < 640) {
-        this.isSearchResponsive = true
-        if (res < 565) {
-          this.isSearchResponsive = true
-        }
-      }
+      this.isSearch = this.bottom.classList.contains('visible')
     }
   }
 }
@@ -250,13 +247,16 @@ export default {
         order: 2;
         padding-top: 0;
         width: 100%;
-        margin: auto;
+        margin: auto 10px;
         [data-search]{
           width: 100%;
           .my-menu{
             display: none;
             border: 1px solid red;
           }
+        }
+        &.visible{
+          margin: auto;
         }
       }
     }

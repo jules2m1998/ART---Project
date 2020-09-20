@@ -14,14 +14,34 @@
         <div id="logo__menu" class="d-flex flex-column">
           <div class="d-flex flex-row justify-space-between">
             <header-logo />
-            <header-btn />
+            <div id="the-menu">
+              <div id="menus">
+                <header-btn />
+              </div>
+              <div id="burger" class="pulse-btn">
+                <v-btn
+                  id="profile-btn"
+                  width="40"
+                  height="40"
+                  fab
+                  dark
+                  large
+                  color="white"
+                  depressed
+                >
+                  <v-icon color="black" size="20">
+                    fas fa-bars
+                  </v-icon>
+                </v-btn>
+              </div>
+            </div>
           </div>
         </div>
         <div id="search--pub">
           <div id="search">
-            <div>
+            <div class="contains-title">
               <div v-show="text.isShow" class="my-title" :class="text.animation">
-                <h1 id="my-title">
+                <h1 id="my-title" style="">
                   {{ text.title }}
                 </h1>
               </div>
@@ -256,7 +276,7 @@ export default {
       this.text.isShow = false
       setTimeout(() => {
         this.text = { isShow: true, ...e }
-      }, 1)
+      }, 10)
     },
     /**
      * Retourne l'animation opposé à celle passé en paramètre
@@ -320,6 +340,22 @@ p{
       justify-content: center;
       z-index: 10;
       margin-top: 10px;
+      #the-menu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 597px) {
+          #menus{
+            display: none;
+          }
+          #burger{
+            display: flex!important;
+          }
+        }
+        #burger{
+          display: none;
+        }
+      }
     }
     #search--pub{
       display: grid;
@@ -344,6 +380,14 @@ p{
             span{
               background: rgba($yellow, .6);
             }
+          }
+        }
+        @media screen and (max-width: 616px){
+          .contains-title{
+            margin-bottom: 20px;
+          }
+          .my-title{
+            min-height: 112px;
           }
         }
         .my-title{
