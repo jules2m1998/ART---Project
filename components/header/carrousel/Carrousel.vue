@@ -30,7 +30,7 @@
               </p>
             </div>
             <div class="search">
-              <search style="max-width: 728px;" :is-responsive="isSearchResponsive" />
+              <search :is-search-bar-responsive="isSearchResponsive" :is-menu-responsive="isMenuResponsive" />
               <p class="">
                 Près de <span>04 millions</span> d'entreprises et proffessionnels à votre disposition
               </p>
@@ -54,9 +54,11 @@ import CarrouselSlide from '~/components/header/carrousel/CarrouselSlide'
 import Search from '@/components/search/Search'
 import HeaderBtn from '@/components/header-btn/HeaderBtn'
 import HeaderLogo from '@/components/header-logo/HeaderLogo'
+import responsive from '@/mixins/responsive'
 export default {
   name: 'Carrousel',
   components: { HeaderLogo, HeaderBtn, Search, CarrouselSlide },
+  mixins: [responsive],
   props: {
     slides: {
       type: Array,
@@ -123,10 +125,15 @@ export default {
       }
     ],
     /**
-     * Determine si la barre de recherche devient responsive
+     * Determine si la search bar du de la barre de recherche doit être responsive ou non
      * @type {Boolean}
-     **/
-    isSearchResponsive: false
+     */
+    isSearchResponsive: false,
+    /**
+     * Determine si le menu de la barre de recherche doit être visible doit être responsive ou non
+     * @type {Boolean}
+     */
+    isMenuResponsive: false
   }),
   computed: {
     /**
@@ -160,6 +167,17 @@ export default {
     media.addEventListener('change', screenTest)
     const title = document.querySelector('#my-title')
     clamp(title, 2)
+
+    this.addMediaQuery(616, (e) => {
+      this.isSearchResponsive = e
+      this.isMenuResponsive = e
+    })
+    this.addMediaQueryMin(756, (e) => {
+      this.isMenuResponsive = e
+    })
+    this.addMediaQuery(921, (e) => {
+      this.isMenuResponsive = e
+    })
   },
   created () {
     this.tmp = [...this.animations]

@@ -98,12 +98,12 @@ export default {
       this.isShow = this.bottom.classList.contains('visible')
     })
     this.addMediaQuery(565, (e) => {
-      this.isSearchResponsive = e.matches
+      this.isSearchResponsive = e
     })
     this.addMediaQuery(640, (e) => {
-      this.isMenuResponsive = e.matches
+      this.isMenuResponsive = e
     })
-    this.makeResponsive()
+    // this.makeResponsive()
   },
   methods: {
     toogleSearbarVisibility () {
