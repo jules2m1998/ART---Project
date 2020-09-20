@@ -50,7 +50,7 @@
               </p>
             </div>
             <div class="search">
-              <search :is-search-bar-responsive="isSearchResponsive" :is-menu-responsive="isMenuResponsive" />
+              <search :is-search-bar-responsive="isSearchResponsive" :is-menu-responsive="isMenuResponsive" data-search />
               <p class="">
                 Près de <span>04 millions</span> d'entreprises et proffessionnels à votre disposition
               </p>

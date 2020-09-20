@@ -1,5 +1,6 @@
 <template>
   <div class="font-sans">
+    <header-second v-if="isHeaderSecondVisible" :is-home="true" />
     <the-header :slides="sliders" />
     <defilement />
     <v-container>
@@ -59,8 +60,9 @@ import SkeletonTheNumeroUrgent from '@/components/numero-urgent/skeleton/Skeleto
 import SkeletonTheHomeEnterprise from '@/components/home-enterprise/skeleton/SkeletonTheHomeEnterprise'
 import SkeletonVilles from '@/components/ville-home/skeleton/SkeletonVilles'
 import SkeletonPartner from '@/components/partner-home/skeleton/SkeletonPartner'
+import HeaderSecond from '@/components/header-second/HeaderSecond'
 export default {
-  components: { SkeletonPartner, SkeletonVilles, SkeletonTheHomeEnterprise, SkeletonTheNumeroUrgent, SkeletonTheCategories, Defilement, Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
+  components: { HeaderSecond, SkeletonPartner, SkeletonVilles, SkeletonTheHomeEnterprise, SkeletonTheNumeroUrgent, SkeletonTheCategories, Defilement, Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
   data () {
     return {
       /**
@@ -300,19 +302,44 @@ export default {
           mail: '',
           site: ''
         }
-      ]
+      ],
+      isHeaderSecondVisible: false
+    }
+  },
+  mounted () {
+    console.log(document.querySelector('[data-search]'))
+    const search = document.querySelector('[data-search]')
+    const searchY = search.getBoundingClientRect().y
+    // this.isHeaderSecondVisible = this.scrollY() > searchY + search.getBoundingClientRect().height
+
+    window.addEventListener('scroll', () => {
+      this.isHeaderSecondVisible = this.scrollY() > searchY + search.getBoundingClientRect().height
+    })
+  },
+  methods: {
+    scrollY () {
+      const supportPageOffset = window.pageXOffset !== undefined
+      const isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat')
+      return supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
     }
   },
   head: {
     title: 'Bienvenue dans l\'annuaire universelle',
     meta: [
       { hid: 'description', name: 'description', content: 'Home page description' }
+    ],
+    script: [
+      { src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js', defer: true },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js', defer: true }
     ]
   }
 }
 </script>
 
 <style lang="scss">
+.fake-menu{
+  display: none!important;
+}
 .my-content{
   margin-top: 56px;
   display: grid;

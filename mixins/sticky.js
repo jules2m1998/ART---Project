@@ -1,4 +1,11 @@
 export default {
+  props: {
+    isHome: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  },
   data: () => ({
     /**
      * L'element qui a qui on va appliquer le comportement au scroll
@@ -70,13 +77,17 @@ export default {
       if (this.scrollY() > this.top && !hasScrollClass) {
         this.element.classList.add('sticky')
         this.element.style.width = '100%'
-        this.element.parentNode.insertBefore(this.fake, this.element)
+        if (!this.isHome) {
+          this.element.parentNode.insertBefore(this.fake, this.element)
+          this.animateElements()
+        }
         this.isTopVisible = false
-        this.animateElements()
       } else if (this.scrollY() <= this.top && hasScrollClass) {
         this.element.classList.remove('sticky')
-        this.element.parentNode.removeChild(this.fake)
-        this.animateElements(false)
+        if (!this.isHome) {
+          this.element.parentNode.removeChild(this.fake)
+          this.animateElements(false)
+        }
         this.isTopVisible = true
       }
     },
@@ -104,6 +115,7 @@ export default {
       this.top = this.rect.top + this.scrollY()
       this.width = this.rect.width
       this.fake = document.createElement('div')
+      this.fake.classList.add('fake-menu')
       this.fake.style.width = this.rect.width + 'px'
       this.fake.style.height = this.rect.height + 'px'
       window.addEventListener('scroll', this.onscroll.bind(this))
