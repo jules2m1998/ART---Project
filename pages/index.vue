@@ -1,6 +1,8 @@
 <template>
   <div class="font-sans">
-    <header-second v-if="isHeaderSecondVisible" :is-home="true" />
+    <transition name="translate">
+      <header-second v-if="isHeaderSecondVisible" :is-home="true" />
+    </transition>
     <the-header :slides="sliders" />
     <defilement />
     <v-container>
@@ -303,6 +305,10 @@ export default {
           site: ''
         }
       ],
+      /**
+       * determine si la barre des me,us est visible
+       * @type {boolean}
+       */
       isHeaderSecondVisible: false
     }
   },
@@ -310,10 +316,11 @@ export default {
     console.log(document.querySelector('[data-search]'))
     const search = document.querySelector('[data-search]')
     const searchY = search.getBoundingClientRect().y
-    // this.isHeaderSecondVisible = this.scrollY() > searchY + search.getBoundingClientRect().height
+    this.isHeaderSecondVisible = this.scrollY() > searchY + search.getBoundingClientRect().height
 
     window.addEventListener('scroll', () => {
-      this.isHeaderSecondVisible = this.scrollY() > searchY + search.getBoundingClientRect().height
+      const s = search.getBoundingClientRect().y
+      this.isHeaderSecondVisible = this.scrollY() > s + search.getBoundingClientRect().height
     })
   },
   methods: {
@@ -405,5 +412,27 @@ export default {
   height: 2px;
   background: $yellow;
   margin-bottom: 50px;
+}
+.translate-enter-active{
+  animation: translateTop linear .2s;
+}
+.translate-leave-active{
+  animation: translateBottom linear .2s;
+}
+@keyframes translateTop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes translateBottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
 }
 </style>

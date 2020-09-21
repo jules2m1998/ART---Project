@@ -11,7 +11,7 @@
         </v-btn>
       </div>
     </div>
-    <home-enterprise-list />
+    <home-enterprise-list class="the-enterprise-list" />
   </div>
 </template>
 <script>
@@ -45,6 +45,16 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 539px){
+    justify-content: center;
+    .description{
+      display: none;
+    }
+    .the-enterprise-list{
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 </style>

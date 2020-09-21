@@ -20,12 +20,6 @@ export default {
       type: Array,
       required: true
     }
-  },
-  data: () => ({
-  }),
-  computed: {
-  },
-  methods: {
   }
 }
 </script>

@@ -9,7 +9,7 @@
         <div class="skeleton" style="margin-top: 20px; width: 160px; height: 38px; border-radius: 4px" />
       </div>
     </div>
-    <skeleton-home-enterprise-list />
+    <skeleton-home-enterprise-list class="the-enterprise-list" />
   </div>
 </template>
 
@@ -32,5 +32,15 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 539px){
+      justify-content: center;
+      .description{
+        display: none;
+      }
+      .the-enterprise-list{
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
 </style>
