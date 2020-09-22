@@ -73,15 +73,16 @@
       </div>
       <v-divider class="my-3" />
       <div class="the-filter-list-content">
-        <v-switch
-          v-for="i in 7"
-          :key="i"
-          label="Show messages"
-          class="the-filter-list-content-item"
-          dense
-          flat
-          inset
-        />
+        <template v-if="currentFilter">
+          <v-checkbox
+            v-for="(filter, k) in currentFilter.filters"
+            :key="k"
+            v-model="filter.isActive"
+            class="the-filter-list-content-item"
+            dense
+            :label="filter.name"
+          />
+        </template>
       </div>
       <v-divider class="my-3" />
       <div class="the-filter-list-footer">
@@ -102,50 +103,39 @@ export default {
       {
         title: 'Catégories',
         isActive: false,
-        isVisible: true,
+        filters: [
+          {
+            id: 0,
+            name: 'Filtre 0',
+            isActive: false
+          },
+          {
+            id: 1,
+            name: 'Filtre 1',
+            isActive: false
+          },
+          {
+            id: 2,
+            name: 'Filtre 2',
+            isActive: false
+          },
+          {
+            id: 3,
+            name: 'Filtre 3',
+            isActive: false
+          },
+          {
+            id: 4,
+            name: 'Filtre 4',
+            isActive: false
+          },
+          {
+            id: 5,
+            name: 'Filtre 5',
+            isActive: false
+          }
+        ],
         id: 0
-      },
-      {
-        title: 'Quartiers',
-        isActive: false,
-        isVisible: true,
-        id: 1
-      },
-      {
-        title: 'Ouverts',
-        isActive: false,
-        isVisible: true,
-        id: 2
-      },
-      {
-        title: 'Horaires',
-        isActive: false,
-        isVisible: true,
-        id: 3
-      },
-      {
-        title: 'Langues',
-        isActive: false,
-        isVisible: true,
-        id: 4
-      },
-      {
-        title: 'Test 1',
-        isActive: true,
-        isVisible: true,
-        id: 5
-      },
-      {
-        title: 'Test 2',
-        isActive: false,
-        isVisible: true,
-        id: 6
-      },
-      {
-        title: 'Test 3',
-        isActive: false,
-        isVisible: true,
-        id: 7
       }
     ],
     /**
@@ -199,9 +189,8 @@ export default {
       this.currentFilter = active
       e.stopPropagation()
       const arrow = document.querySelector('.the-filter-list-arrow')
-      const element = e.target
-      arrow.style.left = `${element.getBoundingClientRect().x - element.getBoundingClientRect().width / 2}px`
-      console.log(element.clientWidth)
+      const el = document.querySelector(`.the-filter-content-item[data-id="${active.id}"]`)
+      arrow.style.left = `${el.getBoundingClientRect().x - el.getBoundingClientRect().width / 2 - 10}px`
     },
     /**
      * Rend le filtre adaptatif
@@ -414,6 +403,19 @@ export default {
       left: 50%;
       top: -19px;
       transform: translate(-50%, -50%);
+      &:before{
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: 8px solid white;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 30px solid transparent;
+        position: absolute;
+        top: -29px;
+        right: -8px;
+      }
     }
   }
 }
