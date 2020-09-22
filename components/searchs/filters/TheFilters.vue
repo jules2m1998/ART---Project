@@ -21,11 +21,11 @@
       <div class="the-filter-content-container">
         <div class="the-filter-content-container-items" data-content-responsive>
           <template v-for="(v, k) in filters">
-            <div v-if="v.isVisible" :key="k" class="the-filter-content-item" :data-id="v.id">
+            <div :key="k" class="the-filter-content-item" :data-id="v.id">
               <button
                 class="the-filter-content-item-button"
                 :class="{'the-filter-content-item-button-active': v.isActive }"
-                @click="makeActive(v)"
+                @click="e => makeActive(v, e)"
               >
                 <span class="the-filter-content-item-button-text">
                   {{ v.title }}
@@ -41,35 +41,6 @@
                   arrow_drop_down
                 </v-icon>
               </button>
-
-              <!--              <v-menu open-on-hover offset-y>-->
-              <!--                <template v-slot:activator="{ on, attrs }">-->
-              <!--                  <button-->
-              <!--                    v-bind="attrs"-->
-              <!--                    class="the-filter-content-item-button"-->
-              <!--                    :class="{'the-filter-content-item-button-active': v.isActive }"-->
-              <!--                    v-on="on"-->
-              <!--                    @click="makeActive(v)"-->
-              <!--                  >-->
-              <!--                    <span class="the-filter-content-item-button-text">-->
-              <!--                      {{ v.title }}-->
-              <!--                    </span>-->
-              <!--                    <v-icon-->
-              <!--                      v-if="v.isActive"-->
-              <!--                      color="primary"-->
-              <!--                      size="18"-->
-              <!--                    >-->
-              <!--                      check_circle_outline-->
-              <!--                    </v-icon>-->
-              <!--                    <v-icon size="18" class="the-filter-content-item-button-icon-filter">-->
-              <!--                      arrow_drop_down-->
-              <!--                    </v-icon>-->
-              <!--                  </button>-->
-              <!--                </template>-->
-              <!--                <div>-->
-              <!--                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, cupiditate dicta dignissimos error eveniet exercitationem ipsam libero omnis provident quaerat quasi rerum sit unde! Deleniti dolor dolore quae reiciendis tempora.-->
-              <!--                </div>-->
-              <!--              </v-menu>-->
             </div>
           </template>
         </div>
@@ -86,6 +57,39 @@
           more
         </v-icon>
       </v-btn>
+    </div>
+    <div v-show="currentFilter" class="the-filter-list" @click="e => e.stopPropagation()">
+      <div class="the-filter-list-header">
+        <div class="the-filter-list-header-title">
+          Choisissez le quartier que vous aimerez découvrir
+        </div>
+        <div class="close">
+          <v-btn icon x-small @click="closeFilterList">
+            <v-icon size="18px">
+              close
+            </v-icon>
+          </v-btn>
+        </div>
+      </div>
+      <v-divider class="my-3" />
+      <div class="the-filter-list-content">
+        <v-switch
+          v-for="i in 7"
+          :key="i"
+          label="Show messages"
+          class="the-filter-list-content-item"
+          dense
+          flat
+          inset
+        />
+      </div>
+      <v-divider class="my-3" />
+      <div class="the-filter-list-footer">
+        <v-btn color="primary" small>
+          Appliquer
+        </v-btn>
+      </div>
+      <div class="the-filter-list-arrow" />
     </div>
   </div>
 </template>
@@ -170,23 +174,34 @@ export default {
     /**
      * @type {number}
      **/
-    nbScroll: 0
+    nbScroll: 0,
+    /**
+     * Stock le filtre sur lequel on vient de clicker
+     * @type {Object}
+     **/
+    currentFilter: null
   }),
   mounted () {
     this.responsive = document.querySelector('[data-content-responsive]')
     this.getChildrenWidth()
     this.makeAdaptative()
     window.addEventListener('resize', this.makeAdaptative.bind(this))
+    window.addEventListener('click', () => {
+      this.currentFilter = null
+    })
   },
   methods: {
     /**
      * Rends l'element sur lequel le click a été effectué actif
      * @param active
      */
-    makeActive (active) {
-      this.filters.forEach((v) => {
-        v.isActive = v.title === active.title
-      })
+    makeActive (active, e) {
+      this.currentFilter = active
+      e.stopPropagation()
+      const arrow = document.querySelector('.the-filter-list-arrow')
+      const element = e.target
+      arrow.style.left = `${element.getBoundingClientRect().x - element.getBoundingClientRect().width / 2}px`
+      console.log(element.clientWidth)
     },
     /**
      * Rend le filtre adaptatif
@@ -280,6 +295,9 @@ export default {
         }
       }
       this.responsive.style.transform = `translate3d(-${width}px, 0, 0)`
+    },
+    closeFilterList () {
+      this.currentFilter = null
     }
   }
 }
@@ -287,6 +305,7 @@ export default {
 
 <style lang="scss" scoped>
 #the-filter{
+  position: relative;
   .the-filter-content{
     display: flex;
     padding: 10px 0;
@@ -297,7 +316,6 @@ export default {
     justify-content: space-between;
     .the-filter-content-container{
       overflow: hidden;
-      width: 100%;
       .the-filter-content-container-items{
         display: flex;
         transition:transform .3s;
@@ -327,9 +345,9 @@ export default {
             font-weight: normal;
             font-size: 14px;
             line-height: 18px;
-            /* identical to box height */
             color: rgba(0, 0, 0, 0.87);
             margin-right: 10px;
+            position: relative;
             &.the-filter-content-item-button-active{
               color: $primary;
             }
@@ -356,6 +374,46 @@ export default {
           transform: rotate(0deg);
         }
       }
+    }
+  }
+  .the-filter-list{
+    width: 100%;
+    position: absolute;
+    z-index: 20;
+    border-radius: 4px;
+    margin-top: 10px;
+    border: 1px solid #E0E0E0;
+    background: white;
+    padding: 25px 15px 12px;
+    .the-filter-list-header{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .the-filter-list-footer{
+      display: flex;
+      justify-content: flex-end;
+    }
+    .the-filter-list-content {
+      display: flex;
+      flex-wrap: wrap;
+      .the-filter-list-content-item{
+        margin-right: 10px;
+      }
+    }
+
+    .the-filter-list-arrow{
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 8px solid #ccc;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 30px solid transparent;
+      left: 50%;
+      top: -19px;
+      transform: translate(-50%, -50%);
     }
   }
 }
