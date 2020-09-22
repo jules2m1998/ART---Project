@@ -1,5 +1,8 @@
 <template>
   <div id="bottom-fil-ariane">
+    <v-icon class="bottom-fil-ariane-icon">
+      settings_backup_restore
+    </v-icon>
     <div class="bottom-fil-ariane-text">
       <div class="bottom-fil-ariane-text-title">
         ART à Yaoundé
@@ -7,19 +10,6 @@
       <div class="bottom-fil-ariane-text-subtitle">
         (214 Résultats en 233ms)
       </div>
-    </div>
-    <div class="bottom-fil-ariane-filter">
-      <button>
-        <v-icon color="primary" size="18" class="bottom-fil-ariane-filter-icon">
-          sort
-        </v-icon>
-        <div class="bottom-fil-ariane-filter-text">
-          Pertinence
-        </div>
-        <v-icon size="18" class="bottom-fil-ariane-filter-icon-filter">
-          arrow_drop_down
-        </v-icon>
-      </button>
     </div>
   </div>
 </template>
@@ -33,11 +23,17 @@ export default {
 <style lang="scss" scoped>
 #bottom-fil-ariane{
   display: flex;
-  width: 100%;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: auto;
+  .bottom-fil-ariane-icon{
+    margin-right: 18px;
+    @media screen and (max-width: 405px) {
+      margin-top: 7px;
+      align-self: flex-start;
+    }
+  }
   .bottom-fil-ariane-text{
     display: flex;
     flex-direction: row;
@@ -49,6 +45,7 @@ export default {
       font-weight: 600;
       font-size: 24px;
       margin-right: 13px;
+      white-space: nowrap;
     }
     .bottom-fil-ariane-text-subtitle{
       font-family: Open Sans,sans-serif;
@@ -56,22 +53,7 @@ export default {
       font-weight: 300;
       font-size: 14px;
       padding-bottom: 6px;
-    }
-  }
-  .bottom-fil-ariane-filter{
-    button{
-      display: flex;
-      font-family: Google Sans,sans-serif;
-      color: $primary;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 13px;
-      line-height: 17px;
-      justify-content: space-between;
-      width: 150px;
-      .bottom-fil-ariane-filter-icon{
-
-      }
+      white-space: nowrap;
     }
   }
 }

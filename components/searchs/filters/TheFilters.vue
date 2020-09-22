@@ -41,6 +41,35 @@
                   arrow_drop_down
                 </v-icon>
               </button>
+
+              <!--              <v-menu open-on-hover offset-y>-->
+              <!--                <template v-slot:activator="{ on, attrs }">-->
+              <!--                  <button-->
+              <!--                    v-bind="attrs"-->
+              <!--                    class="the-filter-content-item-button"-->
+              <!--                    :class="{'the-filter-content-item-button-active': v.isActive }"-->
+              <!--                    v-on="on"-->
+              <!--                    @click="makeActive(v)"-->
+              <!--                  >-->
+              <!--                    <span class="the-filter-content-item-button-text">-->
+              <!--                      {{ v.title }}-->
+              <!--                    </span>-->
+              <!--                    <v-icon-->
+              <!--                      v-if="v.isActive"-->
+              <!--                      color="primary"-->
+              <!--                      size="18"-->
+              <!--                    >-->
+              <!--                      check_circle_outline-->
+              <!--                    </v-icon>-->
+              <!--                    <v-icon size="18" class="the-filter-content-item-button-icon-filter">-->
+              <!--                      arrow_drop_down-->
+              <!--                    </v-icon>-->
+              <!--                  </button>-->
+              <!--                </template>-->
+              <!--                <div>-->
+              <!--                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, cupiditate dicta dignissimos error eveniet exercitationem ipsam libero omnis provident quaerat quasi rerum sit unde! Deleniti dolor dolore quae reiciendis tempora.-->
+              <!--                </div>-->
+              <!--              </v-menu>-->
             </div>
           </template>
         </div>
@@ -129,6 +158,7 @@ export default {
      * @type {boolean}
      **/
     isResponsive: false,
+
     /**
      * @type {boolean}
      **/
@@ -237,9 +267,9 @@ export default {
      */
     translate (isRight) {
       if (isRight) {
-        this.nbScroll += 2
+        this.nbScroll += 1
       } else {
-        this.nbScroll -= 2
+        this.nbScroll -= 1
       }
       this.isLeft = this.nbScroll > 0
       this.isRight = this.nbScroll < this.responsiveChildreInfo.length - this.getNumberOfvisibleElement()

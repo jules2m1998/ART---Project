@@ -2,21 +2,17 @@
   <div id="search">
     <header-second />
     <v-container>
-      <the-fil-ariane :ariane="ariane" />
-      <the-formatter />
-      <the-filters />
+      <the-search />
     </v-container>
   </div>
 </template>
 
 <script>
 import HeaderSecond from '@/components/header-second/HeaderSecond'
-import TheFilAriane from '@/components/searchs/filAriane/TheFilAriane'
-import TheFormatter from '@/components/searchs/format/TheFormatter'
-import TheFilters from '@/components/searchs/filters/TheFilters'
+import TheSearch from '@/components/searchs/TheSearch'
 export default {
   name: 'Search',
-  components: { TheFilters, TheFormatter, TheFilAriane, HeaderSecond },
+  components: { TheSearch, HeaderSecond },
   data: () => ({
     ariane: [
       {
