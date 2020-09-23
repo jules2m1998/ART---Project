@@ -1,33 +1,36 @@
 <template>
-  <div id="the-formatter">
-    <div class="bottom-fil-ariane-filter">
+  <div id="the-formatter" :class="{ small }">
+    <div class="the-formatter-btn">
       <button>
-        <v-icon color="primary" size="18" class="bottom-fil-ariane-filter-icon">
+        <v-icon color="primary" size="18" class="the-formatter-btn-icon">
           sort
         </v-icon>
-        <div class="bottom-fil-ariane-filter-text">
+        <div class="the-formatter-btn-text">
           Pertinence
         </div>
-        <v-icon size="18" class="bottom-fil-ariane-filter-icon-filter">
+        <v-icon size="18" class="the-formatter-btn-icon-filter">
           arrow_drop_down
         </v-icon>
       </button>
     </div>
     <ul class="the-formatter-content">
-      <li
+      <template
         v-for="(v, k) in formatters"
-        :key="k"
-        class="the-formatter-content-item"
-        :class="{ 'the-formatter-content-item-active': v.isActive }"
-        @click="makeActive(v)"
       >
-        <v-icon size="16" class="the-formatter-content-item-icon">
-          {{ v.icon }}
-        </v-icon>
-        <div class="the-formatter-content-item-text">
-          {{ v.name }}
-        </div>
-      </li>
+        <li
+          :key="k"
+          class="the-formatter-content-item"
+          :class="{ 'the-formatter-content-item-active': v.isActive, 'invisible': v.smallInvisible }"
+          @click="makeActive(v)"
+        >
+          <v-icon size="16" class="the-formatter-content-item-icon">
+            {{ v.icon }}
+          </v-icon>
+          <div class="the-formatter-content-item-text">
+            {{ v.name }}
+          </div>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
@@ -35,6 +38,13 @@
 <script>
 export default {
   name: 'TheFormatter',
+  props: {
+    small: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  },
   data: () => ({
     formatters: [
       {
@@ -45,7 +55,8 @@ export default {
       {
         name: 'Grille',
         icon: 'view_column',
-        isActive: false
+        isActive: false,
+        smallInvisible: true
       },
       {
         name: 'Carte',
@@ -68,8 +79,23 @@ export default {
 $transition: 0.5s;
 #the-formatter{
   display: flex;
-  .bottom-fil-ariane-filter{
-    margin-right: 20px;
+  &.small{
+    .the-formatter-btn{
+      order: 2;
+      border-left: 1px solid #cccccc;
+      padding-left: 10px;
+    }
+    .the-formatter-content {
+      padding-left: 0;
+      padding-right: 10px;
+      border-left: unset;
+      .the-formatter-content-item.invisible{
+        display: none;
+      }
+    }
+  }
+  .the-formatter-btn{
+    margin-right: 10px;
     button{
       display: flex;
       font-family: Google Sans,sans-serif;
@@ -86,13 +112,12 @@ $transition: 0.5s;
           margin-right: 3px;
         }
       }
-      .bottom-fil-ariane-filter-icon{
-
-      }
     }
   }
   .the-formatter-content{
     display: flex;
+    border-left: 1px solid #cccccc;
+    padding-left: 10px;
     .the-formatter-content-item{
       display: flex;
       align-items: center;

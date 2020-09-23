@@ -28,7 +28,7 @@
                 @click="e => makeActive(v, e)"
               >
                 <span class="the-filter-content-item-button-text">
-                  {{ v.title }}
+                  {{ v.title }} <span v-if="v.filters && v.filters.filter(v => v.isActive).length !== 0">({{ v.filters.filter(v => v.isActive).length }})</span>
                 </span>
                 <v-icon
                   v-if="v.isActive"
@@ -37,7 +37,7 @@
                 >
                   check_circle_outline
                 </v-icon>
-                <v-icon size="18" class="the-filter-content-item-button-icon-filter">
+                <v-icon v-if="v.filters" size="18" class="the-filter-content-item-button-icon-filter">
                   arrow_drop_down
                 </v-icon>
               </button>
@@ -73,7 +73,7 @@
       </div>
       <v-divider class="my-3" />
       <div class="the-filter-list-content">
-        <template v-if="currentFilter">
+        <template v-if="currentFilter && currentFilter.filters">
           <v-checkbox
             v-for="(filter, k) in currentFilter.filters"
             :key="k"
@@ -86,9 +86,11 @@
       </div>
       <v-divider class="my-3" />
       <div class="the-filter-list-footer">
-        <v-btn color="primary" small>
-          Appliquer
-        </v-btn>
+        <template v-if="currentFilter && currentFilter.filters">
+          <v-btn :disabled="currentFilter.filters.filter(v => v.isActive).length === 0" color="primary" small>
+            Appliquer
+          </v-btn>
+        </template>
       </div>
       <div class="the-filter-list-arrow" />
     </div>
@@ -136,6 +138,38 @@ export default {
           }
         ],
         id: 0
+      },
+      {
+        title: 'Links',
+        isActive: false,
+        id: 1
+      },
+      {
+        title: 'Langues',
+        isActive: false,
+        filters: [
+          {
+            id: 0,
+            name: 'Francais',
+            isActive: false
+          },
+          {
+            id: 1,
+            name: 'Anglais',
+            isActive: false
+          }
+        ],
+        id: 2
+      },
+      {
+        title: 'Links',
+        isActive: false,
+        id: 3
+      },
+      {
+        title: 'Links',
+        isActive: false,
+        id: 4
       }
     ],
     /**
@@ -176,9 +210,7 @@ export default {
     this.getChildrenWidth()
     this.makeAdaptative()
     window.addEventListener('resize', this.makeAdaptative.bind(this))
-    window.addEventListener('click', () => {
-      this.currentFilter = null
-    })
+    window.addEventListener('click', this.closeFilterList.bind(this))
   },
   methods: {
     /**
@@ -186,11 +218,19 @@ export default {
      * @param active
      */
     makeActive (active, e) {
-      this.currentFilter = active
-      e.stopPropagation()
-      const arrow = document.querySelector('.the-filter-list-arrow')
-      const el = document.querySelector(`.the-filter-content-item[data-id="${active.id}"]`)
-      arrow.style.left = `${el.getBoundingClientRect().x - el.getBoundingClientRect().width / 2 - 10}px`
+      if (active.filters) {
+        if (this.currentFilter) {
+          this.resetCurrentFilter()
+        }
+        this.currentFilter = null
+        this.currentFilter = active
+        e.stopPropagation()
+        const arrow = document.querySelector('.the-filter-list-arrow')
+        const el = document.querySelector(`.the-filter-content-item[data-id="${active.id}"]`)
+        arrow.style.left = `${el.getBoundingClientRect().x - el.getBoundingClientRect().width / 2 - 10}px`
+      } else {
+        active.isActive = true
+      }
     },
     /**
      * Rend le filtre adaptatif
@@ -286,7 +326,15 @@ export default {
       this.responsive.style.transform = `translate3d(-${width}px, 0, 0)`
     },
     closeFilterList () {
-      this.currentFilter = null
+      if (this.currentFilter) {
+        this.resetCurrentFilter()
+        this.currentFilter = null
+      }
+    },
+    resetCurrentFilter () {
+      this.currentFilter.filters.forEach((v) => {
+        v.isActive = false
+      })
     }
   }
 }

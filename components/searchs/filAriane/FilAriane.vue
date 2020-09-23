@@ -49,13 +49,13 @@ export default {
       position: absolute;
       .fil-ariane-ico-dot{
         &:first-child{
-          color: rgba(#000000, .54);
+          color: rgba(#000000, .42);
         }
         &:nth-child(2){
-          color: rgba(#000000, .72);
+          color: rgba(#000000, .28);
         }
         &:last-child{
-          color: rgba(#000000, .87);
+          color: rgba(#000000, .18);
         }
       }
     }

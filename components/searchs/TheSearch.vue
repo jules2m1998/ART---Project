@@ -54,7 +54,7 @@ export default {
       }
       .the-search-header-top-formatter{
         margin-bottom: 10px;
-        @media screen and (max-width: 820px){
+        @media screen and (max-width: 822px){
           margin-top: 20px;
           width: 100%;
           justify-content: flex-end;

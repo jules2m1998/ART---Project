@@ -1,5 +1,5 @@
 <template>
-  <div id="bottom-fil-ariane">
+  <div id="bottom-fil-ariane" :class="{ small: small }">
     <v-icon class="bottom-fil-ariane-icon">
       settings_backup_restore
     </v-icon>
@@ -16,7 +16,14 @@
 
 <script>
 export default {
-  name: 'BottomFilAriane'
+  name: 'BottomFilAriane',
+  props: {
+    small: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  }
 }
 </script>
 
@@ -27,6 +34,17 @@ export default {
   align-items: center;
   flex-wrap: nowrap;
   width: auto;
+  &.small{
+    .bottom-fil-ariane-text{
+      .bottom-fil-ariane-text-title{
+        font-size: 16px;
+      }
+      .bottom-fil-ariane-text-subtitle{
+        font-size: 14px;
+        padding-bottom: 2px;
+      }
+    }
+  }
   .bottom-fil-ariane-icon{
     margin-right: 18px;
     @media screen and (max-width: 405px) {
