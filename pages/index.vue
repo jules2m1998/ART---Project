@@ -8,12 +8,12 @@
     <v-container>
       <div class="my-content pb-8">
         <div class="d-flex flex-column">
-          <the-categories v-if="false" :categories="categories" />
+          <the-categories v-if="isSkeleton" :categories="categories" />
           <skeleton-the-categories v-else />
           <div class="inner-pub">
             pub
           </div>
-          <the-numero-urgent v-if="false" :phones="phones" />
+          <the-numero-urgent v-if="isSkeleton" :phones="phones" />
           <skeleton-the-numero-urgent v-else />
         </div>
         <div class="pub">
@@ -25,7 +25,7 @@
       <google-map />
       <div class="enterprise">
         <v-container>
-          <the-home-enterprise v-if="false" />
+          <the-home-enterprise v-if="isSkeleton" />
           <skeleton-the-home-enterprise v-else />
         </v-container>
       </div>
@@ -35,13 +35,13 @@
         publicité
       </div>
       <div class="villes">
-        <villes v-if="false" />
+        <villes v-if="isSkeleton" />
         <skeleton-villes v-else />
       </div>
     </v-container>
     <div class="lines" />
     <v-container>
-      <partner v-if="false" />
+      <partner v-if="isSkeleton" />
       <skeleton-partner v-else />
     </v-container>
   </div>
@@ -65,253 +65,252 @@ import SkeletonPartner from '@/components/partner-home/skeleton/SkeletonPartner'
 import HeaderSecond from '@/components/header-second/HeaderSecond'
 export default {
   components: { HeaderSecond, SkeletonPartner, SkeletonVilles, SkeletonTheHomeEnterprise, SkeletonTheNumeroUrgent, SkeletonTheCategories, Defilement, Partner, Villes, TheHomeEnterprise, GoogleMap, TheNumeroUrgent, TheCategories, TheHeader },
-  data () {
-    return {
-      /**
-       * Liste des slides
-       * @type {Array}
-       */
-      sliders: [
-        {
-          title: 'Consequuntur esse fuga libero maxime officia. Aliquam',
-          img: 'https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Expected 1 line break before closing tag but no line breaks found',
-          img: 'https://images.unsplash.com/photo-1560285509-3ebfa70a171d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=80'
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-          img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: "Les parenthèses attendues autour de l'argument",
-          img: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-        },
-        {
-          title: 'Les parenthèses attendues autour de avec des accolades',
-          img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Les parenthèses attendues autour de avec des accolades',
-          img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
-        }
-      ],
-      /**
-       * Liste des catégories
-       * @type {Array}
-       */
-      categories: [
-        {
-          text: 'Texte de test 2',
-          to: '/',
-          color: 'red darken-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 3',
-          to: '/',
-          color: 'purple darken-3',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'pink accent-4',
-          ico: 'home'
-        },
-        {
-          text: 'Text 1',
-          to: '/',
-          color: 'blue lighten-1',
-          ico: 'home'
-        }
-      ],
-      /**
-       * Liste des numéros d'urgences
-       * @type {Array}
-       */
-      phones: [
-        {
-          number: '118',
-          color: 'red',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        },
-        {
-          number: '118',
-          color: 'green',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        },
-        {
-          number: '118',
-          color: 'black',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        },
-        {
-          number: '118',
-          color: 'blue',
-          title: "Numéro d'appel de la police",
-          description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
-        }
-      ],
-      /**
-       * Liste des entreprises à proximité
-       * @type {Array}
-       */
-      enterprise: [
-        {
-          name: 'Groupe forget audioprothésistes',
-          domain: 'Santé / Audioprothésie',
-          location: '370-950 monté des Pionniers, Terrebeeeeeeeeeeeee',
-          note: 12,
-          open: '08h30',
-          phone: '690981056',
-          mail: '',
-          site: ''
-        }
-      ],
-      /**
-       * determine si la barre des me,us est visible
-       * @type {boolean}
-       */
-      isHeaderSecondVisible: false
-    }
-  },
+  data: () => ({
+    /**
+     * Liste des slides
+     * @type {Array}
+     */
+    sliders: [
+      {
+        title: 'Consequuntur esse fuga libero maxime officia. Aliquam',
+        img: 'https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+      },
+      {
+        title: 'Expected 1 line break before closing tag but no line breaks found',
+        img: 'https://images.unsplash.com/photo-1560285509-3ebfa70a171d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=80'
+      },
+      {
+        title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+        img: 'https://images.unsplash.com/photo-1582787252196-55af238b3cf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+      },
+      {
+        title: "Les parenthèses attendues autour de l'argument",
+        img: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        title: 'Les parenthèses attendues autour de avec des accolades',
+        img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+      },
+      {
+        title: 'Les parenthèses attendues autour de avec des accolades',
+        img: 'https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+      }
+    ],
+    /**
+     * Liste des catégories
+     * @type {Array}
+     */
+    categories: [
+      {
+        text: 'Texte de test 2',
+        to: '/',
+        color: 'red darken-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 3',
+        to: '/',
+        color: 'purple darken-3',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'pink accent-4',
+        ico: 'home'
+      },
+      {
+        text: 'Text 1',
+        to: '/',
+        color: 'blue lighten-1',
+        ico: 'home'
+      }
+    ],
+    /**
+     * Liste des numéros d'urgences
+     * @type {Array}
+     */
+    phones: [
+      {
+        number: '118',
+        color: 'red',
+        title: "Numéro d'appel de la police",
+        description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
+      },
+      {
+        number: '118',
+        color: 'green',
+        title: "Numéro d'appel de la police",
+        description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
+      },
+      {
+        number: '118',
+        color: 'black',
+        title: "Numéro d'appel de la police",
+        description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
+      },
+      {
+        number: '118',
+        color: 'blue',
+        title: "Numéro d'appel de la police",
+        description: 'nihil saepe sapiente, velit? Aspernatur distinctio labore perferendis reprehenderit sunt!'
+      }
+    ],
+    /**
+     * Liste des entreprises à proximité
+     * @type {Array}
+     */
+    enterprise: [
+      {
+        name: 'Groupe forget audioprothésistes',
+        domain: 'Santé / Audioprothésie',
+        location: '370-950 monté des Pionniers, Terrebeeeeeeeeeeeee',
+        note: 12,
+        open: '08h30',
+        phone: '690981056',
+        mail: '',
+        site: ''
+      }
+    ],
+    /**
+     * determine si la barre des me,us est visible
+     * @type {boolean}
+     */
+    isHeaderSecondVisible: false,
+    isSkeleton: true
+  }),
   mounted () {
     console.log(document.querySelector('[data-search]'))
     const search = document.querySelector('[data-search]')

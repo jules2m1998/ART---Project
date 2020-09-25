@@ -131,6 +131,9 @@ export default {
     width: 100%;
     flex-wrap: wrap;
     position: relative;
+    @media screen and (max-width: 446px){
+      justify-content: space-between;
+    }
     .the-box{
       position: absolute;
       bottom: 0;
@@ -157,9 +160,9 @@ export default {
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
-      width: calc(100% - 270px);
+      width: calc(100% - 328px);
       order: 2;
-      @media screen and (max-width: 623px) {
+      @media screen and (max-width: 675px) {
         .show{
           opacity: 0;
           width: 0!important;
@@ -226,7 +229,7 @@ export default {
           }
         }
       }
-      @media screen and (max-width: 809px){
+      @media screen and (max-width: 926px){
         height: auto!important;
         flex-wrap: wrap;
         .menu{

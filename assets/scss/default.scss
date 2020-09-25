@@ -379,3 +379,12 @@ h2{
   #profile-btn{
   }
 }
+
+
+/** MBH **/
+.mbh-container{
+  padding: 0 64px;
+  @media screen and (max-width: 1159px) {
+    padding: 0 16px;
+  }
+}

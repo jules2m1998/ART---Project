@@ -1,6 +1,6 @@
 <template>
   <div class="partner-list">
-    <h2 class="partner-list-title" @click="clickBtn">
+    <h2 class="partner-list-title" data-partner-toogle @click="clickBtn">
       <v-btn
         id="js-btn"
         class="mr-1"
@@ -17,8 +17,8 @@
         </v-icon>
       </v-btn> Avec les opérateurs concesseionnaires
     </h2>
-    <div class="partner-list-content d-flex flex-row js-content">
-      <partner-item v-for="iten in 4" :key="iten" class="mr-6" />
+    <div class="partner-list-content js-content" data-show>
+      <partner-item v-for="item in 4" :key="item" class="mr-6" />
     </div>
   </div>
 </template>
@@ -32,7 +32,8 @@ export default {
     /**
      * @type {boolean}
      */
-    isVisible: true
+    isVisible: true,
+    h: 0
   }),
   methods: {
     /**
@@ -41,9 +42,21 @@ export default {
      */
     tooglePartner (e) {
       e.stopPropagation()
-      const parts = e.path[4].querySelector('.js-content')
-      console.log(parts)
-      parts.classList.toggle('hide')
+      const element = e.target.parentNode.parentNode
+      // eslint-disable-next-line no-undef
+      const tweenLite = TweenLite
+      const child = element.querySelector('[data-show]')
+      this.h = child.getBoundingClientRect().height !== 0 ? child.getBoundingClientRect().height : this.h
+      const isHide = child.classList.toggle('partners-hide')
+      this.isVisible = !isHide
+      if (isHide) {
+        tweenLite.fromTo(child, 0.4, { height: this.h, opacity: 1 }, { height: 0, opacity: 0 })
+      } else {
+        tweenLite.fromTo(child, 0.4, { height: 0, opacity: 0 }, { height: this.h, opacity: 1 })
+        setTimeout(() => {
+          child.style.height = 'auto'
+        }, 600)
+      }
     },
     /**
      * @param {MouseEvent} e
@@ -68,16 +81,16 @@ export default {
       margin-bottom: 16px;
       cursor: pointer;
     }
+    .partner-list-content{
+      display: flex;
+      flex-wrap: wrap;
+      @media screen and (max-width: 452px) {
+        justify-content: center;
+      }
+    }
   }
   .js-content{
     height: auto;
     overflow: hidden;
-    max-height: 120px;
-    opacity: 1;
-    transition: all .5s ease-out;
-  }
-  .hide{
-    max-height: 0;
-    opacity: 0;
   }
 </style>

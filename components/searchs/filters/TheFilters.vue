@@ -98,80 +98,18 @@
 </template>
 
 <script>
+import debounce from '@/mixins/debounce'
+
 export default {
   name: 'TheFilters',
+  mixins: [debounce],
+  props: {
+    filters: {
+      type: Array,
+      required: true
+    }
+  },
   data: () => ({
-    filters: [
-      {
-        title: 'Catégories',
-        isActive: false,
-        filters: [
-          {
-            id: 0,
-            name: 'Filtre 0',
-            isActive: false
-          },
-          {
-            id: 1,
-            name: 'Filtre 1',
-            isActive: false
-          },
-          {
-            id: 2,
-            name: 'Filtre 2',
-            isActive: false
-          },
-          {
-            id: 3,
-            name: 'Filtre 3',
-            isActive: false
-          },
-          {
-            id: 4,
-            name: 'Filtre 4',
-            isActive: false
-          },
-          {
-            id: 5,
-            name: 'Filtre 5',
-            isActive: false
-          }
-        ],
-        id: 0
-      },
-      {
-        title: 'Links',
-        isActive: false,
-        id: 1
-      },
-      {
-        title: 'Langues',
-        isActive: false,
-        filters: [
-          {
-            id: 0,
-            name: 'Francais',
-            isActive: false
-          },
-          {
-            id: 1,
-            name: 'Anglais',
-            isActive: false
-          }
-        ],
-        id: 2
-      },
-      {
-        title: 'Links',
-        isActive: false,
-        id: 3
-      },
-      {
-        title: 'Links',
-        isActive: false,
-        id: 4
-      }
-    ],
     /**
      * @type {HTMLElement}
      */
@@ -209,7 +147,7 @@ export default {
     this.responsive = document.querySelector('[data-content-responsive]')
     this.getChildrenWidth()
     this.makeAdaptative()
-    window.addEventListener('resize', this.makeAdaptative.bind(this))
+    window.addEventListener('resize', this.debounce(this.makeAdaptative.bind(this), 500))
     window.addEventListener('click', this.closeFilterList.bind(this))
   },
   methods: {
