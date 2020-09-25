@@ -26,6 +26,7 @@ export default {
     justify-content: center;
     flex-direction: column;
     padding: 6px;
+    margin-top: 10px;
     .partner--img{
       width: 100%;
       display: flex;

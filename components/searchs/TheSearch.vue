@@ -5,7 +5,7 @@
         <the-fil-ariane :ariane="ariane" class="the-search-header-top-ariane" />
         <the-formatter class="the-search-header-top-formatter" />
       </div>
-      <the-filters />
+      <the-filters :filters="filters" />
     </div>
   </div>
 </template>
@@ -17,6 +17,12 @@ import TheFilAriane from '@/components/searchs/filAriane/TheFilAriane'
 export default {
   name: 'TheSearch',
   components: { TheFilAriane, TheFilters, TheFormatter },
+  props: {
+    filters: {
+      type: Array,
+      required: true
+    }
+  },
   data: () => ({
     ariane: [
       {

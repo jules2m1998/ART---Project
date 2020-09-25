@@ -344,7 +344,7 @@ p{
         display: flex;
         justify-content: center;
         align-items: center;
-        @media screen and (max-width: 597px) {
+        @media screen and (max-width: 681px) {
           #menus{
             display: none;
           }

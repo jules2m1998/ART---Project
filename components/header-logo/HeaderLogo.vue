@@ -1,7 +1,8 @@
 <template>
   <div id="logo">
     <router-link to="/">
-      <img src="/logo-white.png" alt="logo de l'annuaire universel du cameroun">
+      <img src="/LOGO.svg" alt="logo de l'annuaire universel du cameroun" class="logo-big">
+      <img src="/LOGO-mini.svg" alt="mini logo de l'annuaire universel du cameroun" class="logo-small">
     </router-link>
   </div>
 </template>
@@ -12,6 +13,18 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+#logo{
+  @media screen and (max-width: 446px)  {
+    .logo-big{
+      display: none!important;
+    }
+    .logo-small {
+      display: block!important;
+    }
+  }
+  .logo-small {
+    display: none;
+  }
+}
 </style>

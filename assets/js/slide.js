@@ -47,7 +47,8 @@ class Carousel {
     this.carouselContent.style.overflow = 'hidden'
     this.createNavigation()
     this.onWindowResize()
-    window.addEventListener('resize', this.onWindowResize.bind(this))
+    // window.addEventListener('resize', this.onWindowResize.bind(this))
+    window.addEventListener('resize', this.debounce(this.onWindowResize.bind(this), 500))
     // eslint-disable-next-line standard/no-callback-literal
     this.moveCallbacks.forEach(cb => cb(0))
     this.element.style.visibility = 'visible'
@@ -111,6 +112,17 @@ class Carousel {
     const div = document.createElement('div')
     div.setAttribute('class', className)
     return div
+  }
+
+  debounce (callback, delay) {
+    let timer
+    return () => {
+      const args = arguments
+      clearInterval(timer)
+      timer = setTimeout(() => {
+        callback.apply(args)
+      }, delay)
+    }
   }
 
   /**

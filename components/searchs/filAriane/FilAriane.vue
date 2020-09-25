@@ -1,6 +1,6 @@
 <template>
   <div id="fil-ariane">
-    <div class="fil-ariane-ico">
+    <div v-if="icon" class="fil-ariane-ico">
       <v-icon>
         home
       </v-icon>
@@ -27,6 +27,11 @@ export default {
     links: {
       type: Array,
       required: true
+    },
+    icon: {
+      type: Boolean,
+      default: true,
+      required: false
     }
   }
 }
