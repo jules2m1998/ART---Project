@@ -2,7 +2,7 @@
   <div>
     <v-container id="the-footer" fluid>
       <v-container id="content" class="font-sans">
-        <v-btn id="float-button" fab large>
+        <v-btn id="float-button" fab large @click="scrollTop">
           <v-icon>arrow_upward</v-icon>
         </v-btn>
         <div id="box-top" class="">
@@ -198,7 +198,12 @@ export default {
         }
       ]
     }
-  })
+  }),
+  methods: {
+    scrollTop () {
+      window.scrollTo(0, 0)
+    }
+  }
 }
 </script>
 

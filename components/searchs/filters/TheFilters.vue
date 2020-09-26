@@ -167,7 +167,7 @@ export default {
         const el = document.querySelector(`.the-filter-content-item[data-id="${active.id}"]`)
         arrow.style.left = `${el.getBoundingClientRect().x - el.getBoundingClientRect().width / 2 - 10}px`
       } else {
-        active.isActive = true
+        active.isActive = !active.isActive
       }
     },
     /**
