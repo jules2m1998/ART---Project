@@ -29,6 +29,15 @@ export default {
     number: {
       type: Number,
       required: true
+    },
+    isAnimate: {
+      type: Boolean,
+      required: true
+    }
+  },
+  watch: {
+    isAnimate (val) {
+      return val
     }
   }
 }
