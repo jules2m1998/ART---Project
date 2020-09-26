@@ -13,14 +13,12 @@
       <div class="util-number-header-content">
         <div v-for="(v, k) in numbers" :key="k" class="util-number-header-content-section">
           <h2 class="util-number-header-content-section-title">
-            {{ v.name }}
+            {{ v.name }} ({{ v.phones.length }})
           </h2>
           <p class="util-number-header-content-section-desc">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quasi rem sint? Adipisci alias commodi in laborum magni natus nisi optio perspiciatis, qui quidem quo quos recusandae sit tenetur voluptatum?
           </p>
-          <div class="util-number-header-content-section-list">
-            <numero-urgent-list :phones="v.phones" />
-          </div>
+          <numero-urgent-list :phones="v.phones" class="util-number-header-content-section-list" />
         </div>
       </div>
     </v-container>
@@ -125,7 +123,7 @@ export default {
     ],
     numbers: [
       {
-        name: 'Urgence',
+        name: 'Les numéros d\'urgence',
         phones: [
           {
             number: '1510',
@@ -166,7 +164,7 @@ export default {
         ]
       },
       {
-        name: 'Sécurité',
+        name: 'Les numéros de sécurité',
         phones: [
           {
             number: '118',
@@ -195,7 +193,7 @@ export default {
         ]
       },
       {
-        name: 'Conseils',
+        name: 'Les numéros de conseils',
         phones: [
           {
             number: '118',
@@ -224,7 +222,7 @@ export default {
         ]
       },
       {
-        name: 'Opérateurs',
+        name: 'Les numéros d\'Opérateurs',
         phones: [
           {
             number: '118',
@@ -281,9 +279,9 @@ export default {
       }
     }
     .util-number-header-content{
-      margin-top: 27px;
+      margin-top: 50px;
       .util-number-header-content-section{
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         .util-number-header-content-section-title{
           font-family: "Open Sans", sans-serif;
           font-style: normal;
@@ -308,6 +306,11 @@ export default {
           font-size: 13px;
           color: #333333;
           font-style: italic;
+        }
+        .util-number-header-content-section-list{
+          @media screen and (max-width: 859px) {
+            justify-content: center;
+          }
         }
       }
     }

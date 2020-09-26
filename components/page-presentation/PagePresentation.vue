@@ -48,11 +48,13 @@ export default {
       font-size: 30px;
       font-weight: 400;
       line-height: 42px;
+      text-align: center;
     }
     .page-presentation-container-subtitle{
       font-size: 13px;
       font-weight: 400;
       line-height: 18px;
+      text-align: center;
     }
   }
 }

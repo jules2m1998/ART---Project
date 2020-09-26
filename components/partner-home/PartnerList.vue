@@ -12,7 +12,7 @@
         depressed
         @click="tooglePartner"
       >
-        <v-icon color="white" size="15">
+        <v-icon color="white" size="15" @click="e => { e.preventDefault(); e.stopPropagation()}">
           {{ isVisible ? 'remove' : 'add' }}
         </v-icon>
       </v-btn> Avec les opérateurs concesseionnaires
@@ -42,6 +42,7 @@ export default {
      */
     tooglePartner (e) {
       e.stopPropagation()
+      console.log(e.target)
       const element = e.target.parentNode.parentNode
       // eslint-disable-next-line no-undef
       const tweenLite = TweenLite
