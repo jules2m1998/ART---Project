@@ -17,7 +17,7 @@
     "animate.css": "^4.1.0",
     "cities.json": "^1.1.5",
     "google-maps-api-loader": "^1.1.1",
-    "nuxt": "^2.13.0",
+    "nuxt": "^3.4.3",
     "vue": "^2.6.11",
     "vue-notifications": "^1.0.2",
     "vue2-google-maps": "^0.10.7",
